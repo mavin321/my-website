@@ -37,9 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Home.apps.HomeConfig',
-    'projects.apps.ProjectsConfig',
-    'contacts.apps.ContactsConfig'
+    'portfolio.apps.portfolioConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'projects', 'contacts', 'Home')
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
