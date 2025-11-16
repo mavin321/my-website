@@ -1,221 +1,538 @@
 {% load static %}
 
-<!doctype html>
-<html lang="en">data-bs-theme="auto">
+<!DOCTYPE html>
+<html lang="en">
+  data-bs-theme="auto">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="mavins portfolio">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Mavin's Software Engineering Portfolio and Blog"
+    />
+    <meta name="generator" content="Hugo 0.122.0" />
+    <title>Home - Mavin's Engineering Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/carousel/"
+    />
 
-    <!--AOS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-        <!-- Favicons -->
-    <link rel="apple-touch-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s" sizes="180x180">
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s" sizes="32x32">
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s" sizes="16x16">
-    <link rel="manifest" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s">
-    <link rel="mask-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s" color="#712cf9">
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s">
-    <meta name="theme-color" content="#712cf9">
-
-
+    <link
+      rel="apple-touch-icon"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s"
+      sizes="180x180"
+    />
+    <link
+      rel="icon"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s"
+      sizes="16x16"
+    />
+    <link
+      rel="manifest"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s"
+    />
+    <link
+      rel="mask-icon"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s"
+      color="#712cf9"
+    />
+    <link
+      rel="icon"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s"
+    />
+    <meta name="theme-color" content="#712cf9" />
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+        <path
+          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+        />
       </symbol>
       <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
       </symbol>
       <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+        <path
+          d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
+        />
+        <path
+          d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"
+        />
       </symbol>
       <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        <path
+          d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+        />
       </symbol>
     </svg>
 
-
-
-
-<header data-bs-theme="dark">
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Mavin</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0 justify-content-center w-100">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/projects/">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/contacts/">Contacts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://mavinsblog.pythonanywhere.com/">My Blog</a>
-          </li>
-
-        </ul>
-
-      </div>
-    </div>
-  </nav>
-</header>
-
-<main>
-
-  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height=0px xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <img src="https://images.stockcake.com/public/5/f/a/5fa19081-44b3-4048-8c78-0d947e6c130e/digital-night-coder-stockcake.jpg" class="d-block w-100" alt="Description of Image 1">
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>About.</h1>
-            <p class="opacity-75">Welcome! I’m Mavin, a passionate Engineer and software developer specializing in Python. <br> Here, you’ll get to know a bit about me, my journey in tech, and the skills I bring to the table.</p>
-
+    <header data-bs-theme="dark">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Mavin</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul
+              class="navbar-nav me-auto mb-2 mb-md-0 justify-content-center w-100"
+            >
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/projects/"
+                  >Projects</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/contacts/"
+                  >Contacts</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="https://mavinsblog.pythonanywhere.com/"
+                  >My Blog</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height=0px xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <img src="https://blog.nashtechglobal.com/wp-content/uploads/2024/07/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvYTAxMC1tYXJrdXNzcGlza2UtZmViMTktbXNwXzE5MDJfNDk3MS5qcGc.webp" class="d-block w-100" alt="Description of Image 1">
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Projects.</h1>
-            <p>Explore my collection of projects where creativity meets code. <br>Each project showcases my expertise, problem-solving skills, and dedication to building impactful software.</p>
+      </nav>
+    </header>
 
+    <main>
+      <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <svg
+              class="bd-placeholder-img"
+              width="100%"
+              height="0px"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <img
+              src="https://images.stockcake.com/public/5/f/a/5fa19081-44b3-4048-8c78-0d947e6c130e/digital-night-coder-stockcake.jpg"
+              class="d-block w-100"
+              alt="Description of Image 1"
+            />
+            <div class="container">
+              <div class="carousel-caption text-start">
+                <h1>About Mavin.</h1>
+                <p class="opacity-75">
+                  Welcome! I’m Mavin, a dedicated Engineer specializing in
+                  building robust, scalable, and intelligent applications. I
+                  thrive on transforming complex challenges into elegant,
+                  high-performance software solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <svg
+              class="bd-placeholder-img"
+              width="100%"
+              height="0px"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <img
+              src="https://blog.nashtechglobal.com/wp-content/uploads/2024/07/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvYTAxMC1tYXJrdXNzcGlza2UtZmViMTktbXNwXzE5MDJfNDk3MS5qcGc.webp"
+              class="d-block w-100"
+              alt="Description of Image 1"
+            />
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Innovative Projects.</h1>
+                <p>
+                  Explore my portfolio of amazing projects across diverse
+                  domains, demonstrating expertise in JavaScript, C, C++, and
+                  Python. <br />Each showcases my commitment to full-stack
+                  development, data science, and resilient architecture.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <svg
+              class="bd-placeholder-img"
+              width="100%"
+              height="0px"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <img
+              src="https://www.signiant.com/wp-content/uploads/2019/04/Black-Hole-Featured-Image.jpg"
+              class="d-block w-100"
+              alt="Description of Image 1"
+            />
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Let's Connect.</h1>
+                <p>
+                  Ready to discuss a challenging problem or collaborate on a
+                  groundbreaking project? <br />I’d love to hear from you. Reach
+                  out and let’s engineer the next great software solution
+                  together.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height=0px xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-          <img src="https://www.signiant.com/wp-content/uploads/2019/04/Black-Hole-Featured-Image.jpg" class="d-block w-100" alt="Description of Image 1">
-          <div class="container">
-          <div class="carousel-caption">
-            <h1>contacts.</h1>
-            <p>Let’s connect! Whether you have a project in mind, need a collaborator, <br>or just want to say hello, I’d love to hear from you. Reach out and let’s make something great together.</p>
 
+      <div class="container marketing">
+        <div class="row">
+          <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1000">
+            <svg
+              class="bd-placeholder-img rounded-circle"
+              width="140"
+              height="140"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <image
+                href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy-YWNyo5k7Xl0CyDVDk1RZXrXqZ_mzgDYDw&s"
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <h2 class="fw-normal">Core Expertise</h2>
+            <p>
+              I am a multifaceted Engineer skilled in Python, JavaScript, C, and
+              C++. My expertise spans back-end development,data science, and
+              machine learning, focusing on building scalable infrastructure,
+              efficient algorithms, and robust, production-ready applications.
+            </p>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1000">
+            <svg
+              class="bd-placeholder-img rounded-circle"
+              width="140"
+              height="140"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <image
+                href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyRahESM5GmJ0UsHACR6ampF6nQXO0WOeVbnWIHGLNq7fbI1wqb2gj4Kig9OhqRn1Img4&usqp=CAU"
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <h2 class="fw-normal">Technical Focus</h2>
+            <p>
+              My work centers on designing and optimizing full-stack systems,
+              developing RESTful APIs, and implementing efficient database
+              architectures. I leverage my knowledge in data science to
+              integrate AI/ML models, turning raw data into strategic,
+              actionable insights for high-performance, future-proof
+              applications.
+            </p>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1000">
+            <svg
+              class="bd-placeholder-img rounded-circle"
+              width="140"
+              height="140"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <image
+                href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxP_SqCaweOmduzLRVwGnt6jpsdsnSk7QSYw&s"
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <h2 class="fw-normal">Projects & Innovation</h2>
+            <p>
+              I am passionate about tackling large-scale, complex projects. My
+              portfolio includes a range of impressive work, from low-level,
+              high-efficiency systems in C/C++ to modern web solutions with
+              JavaScript and data-intensive applications in Python. I am
+              constantly experimenting and building.
+            </p>
           </div>
         </div>
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div class="col-md-7" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="featurette-heading fw-normal lh-1">
+              A Multi-Language Approach to Engineering.
+            </h2>
+            <p class="lead">
+              As an Engineer, I recognize that the best solutions often require
+              a versatile toolkit. I strategically employ C and C++ for
+              performance-critical applications and systems programming.
+              JavaScript powers my front-end and full-stack development,
+              enabling dynamic, modern user experiences. Python remains
+              invaluable for its speed in back-end logic, data science, and
+              rapid prototyping of AI/ML features, ensuring I can select the
+              most appropriate language for any engineering challenge.
+            </p>
+          </div>
+          <div class="col-md-5" data-aos="fade-up" data-aos-duration="1000">
+            <svg
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <image
+                href="https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010125.jpg?t=st=1740840251~exp=1740843851~hmac=f25ca386335ce4049208ef2fcf8938028d423e72ed1609a6eec42da9a2e84c69&w=1800"
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-bg)"
+              />
+              <text
+                x="50%"
+                y="50%"
+                fill="var(--bs-secondary-color)"
+                dy=".3em"
+              ></text>
+            </svg>
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div
+            class="col-md-7 order-md-2"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <h2 class="featurette-heading fw-normal lh-1">
+              Architecting the Future of Applications.
+            </h2>
+            <p class="lead">
+              My focus areas—system architecture, data engineering, and AI
+              integration—are critical pillars of modern software. I specialize
+              in designing systems for scalability, resilience, and
+              maintainability. By mastering efficient low-level code and
+              integrating advanced machine learning techniques, I ensure that
+              applications are not only high-performing today but also adaptable
+              to future technological demands. This comprehensive approach is
+              essential for building software that truly drives business value
+              and innovation.
+            </p>
+          </div>
+          <div
+            class="col-md-5 order-md-1"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <svg
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <image
+                href="https://www.shutterstock.com/image-photo/big-data-visualization-concept-machine-600nw-2193979631.jpg"
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-bg)"
+              />
+              <text
+                x="50%"
+                y="50%"
+                fill="var(--bs-secondary-color)"
+                dy=".3em"
+              ></text>
+            </svg>
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div class="col-md-7" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="featurette-heading fw-normal lh-1">
+              The Engineering Drive.
+            </h2>
+            <p class="lead">
+              Engineering is the art of precise creation and efficient
+              problem-solving. My passion lies in taking abstract concepts and
+              developing them into tangible, optimized systems. I embrace the
+              continuous learning curve of the tech industry, always seeking to
+              improve code quality, explore new design patterns, and utilize
+              cutting-edge tools. Every line of code I write is aimed at
+              delivering functional excellence, robust security, and an
+              impactful solution.
+            </p>
+          </div>
+          <div class="col-md-5" data-aos="fade-up" data-aos-duration="1000">
+            <svg
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <title>Placeholder</title>
+              <image
+                href="https://img.freepik.com/free-photo/programming-code-with-laptop-background_1134-61.jpg?t=st=1740841027~exp=1740844627~hmac=8ee8fd6f99c6bf24a56652ca862e27364e9fb3e5051176f395d8d3de2caefe15&w=1800"
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-bg)"
+              />
+              <text
+                x="50%"
+                y="50%"
+                fill="var(--bs-secondary-color)"
+                dy=".3em"
+              ></text>
+            </svg>
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
       </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+      <footer class="container">
+        <p class="float-end"><a href="#">Back to top</a></p>
+      </footer>
+    </main>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
 
-
-  <div class="container marketing">
-
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1000">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy-YWNyo5k7Xl0CyDVDk1RZXrXqZ_mzgDYDw&s" width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Skills</h2>
-        <p>I’m Mavin, a back-end developer, data scientist, and machine learning enthusiast skilled in Python, Django, and AI-driven solutions. I specialize in building scalable back-end systems, designing efficient databases, and leveraging machine learning for real-world applications.</p>
-
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1000">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyRahESM5GmJ0UsHACR6ampF6nQXO0WOeVbnWIHGLNq7fbI1wqb2gj4Kig9OhqRn1Img4&usqp=CAU" width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Focus Areas</h2>
-        <p>My core focus lies in back-end development, data science, and machine learning, where I design and optimize server-side systems, develop seamless APIs, and ensure database efficiency for high-performance applications and build scalable systems. My expertise includes RESTful APIs, and AI-driven solutions, turning data into actionable insights..</p>
-
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1000">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxP_SqCaweOmduzLRVwGnt6jpsdsnSk7QSYw&s" width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Interests</h2>
-        <p>I’m passionate about exploring cutting-edge back-end and machine learning technologies, optimizing application performance, and pushing the boundaries of what’s possible with Python.I also enjoy experimenting with libraries like Pygame to create fun and interactive 2D games.</p>
-
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
-
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="featurette-heading fw-normal lh-1">Why Python.</h2>
-        <p class="lead">Python was a deliberate and strategic choice for my development journey due to its unmatched versatility, simplicity, and powerful ecosystem. Its seamless integration with technologies like HTML and CSS makes it ideal for back-end development with Django, while its extensive data science and machine learning libraries such as Pandas, NumPy, TensorFlow, and Scikit-Learn enable me to extract insights, build predictive models, and automate complex processes. Python’s efficiency allows me to develop scalable, AI-driven applications quickly, while its developer-friendly syntax fosters innovation and problem-solving, ensuring compatibility with modern technologies for high-quality solutions.</p>
-      </div>
-      <div class="col-md-5" data-aos="fade-up" data-aos-duration="1000">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image href="https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010125.jpg?t=st=1740840251~exp=1740843851~hmac=f25ca386335ce4049208ef2fcf8938028d423e72ed1609a6eec42da9a2e84c69&w=1800" width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="featurette-heading fw-normal lh-1">Focus Areas and the Future.</h2>
-        <p class="lead">Back-end development, data science, and machine learning are at the core of driving technological progress. As industries increasingly rely on AI-powered, scalable, and high-performance systems, the need for intelligent back-end solutions has never been greater. My expertise in Python, Django, and machine learning enables me to build efficient server-side architectures, optimize APIs, and develop predictive models that drive innovation. I see this field as an evolving frontier, shaping the future of data-driven applications, automation, and seamless digital experiences.</p>
-      </div>
-      <div class="col-md-5 order-md-1" data-aos="fade-up" data-aos-duration="1000">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image href="https://www.shutterstock.com/image-photo/big-data-visualization-concept-machine-600nw-2193979631.jpg" width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="featurette-heading fw-normal lh-1">Passion for Software Development.</h2>
-        <p class="lead">Software development isn’t just a career for me—it’s a creative journey that allows me to bring ideas to life. I thrive on the challenge of solving complex problems and crafting systems that are both elegant and functional. The dynamic nature of the tech industry keeps me constantly inspired to learn, grow, and push the boundaries of what’s possible. Each project I work on is an opportunity to create tools that leave a meaningful impact, whether it’s by improving efficiency, automating processes, or creating intuitive user experiences. Software development is where my curiosity, creativity, and problem-solving skills converge.</p>
-      </div>
-      <div class="col-md-5"data-aos="fade-up" data-aos-duration="1000">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image href="https://img.freepik.com/free-photo/programming-code-with-laptop-background_1134-61.jpg?t=st=1740841027~exp=1740844627~hmac=8ee8fd6f99c6bf24a56652ca862e27364e9fb3e5051176f395d8d3de2caefe15&w=1800" width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <!-- /END THE FEATURETTES -->
-
-  </div><!-- /.container -->
-
-
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-  </footer>
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-<!--AOS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
 </html>
