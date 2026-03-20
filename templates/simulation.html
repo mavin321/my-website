@@ -80,9 +80,10 @@
               <h1>Interactive engineering demos for my portfolio.</h1>
               <p class="simulation-intro">
                 This tab is a home for process models, control experiments, and
-                engineering visualizations. The first demo is a fermentation
-                simulator that shows how biomass grows, substrate is consumed,
-                and product forms over time.
+                engineering visualizations. It currently includes live native-core
+                simulations for fermentation dynamics, thermal reactor behavior,
+                separation process modeling, atomic orbital sampling, and CFD flow
+                visualization.
               </p>
               <div class="simulation-chip-row">
                 <span class="simulation-chip">Bioprocess modeling</span>
@@ -94,15 +95,18 @@
             <div class="col-lg-5" data-aos="fade-up" data-aos-duration="1200">
               <div class="simulation-summary-card">
                 <p class="simulation-summary-label">Now Showing</p>
-                <h2>Fermentation Simulator</h2>
+                <h2>Available Simulations</h2>
                 <p>
-                  A browser-based demo adapted from the larger
-                  <code>FermentationSim</code> project in this repository.
+                  This page currently exposes multiple engineering and physics
+                  simulations powered by native C/C++ cores and interactive
+                  visual frontends.
                 </p>
                 <ul class="simulation-summary-list">
-                  <li>Batch and fed-batch style runs</li>
-                  <li>Preset loading for quick scenarios</li>
-                  <li>Live trend charts and end-point metrics</li>
+                  <li>Fermentation simulator with batch and fed-batch process dynamics</li>
+                  <li>Thermal reactor study with exothermic energy-balance tracking</li>
+                  <li>Separation process model for binary column behavior</li>
+                  <li>Atomic orbital sampler with probability-density visualization</li>
+                  <li>CFD flow visualizer with pressure, velocity, and heat-transfer fields</li>
                 </ul>
               </div>
             </div>
@@ -142,6 +146,26 @@
                   Native C++ binary separation column dynamics with reflux,
                   boilup, VLE-driven enrichment, condenser duty, and reboiler
                   energy tracking.
+                </p>
+              </article>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1300">
+              <article class="simulation-catalog-card simulation-catalog-card-active">
+                <p class="simulation-card-tag">Available now</p>
+                <h3>Atomic Orbital Sampler</h3>
+                <p>
+                  Quantum-number-driven orbital point sampling with probability
+                  density projections and rotating 3D electron cloud rendering.
+                </p>
+              </article>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1400">
+              <article class="simulation-catalog-card simulation-catalog-card-active">
+                <p class="simulation-card-tag">Available now</p>
+                <h3>CFD Flow Visualizer</h3>
+                <p>
+                  Pipe-flow field simulation with Reynolds-number classification,
+                  pressure loss, thermal wall effects, and 3D flow rendering.
                 </p>
               </article>
             </div>
