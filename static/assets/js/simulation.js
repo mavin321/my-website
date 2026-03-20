@@ -5,6 +5,13 @@
   const microbeSelect = document.getElementById("microbe_id");
   const substrateSelect = document.getElementById("substrate_id");
   const presetNote = document.getElementById("preset-note");
+  const reactorForm = document.getElementById("reactor-form");
+  const reactorPrimaryChart = document.getElementById("reactor-primary-chart");
+  const reactorSecondaryChart = document.getElementById("reactor-secondary-chart");
+  const reactorNote = document.getElementById("reactor-note");
+  const reactorInsight = document.getElementById("reactor-insight");
+  const reactorPreset = document.getElementById("reactor_preset");
+  const reactorRunButton = document.getElementById("reactor-run-btn");
 
   if (!form || !primaryChart || !secondaryChart || !microbeSelect || !substrateSelect) {
     return;
@@ -18,9 +25,63 @@
   };
 
   const insight = document.getElementById("simulation-insight");
+  const reactorMetrics = {
+    peakTemp: document.getElementById("reactor-metric-peak-temp"),
+    conversion: document.getElementById("reactor-metric-conversion"),
+    heatRelease: document.getElementById("reactor-metric-heat-release"),
+    margin: document.getElementById("reactor-metric-margin"),
+  };
   const api = {
     microbes: "/api/simulation/microbes/",
     run: "/api/simulation/run/",
+    reactorRun: "/api/reactor/run/",
+  };
+  const reactorPresets = {
+    stable: {
+      reactor_time: 60,
+      reactor_points: 240,
+      reactor_ca0: 2.4,
+      reactor_t0: 335,
+      reactor_tc0: 300,
+      reactor_flow: 0.08,
+      reactor_k0: 7200000,
+      reactor_ea: 68000,
+      reactor_delta_h: -85000,
+      reactor_ua: 180,
+      reactor_cp: 4200,
+      reactor_coolant_gain: 0.03,
+      reactor_feed_temp: 330,
+    },
+    intensified: {
+      reactor_time: 75,
+      reactor_points: 300,
+      reactor_ca0: 2.8,
+      reactor_t0: 342,
+      reactor_tc0: 303,
+      reactor_flow: 0.055,
+      reactor_k0: 9200000,
+      reactor_ea: 70000,
+      reactor_delta_h: -93000,
+      reactor_ua: 165,
+      reactor_cp: 4050,
+      reactor_coolant_gain: 0.026,
+      reactor_feed_temp: 334,
+    },
+    runaway: {
+      reactor_time: 40,
+      reactor_points: 240,
+      reactor_ca0: 3.1,
+      reactor_t0: 356,
+      reactor_tc0: 308,
+      reactor_flow: 0.025,
+      reactor_k0: 14000000,
+      reactor_ea: 73500,
+      reactor_delta_h: -110000,
+      reactor_ua: 118,
+      reactor_cp: 3920,
+      reactor_coolant_gain: 0.018,
+      reactor_feed_temp: 340,
+    },
   };
 
   const fieldMap = {
@@ -151,6 +212,104 @@
     svg.innerHTML = `<rect x="0" y="0" width="${width}" height="${height}" rx="24" class="chart-bg" />${gridLines}${axis}${labels}${paths}`;
   }
 
+  function applyReactorPreset(name) {
+    const preset = reactorPresets[name];
+    if (!reactorForm || !preset) {
+      return;
+    }
+    Object.entries(preset).forEach(([key, value]) => {
+      const field = reactorForm.elements.namedItem(key);
+      if (field) {
+        field.value = value;
+      }
+    });
+    reactorNote.textContent = `${reactorPreset.options[reactorPreset.selectedIndex].text} loaded.`;
+  }
+
+  function getReactorPayload() {
+    const getNumber = function (fieldName, fallback) {
+      const field = reactorForm.elements.namedItem(fieldName);
+      return Number(field && field.value !== "" ? field.value : fallback);
+    };
+
+    return {
+      horizon: Math.max(getNumber("reactor_time", 60) || 60, 1),
+      n_points: Math.max(getNumber("reactor_points", 240) || 240, 20),
+      ca0: Math.max(getNumber("reactor_ca0", 2.4) || 2.4, 0.01),
+      t0: Math.max(getNumber("reactor_t0", 335) || 335, 250),
+      tc0: Math.max(getNumber("reactor_tc0", 300) || 300, 240),
+      ca_feed: Math.max(getNumber("reactor_ca0", 2.4) || 2.4, 0.01),
+      flow_rate: Math.max(getNumber("reactor_flow", 0.08) || 0.08, 0),
+      pre_exponential: Math.max(getNumber("reactor_k0", 7200000) || 7200000, 1),
+      activation_energy: Math.max(getNumber("reactor_ea", 68000) || 68000, 1),
+      delta_h: Math.min(getNumber("reactor_delta_h", -85000) || -85000, -1),
+      rho_cp: Math.max(getNumber("reactor_cp", 4200) || 4200, 1),
+      ua: Math.max(getNumber("reactor_ua", 180) || 180, 0.1),
+      coolant_gain: Math.max(getNumber("reactor_coolant_gain", 0.03) || 0.03, 0),
+      feed_temp: Math.max(getNumber("reactor_feed_temp", 330) || 330, 250),
+      coolant_inlet_temp: Math.max(getNumber("reactor_tc0", 300) || 300, 240),
+      ambient_temp: 298,
+      ambient_ua: 10,
+      reactor_volume: 1,
+      jacket_tau: 6,
+      order_a: 1,
+      catalyst_factor: 1,
+      product_decay: 0.01,
+      safety_limit_temp: 450,
+    };
+  }
+
+  function updateReactorResults(result, params) {
+    const peakTemp = result.summary.peak_temp;
+    const finalConversion = result.summary.final_conversion * 100;
+    const maxHeatRelease = result.summary.peak_heat_release / 1000;
+    const maxCoolantGap = Math.max(
+      ...result.states.T.map((value, index) => value - result.states.Tc[index])
+    );
+    const safetyMargin = result.summary.safety_margin;
+
+    reactorMetrics.peakTemp.textContent = `${peakTemp.toFixed(1)} K`;
+    reactorMetrics.conversion.textContent = `${finalConversion.toFixed(1)} %`;
+    reactorMetrics.heatRelease.textContent = `${maxHeatRelease.toFixed(2)} kW`;
+    reactorMetrics.margin.textContent = `${safetyMargin.toFixed(1)} K`;
+
+    const riskText =
+      safetyMargin < 20
+        ? "Runaway risk is severe and cooling authority is nearly exhausted."
+        : safetyMargin < 60
+          ? "Thermal headroom is narrow, so heat-removal tuning matters."
+          : "Cooling capacity remains comfortably ahead of runaway onset.";
+
+    reactorInsight.textContent =
+      `The reactor peaks at ${peakTemp.toFixed(1)} K with a maximum reactor-to-coolant gap of ${maxCoolantGap.toFixed(1)} K. ` +
+      `Final conversion reaches ${finalConversion.toFixed(1)}% over ${params.horizon.toFixed(0)} minutes. ${riskText}`;
+  }
+
+  async function runReactorStudy() {
+    const params = getReactorPayload();
+    const result = await fetchJson(api.reactorRun, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
+
+    buildChart(reactorPrimaryChart, [
+      { values: result.states.T, color: "#f472b6" },
+      { values: result.states.Tc, color: "#60a5fa" },
+      { values: result.states.CA, color: "#22d3ee" },
+    ]);
+
+    buildChart(reactorSecondaryChart, [
+      { values: result.derived.heat_release.map((value) => value / 1000), color: "#fb923c" },
+      { values: result.derived.heat_removal.map((value) => value / 1000), color: "#4ade80" },
+      { values: result.derived.conversion.map((value) => value * 100), color: "#facc15" },
+    ]);
+
+    updateReactorResults(result, params);
+  }
+
   function updateMetrics(result, payload) {
     const lastIndex = result.time.length - 1;
     metrics.biomass.textContent = `${result.states.X[lastIndex].toFixed(2)} g/L`;
@@ -214,6 +373,10 @@
     await loadSubstrates();
     await loadPreset();
     await runSimulation();
+    if (reactorForm && reactorPreset) {
+      applyReactorPreset(reactorPreset.value);
+      await runReactorStudy();
+    }
   }
 
   form.addEventListener("submit", async function (event) {
@@ -246,6 +409,41 @@
       presetNote.textContent = error.message;
     }
   });
+
+  if (reactorForm && reactorPreset && reactorRunButton) {
+    reactorForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      try {
+        reactorNote.textContent = "Running thermal reactor study...";
+        await runReactorStudy();
+        reactorNote.textContent = "Thermal reactor study completed with the native C++ core.";
+      } catch (error) {
+        reactorNote.textContent = error.message;
+        reactorInsight.textContent = error.message;
+      }
+    });
+
+    reactorRunButton.addEventListener("click", async function () {
+      try {
+        reactorNote.textContent = "Running thermal reactor study...";
+        await runReactorStudy();
+        reactorNote.textContent = "Thermal reactor study completed with the native C++ core.";
+      } catch (error) {
+        reactorNote.textContent = error.message;
+        reactorInsight.textContent = error.message;
+      }
+    });
+
+    reactorPreset.addEventListener("change", async function () {
+      try {
+        applyReactorPreset(reactorPreset.value);
+        await runReactorStudy();
+      } catch (error) {
+        reactorNote.textContent = error.message;
+        reactorInsight.textContent = error.message;
+      }
+    });
+  }
 
   initialize().catch(function (error) {
     presetNote.textContent = error.message;

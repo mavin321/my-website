@@ -10,4 +10,5 @@ urlpatterns=[
     path('api/simulation/microbes/<str:microbe_id>/substrates/', views.simulation_substrates, name='simulation_substrates'),
     path('api/simulation/microbes/<str:microbe_id>/substrates/<str:substrate_id>/', views.simulation_preset, name='simulation_preset'),
     path('api/simulation/run/', views.simulation_run, name='simulation_run'),
+    path('api/reactor/run/', views.reactor_simulation_run, name='reactor_simulation_run'),
 ]

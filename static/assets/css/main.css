@@ -404,6 +404,51 @@ footer.container {
   line-height: 1.6;
 }
 
+.simulation-code-badge {
+  margin-top: 1.2rem;
+  margin-bottom: 1.4rem;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  background:
+    linear-gradient(135deg, rgba(14, 116, 144, 0.22), rgba(124, 58, 237, 0.14)),
+    rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  color: #dbeafe;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.simulation-reactor-workbench {
+  position: relative;
+}
+
+.simulation-reactor-workbench::before {
+  content: "";
+  position: absolute;
+  inset: 4rem 0 auto;
+  height: 18rem;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(249, 115, 22, 0.16), transparent 30%),
+    radial-gradient(circle at 82% 40%, rgba(96, 165, 250, 0.16), transparent 30%);
+  pointer-events: none;
+}
+
+.reactor-metrics-grid .metric-card:nth-child(1) strong {
+  color: #f9a8d4;
+}
+
+.reactor-metrics-grid .metric-card:nth-child(2) strong {
+  color: #fde68a;
+}
+
+.reactor-metrics-grid .metric-card:nth-child(3) strong {
+  color: #fdba74;
+}
+
+.reactor-metrics-grid .metric-card:nth-child(4) strong {
+  color: #93c5fd;
+}
+
 .simulation-run-btn {
   width: 100%;
   padding: 0.85rem 1rem;

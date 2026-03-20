@@ -123,12 +123,13 @@
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1100">
-              <article class="simulation-catalog-card">
-                <p class="simulation-card-tag">Next slot</p>
+              <article class="simulation-catalog-card simulation-catalog-card-active">
+                <p class="simulation-card-tag">Available now</p>
                 <h3>Thermal Reactor Study</h3>
                 <p>
-                  Reserved for future reactor temperature and heat-transfer
-                  projects you want to add to this section.
+                  Detailed exothermic reactor dynamics with energy balance,
+                  cooling-jacket response, runaway risk tracking, and conversion
+                  analysis in a C++-style numerical study.
                 </p>
               </article>
             </div>
@@ -311,6 +312,167 @@
 
                 <div class="simulation-insight" id="simulation-insight">
                   The current setup is ready to simulate.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="simulation-workbench simulation-reactor-workbench pb-5">
+        <div class="container">
+          <div class="row g-4 align-items-start">
+            <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1000">
+              <div class="simulation-panel">
+                <div class="simulation-panel-header">
+                  <p class="simulation-panel-kicker">Controls</p>
+                  <h2>Thermal reactor study</h2>
+                  <p>
+                    A detailed exothermic reactor model with Arrhenius kinetics,
+                    heat removal, coolant effects, and conversion tracking.
+                  </p>
+                </div>
+
+                <div class="simulation-code-badge">
+                  C++ style numerical core with RK4 integration and explicit
+                  energy-balance tuning.
+                </div>
+
+                <form id="reactor-form" class="simulation-form">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label" for="reactor_preset">Study case</label>
+                      <select class="form-select" id="reactor_preset" name="reactor_preset">
+                        <option value="stable">Stable cooling window</option>
+                        <option value="intensified">Intensified production</option>
+                        <option value="runaway">Runaway stress test</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_time">Time horizon (min)</label>
+                      <input class="form-control" id="reactor_time" name="reactor_time" type="number" step="1" min="5" max="180" value="60" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_points">Resolution</label>
+                      <input class="form-control" id="reactor_points" name="reactor_points" type="number" step="10" min="60" max="1200" value="240" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_ca0">CA0 (mol/L)</label>
+                      <input class="form-control" id="reactor_ca0" name="reactor_ca0" type="number" step="0.05" min="0.1" value="2.4" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_t0">Reactor temp (K)</label>
+                      <input class="form-control" id="reactor_t0" name="reactor_t0" type="number" step="1" min="280" max="520" value="335" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_tc0">Coolant temp (K)</label>
+                      <input class="form-control" id="reactor_tc0" name="reactor_tc0" type="number" step="1" min="260" max="420" value="300" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_flow">Feed / refresh (1/min)</label>
+                      <input class="form-control" id="reactor_flow" name="reactor_flow" type="number" step="0.001" min="0" value="0.08" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_k0">Pre-exponential k0</label>
+                      <input class="form-control" id="reactor_k0" name="reactor_k0" type="number" step="100000" min="1000" value="7200000" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_ea">Activation energy (J/mol)</label>
+                      <input class="form-control" id="reactor_ea" name="reactor_ea" type="number" step="1000" min="10000" value="68000" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_delta_h">Reaction enthalpy (J/mol)</label>
+                      <input class="form-control" id="reactor_delta_h" name="reactor_delta_h" type="number" step="5000" max="-1000" value="-85000" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_ua">UA (W/K)</label>
+                      <input class="form-control" id="reactor_ua" name="reactor_ua" type="number" step="5" min="1" value="180" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_cp">Heat capacity term</label>
+                      <input class="form-control" id="reactor_cp" name="reactor_cp" type="number" step="100" min="1000" value="4200" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_coolant_gain">Coolant response</label>
+                      <input class="form-control" id="reactor_coolant_gain" name="reactor_coolant_gain" type="number" step="0.001" min="0" value="0.03" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="reactor_feed_temp">Feed temp (K)</label>
+                      <input class="form-control" id="reactor_feed_temp" name="reactor_feed_temp" type="number" step="1" min="260" max="500" value="330" />
+                    </div>
+                  </div>
+                  <div class="simulation-preset-note" id="reactor-note">
+                    Thermal reactor presets are ready.
+                  </div>
+                  <div class="simulation-actions">
+                    <button class="btn btn-primary simulation-run-btn" id="reactor-run-btn" type="button">
+                      Run reactor study
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-xl-8" data-aos="fade-up" data-aos-duration="1200">
+              <div class="simulation-panel simulation-panel-wide">
+                <div class="simulation-output-header">
+                  <div>
+                    <p class="simulation-panel-kicker">Results</p>
+                    <h2>Thermal response</h2>
+                  </div>
+                  <p class="simulation-output-note">
+                    This study tracks temperature escalation, reactant depletion,
+                    heat generation versus removal, and coolant lag over time.
+                  </p>
+                </div>
+
+                <div class="metrics-grid reactor-metrics-grid">
+                  <div class="metric-card">
+                    <span>Peak reactor temp</span>
+                    <strong id="reactor-metric-peak-temp">0.0 K</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Final conversion</span>
+                    <strong id="reactor-metric-conversion">0.0 %</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Max heat release</span>
+                    <strong id="reactor-metric-heat-release">0.0 kW</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Safety margin</span>
+                    <strong id="reactor-metric-margin">0.0 K</strong>
+                  </div>
+                </div>
+
+                <div class="chart-grid">
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>Temperatures and concentration</h3>
+                      <div class="chart-legend">
+                        <span><i class="legend-line legend-line-pink"></i>Reactor T</span>
+                        <span><i class="legend-line legend-line-blue"></i>Coolant T</span>
+                        <span><i class="legend-line legend-line-cyan"></i>CA</span>
+                      </div>
+                    </div>
+                    <svg id="reactor-primary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                  </div>
+
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>Heat release, heat removal, and conversion</h3>
+                      <div class="chart-legend">
+                        <span><i class="legend-line legend-line-orange"></i>Q release</span>
+                        <span><i class="legend-line legend-line-green"></i>Q removal</span>
+                        <span><i class="legend-line legend-line-gold"></i>Conversion</span>
+                      </div>
+                    </div>
+                    <svg id="reactor-secondary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                  </div>
+                </div>
+
+                <div class="simulation-insight" id="reactor-insight">
+                  The thermal reactor study is ready to simulate.
                 </div>
               </div>
             </div>

@@ -14,6 +14,7 @@ from .fermentation_bridge import (
     list_substrates,
     run_simulation,
 )
+from .thermal_reactor_bridge import run_reactor_simulation
 
 
 def index(request):
@@ -75,6 +76,19 @@ def simulation_run(request):
         if mode not in {"batch", "fed_batch"}:
             return JsonResponse({"detail": "Unsupported mode"}, status=400)
         result = run_simulation(payload, mode)
+        return JsonResponse(_clean_json(result))
+    except json.JSONDecodeError:
+        return JsonResponse({"detail": "Invalid JSON payload"}, status=400)
+    except Exception as exc:
+        return JsonResponse({"detail": str(exc)}, status=500)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def reactor_simulation_run(request):
+    try:
+        payload = json.loads(request.body or "{}")
+        result = run_reactor_simulation(payload)
         return JsonResponse(_clean_json(result))
     except json.JSONDecodeError:
         return JsonResponse({"detail": "Invalid JSON payload"}, status=400)
