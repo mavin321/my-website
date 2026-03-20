@@ -21,7 +21,7 @@ if errorlevel 1 (
 )
 
 pushd "%SCRIPT_DIR%"
-cl /nologo /std:c++17 /EHsc /O2 /LD /DVISUALIZATION_LAB_BUILD_DLL /Iinclude src\visualization_lab_model.cpp /link /OUT:visualization_lab.dll
+cl /nologo /std:c++17 /EHsc /O2 /LD /DSCIENTIFIC_VISUALS_BUILD_DLL /Iinclude src\scientific_visuals_model.cpp /link /OUT:scientific_visuals.dll
 set "BUILD_STATUS=%ERRORLEVEL%"
 popd
 

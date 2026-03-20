@@ -20,7 +20,7 @@ from .atomic_orbital_bridge import run_atomic_orbital_simulation
 from .cfd_flow_bridge import run_cfd_flow_simulation
 from .fusion_bridge import run_fusion_simulation
 from .design_space_bridge import run_design_space_simulation
-from .visualization_lab_bridge import run_visualization_lab_simulation
+from .scientific_visuals_bridge import list_scientific_scenes, run_scientific_visual_scene
 
 
 def index(request):
@@ -39,6 +39,10 @@ def index3(request):
 
 def simulation(request):
     return render(request, 'simulation.html')
+
+
+def scientific_visuals(request):
+    return render(request, 'scientific_visuals.html')
 
 
 @require_GET
@@ -167,12 +171,23 @@ def design_space_simulation_run(request):
         return JsonResponse({"detail": str(exc)}, status=500)
 
 
+@require_GET
+def scientific_visuals_scenes(request):
+    try:
+        return JsonResponse({"scenes": list_scientific_scenes()})
+    except Exception as exc:
+        return JsonResponse({"detail": str(exc)}, status=500)
+
+
 @csrf_exempt
 @require_http_methods(["POST"])
-def visualization_lab_simulation_run(request):
+def scientific_visuals_run(request):
     try:
         payload = json.loads(request.body or "{}")
-        result = run_visualization_lab_simulation(payload)
+        scene_id = str(payload.get("scene_id", "electron_motion"))
+        frame_count = int(payload.get("frame_count", 32))
+        points_per_frame = int(payload.get("points_per_frame", 180))
+        result = run_scientific_visual_scene(scene_id, frame_count, points_per_frame)
         return JsonResponse(_clean_json(result))
     except json.JSONDecodeError:
         return JsonResponse({"detail": "Invalid JSON payload"}, status=400)

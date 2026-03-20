@@ -50,14 +50,6 @@
   const designSpaceCanvas = document.getElementById("ds-3d-canvas");
   const designSpacePrimaryChart = document.getElementById("ds-primary-chart");
   const designSpaceSecondaryChart = document.getElementById("ds-secondary-chart");
-  const vizForm = document.getElementById("viz-form");
-  const vizPreset = document.getElementById("viz_preset");
-  const vizRunButton = document.getElementById("viz-run-btn");
-  const vizNote = document.getElementById("viz-note");
-  const vizInsight = document.getElementById("viz-insight");
-  const vizCanvas = document.getElementById("viz-3d-canvas");
-  const vizPrimaryChart = document.getElementById("viz-primary-chart");
-  const vizSecondaryChart = document.getElementById("viz-secondary-chart");
 
   if (!form || !primaryChart || !secondaryChart || !microbeSelect || !substrateSelect) {
     return;
@@ -107,12 +99,6 @@
     sty: document.getElementById("ds-metric-sty"),
     pareto: document.getElementById("ds-metric-pareto"),
   };
-  const vizMetrics = {
-    concentration: document.getElementById("viz-metric-conc"),
-    temperature: document.getElementById("viz-metric-temp"),
-    speed: document.getElementById("viz-metric-speed"),
-    radius: document.getElementById("viz-metric-radius"),
-  };
   const orbital3DState = {
     animationId: null,
     points: [],
@@ -147,13 +133,6 @@
     tauRange: 5,
     yieldScale: 1,
   };
-  const viz3DState = {
-    animationId: null,
-    points: [],
-    angleY: 0,
-    angleX: 0.46,
-    domain: 12,
-  };
   const api = {
     microbes: "/api/simulation/microbes/",
     run: "/api/simulation/run/",
@@ -163,7 +142,6 @@
     cfdRun: "/api/cfd/run/",
     fusionRun: "/api/fusion/run/",
     designSpaceRun: "/api/design-space/run/",
-    vizLabRun: "/api/visualization-lab/run/",
   };
   const reactorPresets = {
     stable: {
@@ -389,44 +367,6 @@
       ds_side_ea: 77000,
       ds_ua: 210,
       ds_product_price: 1425,
-    },
-  };
-  const vizPresets = {
-    plume: {
-      viz_domain: 12,
-      viz_time: 4.5,
-      viz_diffusivity: 0.18,
-      viz_strength: 48,
-      viz_sigma: 0.95,
-      viz_vortex: 6.5,
-      viz_adv_x: 0.55,
-      viz_adv_y: -0.18,
-      viz_adv_z: 0.10,
-      viz_thermal: 24,
-    },
-    shear: {
-      viz_domain: 14,
-      viz_time: 3.8,
-      viz_diffusivity: 0.12,
-      viz_strength: 42,
-      viz_sigma: 0.75,
-      viz_vortex: 4.2,
-      viz_adv_x: 0.90,
-      viz_adv_y: 0.25,
-      viz_adv_z: 0.05,
-      viz_thermal: 18,
-    },
-    mixing: {
-      viz_domain: 10,
-      viz_time: 5.2,
-      viz_diffusivity: 0.24,
-      viz_strength: 54,
-      viz_sigma: 1.15,
-      viz_vortex: 8.2,
-      viz_adv_x: 0.30,
-      viz_adv_y: -0.10,
-      viz_adv_z: 0.18,
-      viz_thermal: 28,
     },
   };
 
@@ -1260,134 +1200,6 @@
       `where yield reaches ${(bestPoint.yield_value * 100).toFixed(1)}% with safety index ${bestPoint.safety_index.toFixed(2)}.`;
   }
 
-  function applyVizPreset(name) {
-    const preset = vizPresets[name];
-    if (!vizForm || !preset) {
-      return;
-    }
-    Object.entries(preset).forEach(([key, value]) => {
-      const field = vizForm.elements.namedItem(key);
-      if (field) {
-        field.value = value;
-      }
-    });
-    vizNote.textContent = `${vizPreset.options[vizPreset.selectedIndex].text} loaded.`;
-  }
-
-  function getVizPayload() {
-    const getNumber = function (fieldName, fallback) {
-      const field = vizForm.elements.namedItem(fieldName);
-      return Number(field && field.value !== "" ? field.value : fallback);
-    };
-    return {
-      domain_size: Math.max(getNumber("viz_domain", 12) || 12, 2),
-      diffusivity: Math.max(getNumber("viz_diffusivity", 0.18) || 0.18, 0.0001),
-      advection_x: getNumber("viz_adv_x", 0.55) || 0,
-      advection_y: getNumber("viz_adv_y", -0.18) || 0,
-      advection_z: getNumber("viz_adv_z", 0.10) || 0,
-      source_strength: Math.max(getNumber("viz_strength", 48) || 48, 1),
-      source_sigma: Math.max(getNumber("viz_sigma", 0.95) || 0.95, 0.01),
-      vortex_strength: Math.max(getNumber("viz_vortex", 6.5) || 6.5, 0.01),
-      thermal_gain: Math.max(getNumber("viz_thermal", 24) || 24, 0.1),
-      time_value: Math.max(getNumber("viz_time", 4.5) || 4.5, 0.01),
-      grid_points: 14,
-    };
-  }
-
-  function renderVizCanvas(points, payload) {
-    if (!vizCanvas) {
-      return;
-    }
-    const context = vizCanvas.getContext("2d");
-    if (!context) {
-      return;
-    }
-    if (viz3DState.animationId) {
-      cancelAnimationFrame(viz3DState.animationId);
-      viz3DState.animationId = null;
-    }
-    const maxConc = Math.max(...points.map((point) => point.concentration), 1e-9);
-    viz3DState.points = points
-      .filter((point) => point.concentration > maxConc * 0.02)
-      .map((point) => ({
-        x: point.x,
-        y: point.y,
-        z: point.z,
-        intensity: point.concentration / maxConc,
-        speed: point.speed,
-      }));
-    viz3DState.domain = payload.domain_size;
-    viz3DState.angleY = 0;
-
-    const width = vizCanvas.width;
-    const height = vizCanvas.height;
-    const centerX = width / 2;
-    const centerY = height / 2;
-    const scale = Math.min(width, height) * 0.24 / Math.max(viz3DState.domain, 1);
-
-    function drawFrame() {
-      context.clearRect(0, 0, width, height);
-      const background = context.createLinearGradient(0, 0, width, height);
-      background.addColorStop(0, "rgba(16, 16, 32, 0.98)");
-      background.addColorStop(1, "rgba(2, 6, 23, 1)");
-      context.fillStyle = background;
-      context.beginPath();
-      context.roundRect(0, 0, width, height, 24);
-      context.fill();
-
-      const cosY = Math.cos(viz3DState.angleY);
-      const sinY = Math.sin(viz3DState.angleY);
-      const cosX = Math.cos(viz3DState.angleX);
-      const sinX = Math.sin(viz3DState.angleX);
-
-      const projected = viz3DState.points.map((point) => {
-        const x1 = point.x * cosY - point.z * sinY;
-        const z1 = point.x * sinY + point.z * cosY;
-        const y1 = point.y * cosX - z1 * sinX;
-        const z2 = point.y * sinX + z1 * cosX;
-        const perspective = 1 / (1 + z2 / (viz3DState.domain * 1.6));
-        return {
-          x: centerX + x1 * scale * perspective,
-          y: centerY - y1 * scale * perspective,
-          z: z2,
-          intensity: point.intensity,
-          speed: point.speed,
-        };
-      });
-
-      projected.sort((a, b) => a.z - b.z);
-      for (const point of projected) {
-        const alpha = 0.10 + 0.72 * point.intensity;
-        const radius = 1.0 + 3.2 * point.intensity;
-        const hue = 210 - 170 * point.intensity;
-        context.fillStyle = `hsla(${hue}, 92%, ${54 + 18 * point.intensity}%, ${alpha})`;
-        context.beginPath();
-        context.arc(point.x, point.y, radius, 0, Math.PI * 2);
-        context.fill();
-      }
-
-      context.fillStyle = "rgba(148, 163, 184, 0.85)";
-      context.font = "12px Montserrat, sans-serif";
-      context.fillText("advected scalar plume with vortex transport", 24, height - 18);
-
-      viz3DState.angleY += 0.009;
-      viz3DState.animationId = requestAnimationFrame(drawFrame);
-    }
-
-    drawFrame();
-  }
-
-  function updateVizResults(result) {
-    vizMetrics.concentration.textContent = `${result.summary.max_concentration.toExponential(2)}`;
-    vizMetrics.temperature.textContent = `${result.summary.max_temperature.toFixed(1)} K`;
-    vizMetrics.speed.textContent = `${result.summary.mean_speed.toFixed(2)} m/s`;
-    vizMetrics.radius.textContent = `${result.summary.plume_radius.toFixed(2)} m`;
-
-    vizInsight.textContent =
-      `The volumetric field peaks at ${result.summary.max_temperature.toFixed(1)} K with plume radius ${result.summary.plume_radius.toFixed(2)} m. ` +
-      `Mean transport speed is ${result.summary.mean_speed.toFixed(2)} m/s as the source diffuses and curls under vortex forcing.`;
-  }
-
   async function runFusionStudy() {
     const payload = getFusionPayload();
     const result = await fetchJson(api.fusionRun, {
@@ -1444,32 +1256,6 @@
 
     renderDesignSpaceCanvas(result.points, payload);
     updateDesignSpaceResults(result);
-  }
-
-  async function runVizStudy() {
-    const payload = getVizPayload();
-    const result = await fetchJson(api.vizLabRun, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const slice = result.points.filter((point) => Math.abs(point.y) < payload.domain_size / result.meta.grid_points);
-    const sortedSlice = slice.slice().sort((a, b) => a.x - b.x);
-    buildChart(vizPrimaryChart, [
-      { values: sortedSlice.map((point) => point.concentration * 1e3), color: "#22d3ee" },
-      { values: sortedSlice.map((point) => point.temperature), color: "#fb7185" },
-    ]);
-    buildChart(vizSecondaryChart, [
-      { values: sortedSlice.map((point) => point.vx), color: "#60a5fa" },
-      { values: sortedSlice.map((point) => point.vy), color: "#a78bfa" },
-      { values: sortedSlice.map((point) => point.speed), color: "#4ade80" },
-    ]);
-
-    renderVizCanvas(result.points, payload);
-    updateVizResults(result);
   }
 
   async function runCFDStudy() {
@@ -1656,10 +1442,6 @@
       applyDesignSpacePreset(designSpacePreset.value);
       await runDesignSpaceStudy();
     }
-    if (vizForm && vizPreset && vizRunButton) {
-      applyVizPreset(vizPreset.value);
-      await runVizStudy();
-    }
   }
 
   form.addEventListener("submit", async function (event) {
@@ -1829,29 +1611,6 @@
       } catch (error) {
         designSpaceNote.textContent = error.message;
         designSpaceInsight.textContent = error.message;
-      }
-    });
-  }
-
-  if (vizForm && vizPreset && vizRunButton) {
-    vizRunButton.addEventListener("click", async function () {
-      try {
-        vizNote.textContent = "Rendering volumetric field with the native C++ core...";
-        await runVizStudy();
-        vizNote.textContent = "Visualization lab completed with the native C++ core.";
-      } catch (error) {
-        vizNote.textContent = error.message;
-        vizInsight.textContent = error.message;
-      }
-    });
-
-    vizPreset.addEventListener("change", async function () {
-      try {
-        applyVizPreset(vizPreset.value);
-        await runVizStudy();
-      } catch (error) {
-        vizNote.textContent = error.message;
-        vizInsight.textContent = error.message;
       }
     });
   }

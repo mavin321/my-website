@@ -6,6 +6,7 @@ urlpatterns=[
     path('projects/',views.index2, name='index2'),
     path('contacts/',views.index3, name='index3'),
     path('simulation/', views.simulation, name='simulation'),
+    path('scientific-visuals/', views.scientific_visuals, name='scientific_visuals'),
     path('api/simulation/microbes/', views.simulation_microbes, name='simulation_microbes'),
     path('api/simulation/microbes/<str:microbe_id>/substrates/', views.simulation_substrates, name='simulation_substrates'),
     path('api/simulation/microbes/<str:microbe_id>/substrates/<str:substrate_id>/', views.simulation_preset, name='simulation_preset'),
@@ -16,5 +17,6 @@ urlpatterns=[
     path('api/cfd/run/', views.cfd_flow_simulation_run, name='cfd_flow_simulation_run'),
     path('api/fusion/run/', views.fusion_simulation_run, name='fusion_simulation_run'),
     path('api/design-space/run/', views.design_space_simulation_run, name='design_space_simulation_run'),
-    path('api/visualization-lab/run/', views.visualization_lab_simulation_run, name='visualization_lab_simulation_run'),
+    path('api/scientific-visuals/scenes/', views.scientific_visuals_scenes, name='scientific_visuals_scenes'),
+    path('api/scientific-visuals/run/', views.scientific_visuals_run, name='scientific_visuals_run'),
 ]

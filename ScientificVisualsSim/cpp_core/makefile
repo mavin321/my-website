@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -O3 -std=c++17 -fPIC -Iinclude
 LDFLAGS = -shared
-TARGET = libvisualization_lab.so
-SRC = src/visualization_lab_model.cpp
+TARGET = libscientific_visuals.so
+SRC = src/scientific_visuals_model.cpp
 
 all: $(TARGET)
 

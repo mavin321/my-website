@@ -1,0 +1,228 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Autoplay scientific visuals gallery with native C++ scene generation"
+    />
+    <title>Scientific Visuals</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+  </head>
+  <body>
+    <header data-bs-theme="dark">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Mavin</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0 justify-content-center w-100">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/projects/">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/simulation/">Simulation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/scientific-visuals/">Scientific Visuals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contacts/">Contacts</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://mavinsblog.pythonanywhere.com/">My Blog</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="science-gallery-page">
+      <section class="science-gallery-hero">
+        <div class="container py-5">
+          <div class="row g-5 align-items-center">
+            <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1000">
+              <p class="science-gallery-kicker">Scientific Visuals</p>
+              <h1 class="science-gallery-title">An autoplay gallery of scientific phenomena you can browse like exhibits.</h1>
+              <p class="science-gallery-intro">
+                This page runs as an exploratory gallery, not a manual simulator.
+                Scenes auto-play on load, and you can switch between electron motion,
+                molecular vibrations, reaction fronts, crystal lattices, interference,
+                fields, orbits, turbulence, diffusion, sound, quantum clouds, phase
+                transitions, and neural signals with simple playback controls.
+              </p>
+              <div class="science-gallery-chip-row">
+                <span class="science-gallery-chip">Autoplay scenes</span>
+                <span class="science-gallery-chip">3D motion</span>
+                <span class="science-gallery-chip">Projection overlays</span>
+                <span class="science-gallery-chip">Transient traces</span>
+                <span class="science-gallery-chip">Native C++ frames</span>
+              </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-up" data-aos-duration="1200">
+              <div class="science-gallery-summary-card">
+                <p class="science-gallery-summary-label">Gallery Scope</p>
+                <h2>What It Shows</h2>
+                <ul class="science-gallery-summary-list">
+                  <li>Motion and field scenes generated from a native C++ scene engine</li>
+                  <li>Play and pause with speed control for browsing phenomena</li>
+                  <li>Overlay toggles for projections, labels, and diagnostic traces</li>
+                  <li>Scene switching without input-heavy parameter forms</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="science-gallery-showcase pb-5">
+        <div class="container">
+          <div class="row g-4 align-items-start">
+            <div class="col-xl-8" data-aos="fade-up" data-aos-duration="1100">
+              <div class="science-stage-panel">
+                <div class="science-stage-header">
+                  <div>
+                    <p class="science-gallery-kicker">Live Exhibit</p>
+                    <h2 id="science-scene-title">Loading scene...</h2>
+                  </div>
+                  <div class="science-stage-controls">
+                    <button class="btn btn-sm science-stage-btn" id="science-play-btn" type="button">Pause</button>
+                    <select class="form-select science-stage-select" id="science-speed">
+                      <option value="0.5">0.5x</option>
+                      <option value="1" selected>1x</option>
+                      <option value="1.5">1.5x</option>
+                      <option value="2">2x</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="science-stage-canvas-wrap">
+                  <canvas id="science-main-canvas" class="science-main-canvas" width="960" height="520"></canvas>
+                </div>
+
+                <div class="science-overlay-row">
+                  <label class="science-toggle">
+                    <input id="science-toggle-grid" type="checkbox" checked />
+                    <span>Grid</span>
+                  </label>
+                  <label class="science-toggle">
+                    <input id="science-toggle-projection" type="checkbox" checked />
+                    <span>Projection</span>
+                  </label>
+                  <label class="science-toggle">
+                    <input id="science-toggle-trace" type="checkbox" checked />
+                    <span>Trace</span>
+                  </label>
+                  <label class="science-toggle">
+                    <input id="science-toggle-labels" type="checkbox" checked />
+                    <span>Labels</span>
+                  </label>
+                </div>
+
+                <div class="science-insight" id="science-insight">
+                  Initializing scientific visuals gallery.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1250">
+              <div class="science-sidebar-panel">
+                <div class="science-sidebar-header">
+                  <p class="science-gallery-kicker">Scenes</p>
+                  <h2>Browse Exhibits</h2>
+                </div>
+                <div class="science-scene-list" id="science-scene-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4 pt-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1100">
+              <div class="science-gallery-card">
+                <div class="chart-header">
+                  <h3>Orthographic View</h3>
+                </div>
+                <canvas id="science-projection-canvas" class="science-mini-canvas" width="520" height="340"></canvas>
+              </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200">
+              <div class="science-gallery-card">
+                <div class="chart-header">
+                  <h3>Transient Trace</h3>
+                </div>
+                <svg id="science-trace-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 340" preserveAspectRatio="none"></svg>
+              </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1300">
+              <div class="science-gallery-card">
+                <div class="chart-header">
+                  <h3>Scene Metrics</h3>
+                </div>
+                <div class="science-metrics-grid">
+                  <div class="science-metric-card">
+                    <span>Scale</span>
+                    <strong id="science-metric-scale">0</strong>
+                  </div>
+                  <div class="science-metric-card">
+                    <span>Metric A</span>
+                    <strong id="science-metric-a">0</strong>
+                  </div>
+                  <div class="science-metric-card">
+                    <span>Metric B</span>
+                    <strong id="science-metric-b">0</strong>
+                  </div>
+                  <div class="science-metric-card">
+                    <span>Metric C</span>
+                    <strong id="science-metric-c">0</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="{% static 'assets/js/scientific_visuals.js' %}"></script>
+  </body>
+</html>

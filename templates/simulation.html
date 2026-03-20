@@ -58,6 +58,9 @@
                 >
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="/scientific-visuals/">Scientific Visuals</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="/contacts/">Contacts</a>
               </li>
               <li class="nav-item">
@@ -113,7 +116,6 @@
                   <li>CFD flow visualizer with pressure, velocity, and heat-transfer fields</li>
                   <li>Fusion plasma simulator with Q, confinement, and power-balance tracking</li>
                   <li>Design space explorer with Pareto-front identification and multi-objective ranking</li>
-                  <li>Visualization lab with native volumetric plume, thermal, and vortex fields</li>
                 </ul>
               </div>
             </div>
@@ -1301,152 +1303,6 @@
         </div>
       </section>
 
-      <section class="simulation-workbench simulation-vizlab-workbench pb-5">
-        <div class="container">
-          <div class="row g-4 align-items-start">
-            <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1000">
-              <div class="simulation-panel">
-                <div class="simulation-panel-header">
-                  <p class="simulation-panel-kicker">Controls</p>
-                  <h2>Visualization lab</h2>
-                  <p>
-                    Generate a native 3D advection-diffusion-vortex field and
-                    inspect concentration, temperature, and flow structures from
-                    multiple projections.
-                  </p>
-                </div>
-
-                <div class="simulation-code-badge">
-                  C++ volumetric field engine with Gaussian plume diffusion,
-                  advective transport, vortex swirl, thermal coupling, and full
-                  3D point-cloud rendering.
-                </div>
-
-                <form id="viz-form" class="simulation-form">
-                  <div class="row g-3">
-                    <div class="col-12">
-                      <label class="form-label" for="viz_preset">Field preset</label>
-                      <select class="form-select" id="viz_preset" name="viz_preset">
-                        <option value="plume">Thermal plume</option>
-                        <option value="shear">Shear-transport wake</option>
-                        <option value="mixing">Vortex mixing core</option>
-                      </select>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_domain">Domain size</label>
-                      <input class="form-control" id="viz_domain" name="viz_domain" type="number" step="0.5" min="2" value="12" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_time">Time</label>
-                      <input class="form-control" id="viz_time" name="viz_time" type="number" step="0.1" min="0.1" value="4.5" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_diffusivity">Diffusivity</label>
-                      <input class="form-control" id="viz_diffusivity" name="viz_diffusivity" type="number" step="0.01" min="0.001" value="0.18" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_strength">Source strength</label>
-                      <input class="form-control" id="viz_strength" name="viz_strength" type="number" step="1" min="1" value="48" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_sigma">Source sigma</label>
-                      <input class="form-control" id="viz_sigma" name="viz_sigma" type="number" step="0.05" min="0.05" value="0.95" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_vortex">Vortex strength</label>
-                      <input class="form-control" id="viz_vortex" name="viz_vortex" type="number" step="0.1" min="0.1" value="6.5" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_adv_x">Advect x</label>
-                      <input class="form-control" id="viz_adv_x" name="viz_adv_x" type="number" step="0.05" value="0.55" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_adv_y">Advect y</label>
-                      <input class="form-control" id="viz_adv_y" name="viz_adv_y" type="number" step="0.05" value="-0.18" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_adv_z">Advect z</label>
-                      <input class="form-control" id="viz_adv_z" name="viz_adv_z" type="number" step="0.05" value="0.10" />
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="viz_thermal">Thermal gain</label>
-                      <input class="form-control" id="viz_thermal" name="viz_thermal" type="number" step="1" min="1" value="24" />
-                    </div>
-                  </div>
-                  <div class="simulation-preset-note" id="viz-note">
-                    Visualization lab presets are ready.
-                  </div>
-                  <div class="simulation-actions">
-                    <button class="btn btn-primary simulation-run-btn" id="viz-run-btn" type="button">
-                      Render field
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-            <div class="col-xl-8" data-aos="fade-up" data-aos-duration="1200">
-              <div class="simulation-panel simulation-panel-wide">
-                <div class="simulation-output-header">
-                  <div>
-                    <p class="simulation-panel-kicker">Results</p>
-                    <h2>Volumetric field response</h2>
-                  </div>
-                  <p class="simulation-output-note">
-                    A rotating 3D scalar-field cloud plus slice diagnostics show
-                    how transport, diffusion, heating, and vortex motion shape
-                    the plume.
-                  </p>
-                </div>
-
-                <div class="metrics-grid reactor-metrics-grid">
-                  <div class="metric-card">
-                    <span>Peak concentration</span>
-                    <strong id="viz-metric-conc">0</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span>Peak temperature</span>
-                    <strong id="viz-metric-temp">0 K</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span>Mean speed</span>
-                    <strong id="viz-metric-speed">0</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span>Plume radius</span>
-                    <strong id="viz-metric-radius">0</strong>
-                  </div>
-                </div>
-
-                <div class="chart-grid orbital-grid">
-                  <div class="chart-card orbital-canvas-card">
-                    <div class="chart-header">
-                      <h3>3D volumetric plume</h3>
-                    </div>
-                    <canvas id="viz-3d-canvas" class="orbital-canvas" width="720" height="420"></canvas>
-                  </div>
-                  <div class="chart-card">
-                    <div class="chart-header">
-                      <h3>Concentration and temperature slice</h3>
-                    </div>
-                    <svg id="viz-primary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
-                  </div>
-                  <div class="chart-card">
-                    <div class="chart-header">
-                      <h3>Velocity components and speed</h3>
-                    </div>
-                    <svg id="viz-secondary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
-                  </div>
-                </div>
-
-                <div class="simulation-insight" id="viz-insight">
-                  The visualization lab is ready to render.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
     <script
