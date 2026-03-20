@@ -21,7 +21,7 @@ if errorlevel 1 (
 )
 
 pushd "%SCRIPT_DIR%"
-cl /nologo /EHsc /O2 /LD /DSEPARATION_PROCESS_BUILD_DLL /Iinclude src\separation_process_model.cpp /link /OUT:separation_process.dll
+cl /nologo /std:c++17 /EHsc /O2 /LD /DSEPARATION_PROCESS_BUILD_DLL /Iinclude src\separation_process_model.cpp /link /OUT:separation_process.dll
 set "BUILD_STATUS=%ERRORLEVEL%"
 popd
 

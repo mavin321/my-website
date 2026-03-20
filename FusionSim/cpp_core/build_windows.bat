@@ -21,7 +21,7 @@ if errorlevel 1 (
 )
 
 pushd "%SCRIPT_DIR%"
-cl /nologo /EHsc /O2 /LD /DFUSION_PLASMA_BUILD_DLL /Iinclude src\fusion_plasma_model.cpp /link /OUT:fusion_plasma.dll
+cl /nologo /std:c++17 /EHsc /O2 /LD /DFUSION_PLASMA_BUILD_DLL /Iinclude src\fusion_plasma_model.cpp /link /OUT:fusion_plasma.dll
 set "BUILD_STATUS=%ERRORLEVEL%"
 popd
 

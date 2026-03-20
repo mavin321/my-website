@@ -21,7 +21,7 @@ if errorlevel 1 (
 )
 
 pushd "%SCRIPT_DIR%"
-cl /nologo /EHsc /O2 /LD /DCFD_FLOW_BUILD_DLL /Iinclude src\cfd_flow_model.cpp /link /OUT:cfd_flow.dll
+cl /nologo /std:c++17 /EHsc /O2 /LD /DCFD_FLOW_BUILD_DLL /Iinclude src\cfd_flow_model.cpp /link /OUT:cfd_flow.dll
 set "BUILD_STATUS=%ERRORLEVEL%"
 popd
 

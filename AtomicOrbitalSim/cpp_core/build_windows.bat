@@ -21,7 +21,7 @@ if errorlevel 1 (
 )
 
 pushd "%SCRIPT_DIR%"
-cl /nologo /EHsc /O2 /LD /DATOMIC_ORBITAL_BUILD_DLL /Iinclude src\atomic_orbital_model.cpp /link /OUT:atomic_orbital.dll
+cl /nologo /std:c++17 /EHsc /O2 /LD /DATOMIC_ORBITAL_BUILD_DLL /Iinclude src\atomic_orbital_model.cpp /link /OUT:atomic_orbital.dll
 set "BUILD_STATUS=%ERRORLEVEL%"
 popd
 

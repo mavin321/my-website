@@ -21,7 +21,7 @@ if errorlevel 1 (
 )
 
 pushd "%SCRIPT_DIR%"
-cl /nologo /EHsc /O2 /LD /DTHERMAL_REACTOR_BUILD_DLL /Iinclude src\thermal_reactor_model.cpp /link /OUT:thermal_reactor.dll
+cl /nologo /std:c++17 /EHsc /O2 /LD /DTHERMAL_REACTOR_BUILD_DLL /Iinclude src\thermal_reactor_model.cpp /link /OUT:thermal_reactor.dll
 set "BUILD_STATUS=%ERRORLEVEL%"
 popd
 
