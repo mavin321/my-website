@@ -25,6 +25,7 @@
   const orbitalInsight = document.getElementById("orbital-insight");
   const orbitalXYPlot = document.getElementById("orbital-xy-plot");
   const orbitalXZPlot = document.getElementById("orbital-xz-plot");
+  const orbitalCanvas = document.getElementById("orbital-3d-canvas");
 
   if (!form || !primaryChart || !secondaryChart || !microbeSelect || !substrateSelect) {
     return;
@@ -55,6 +56,13 @@
     maxRadius: document.getElementById("orbital-metric-max-radius"),
     meanIntensity: document.getElementById("orbital-metric-mean-intensity"),
     label: document.getElementById("orbital-metric-label"),
+  };
+  const orbital3DState = {
+    animationId: null,
+    points: [],
+    radialMax: 1,
+    angleX: 0.55,
+    angleY: 0,
   };
   const api = {
     microbes: "/api/simulation/microbes/",
@@ -472,6 +480,93 @@
     svg.innerHTML = `${axes}${points}`;
   }
 
+  function renderOrbitalCanvas(samples, radialMax) {
+    if (!orbitalCanvas) {
+      return;
+    }
+
+    const context = orbitalCanvas.getContext("2d");
+    if (!context) {
+      return;
+    }
+
+    if (orbital3DState.animationId) {
+      cancelAnimationFrame(orbital3DState.animationId);
+      orbital3DState.animationId = null;
+    }
+
+    orbital3DState.points = samples.slice(0, 1600);
+    orbital3DState.radialMax = Math.max(radialMax, 1);
+    orbital3DState.angleY = 0;
+
+    const width = orbitalCanvas.width;
+    const height = orbitalCanvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const scale = Math.min(width, height) * 0.23 / orbital3DState.radialMax;
+
+    function drawFrame() {
+      context.clearRect(0, 0, width, height);
+
+      const background = context.createLinearGradient(0, 0, width, height);
+      background.addColorStop(0, "rgba(15, 23, 42, 0.96)");
+      background.addColorStop(1, "rgba(2, 6, 23, 0.98)");
+      context.fillStyle = background;
+      context.beginPath();
+      context.roundRect(0, 0, width, height, 24);
+      context.fill();
+
+      context.strokeStyle = "rgba(148, 163, 184, 0.18)";
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(24, centerY);
+      context.lineTo(width - 24, centerY);
+      context.moveTo(centerX, 24);
+      context.lineTo(centerX, height - 24);
+      context.stroke();
+
+      const cosY = Math.cos(orbital3DState.angleY);
+      const sinY = Math.sin(orbital3DState.angleY);
+      const cosX = Math.cos(orbital3DState.angleX);
+      const sinX = Math.sin(orbital3DState.angleX);
+
+      const projected = orbital3DState.points.map((sample) => {
+        const x1 = sample.x * cosY - sample.z * sinY;
+        const z1 = sample.x * sinY + sample.z * cosY;
+        const y1 = sample.y * cosX - z1 * sinX;
+        const z2 = sample.y * sinX + z1 * cosX;
+        const perspective = 1 / (1 + z2 / (orbital3DState.radialMax * 3.5));
+        return {
+          x: centerX + x1 * scale * perspective,
+          y: centerY - y1 * scale * perspective,
+          z: z2,
+          intensity: sample.normalized_intensity,
+        };
+      });
+
+      projected.sort((a, b) => a.z - b.z);
+
+      for (const point of projected) {
+        const alpha = Math.max(0.08, Math.min(point.intensity, 1));
+        const radius = 0.8 + 2.6 * alpha;
+        const hue = 200 - 40 * alpha;
+        context.fillStyle = `hsla(${hue}, 90%, ${58 + 24 * alpha}%, ${alpha})`;
+        context.beginPath();
+        context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      context.fillStyle = "rgba(148, 163, 184, 0.8)";
+      context.font = "12px Montserrat, sans-serif";
+      context.fillText("rotating 3D probability cloud", 24, height - 18);
+
+      orbital3DState.angleY += 0.01;
+      orbital3DState.animationId = requestAnimationFrame(drawFrame);
+    }
+
+    drawFrame();
+  }
+
   function updateOrbitalResults(result) {
     orbitalMetrics.meanRadius.textContent = `${result.summary.mean_radius.toFixed(2)} a0`;
     orbitalMetrics.maxRadius.textContent = `${result.summary.max_radius.toFixed(2)} a0`;
@@ -498,6 +593,7 @@
 
     renderOrbitalProjection(orbitalXYPlot, result.samples, "x", "y", result.meta.radial_max);
     renderOrbitalProjection(orbitalXZPlot, result.samples, "x", "z", result.meta.radial_max);
+    renderOrbitalCanvas(result.samples, result.meta.radial_max);
     updateOrbitalResults(result);
   }
 

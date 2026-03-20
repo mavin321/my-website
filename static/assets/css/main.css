@@ -459,6 +459,17 @@ footer.container {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.orbital-canvas-card {
+  grid-column: 1 / -1;
+}
+
+.orbital-canvas {
+  width: 100%;
+  height: 420px;
+  display: block;
+  border-radius: 1.25rem;
+}
+
 .orbital-plot {
   height: 360px;
 }
