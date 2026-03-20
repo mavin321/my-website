@@ -1,0 +1,32 @@
+# Virtual Environment
+fermenv/
+.venv/
+venv/
+env/
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# C/C++ build artifacts
+*.so
+*.dll
+*.lib
+*.exp
+*.o
+*.obj
+
+# Frontend dependencies
+frontend/node_modules/
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+*.swp
