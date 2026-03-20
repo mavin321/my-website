@@ -26,6 +26,14 @@
   const orbitalXYPlot = document.getElementById("orbital-xy-plot");
   const orbitalXZPlot = document.getElementById("orbital-xz-plot");
   const orbitalCanvas = document.getElementById("orbital-3d-canvas");
+  const cfdForm = document.getElementById("cfd-form");
+  const cfdPreset = document.getElementById("cfd_preset");
+  const cfdRunButton = document.getElementById("cfd-run-btn");
+  const cfdNote = document.getElementById("cfd-note");
+  const cfdInsight = document.getElementById("cfd-insight");
+  const cfdCanvas = document.getElementById("cfd-3d-canvas");
+  const cfdPrimaryChart = document.getElementById("cfd-primary-chart");
+  const cfdSecondaryChart = document.getElementById("cfd-secondary-chart");
 
   if (!form || !primaryChart || !secondaryChart || !microbeSelect || !substrateSelect) {
     return;
@@ -57,6 +65,12 @@
     meanIntensity: document.getElementById("orbital-metric-mean-intensity"),
     label: document.getElementById("orbital-metric-label"),
   };
+  const cfdMetrics = {
+    re: document.getElementById("cfd-metric-re"),
+    dp: document.getElementById("cfd-metric-dp"),
+    h: document.getElementById("cfd-metric-h"),
+    vmax: document.getElementById("cfd-metric-vmax"),
+  };
   const orbital3DState = {
     animationId: null,
     points: [],
@@ -64,12 +78,21 @@
     angleX: 0.55,
     angleY: 0,
   };
+  const cfd3DState = {
+    animationId: null,
+    points: [],
+    length: 1,
+    radius: 1,
+    angleY: 0,
+    angleX: 0.42,
+  };
   const api = {
     microbes: "/api/simulation/microbes/",
     run: "/api/simulation/run/",
     reactorRun: "/api/reactor/run/",
     separationRun: "/api/separation/run/",
     orbitalRun: "/api/atomic-orbital/run/",
+    cfdRun: "/api/cfd/run/",
   };
   const reactorPresets = {
     stable: {
@@ -169,6 +192,44 @@
       sep_bottom_x: 0.14,
       sep_top_temp: 340,
       sep_bottom_temp: 398,
+    },
+  };
+  const cfdPresets = {
+    laminar: {
+      cfd_length: 6,
+      cfd_diameter: 0.1,
+      cfd_mass_flow: 0.25,
+      cfd_density: 998,
+      cfd_viscosity: 0.0012,
+      cfd_roughness: 0.00001,
+      cfd_inlet_temp: 295,
+      cfd_wall_temp: 325,
+      cfd_cp: 4180,
+      cfd_k: 0.60,
+    },
+    transition: {
+      cfd_length: 8,
+      cfd_diameter: 0.14,
+      cfd_mass_flow: 1.8,
+      cfd_density: 998,
+      cfd_viscosity: 0.0010,
+      cfd_roughness: 0.00003,
+      cfd_inlet_temp: 298,
+      cfd_wall_temp: 332,
+      cfd_cp: 4180,
+      cfd_k: 0.60,
+    },
+    turbulent: {
+      cfd_length: 10,
+      cfd_diameter: 0.18,
+      cfd_mass_flow: 5.5,
+      cfd_density: 998,
+      cfd_viscosity: 0.00085,
+      cfd_roughness: 0.000045,
+      cfd_inlet_temp: 295,
+      cfd_wall_temp: 335,
+      cfd_cp: 4180,
+      cfd_k: 0.60,
     },
   };
 
@@ -578,6 +639,170 @@
       `Brighter zones in the projections correspond to higher probability density from the sampled wavefunction.`;
   }
 
+  function applyCFDPreset(name) {
+    const preset = cfdPresets[name];
+    if (!cfdForm || !preset) {
+      return;
+    }
+    Object.entries(preset).forEach(([key, value]) => {
+      const field = cfdForm.elements.namedItem(key);
+      if (field) {
+        field.value = value;
+      }
+    });
+    cfdNote.textContent = `${cfdPreset.options[cfdPreset.selectedIndex].text} loaded.`;
+  }
+
+  function getCFDPayload() {
+    const getNumber = function (fieldName, fallback) {
+      const field = cfdForm.elements.namedItem(fieldName);
+      return Number(field && field.value !== "" ? field.value : fallback);
+    };
+    return {
+      length: Math.max(getNumber("cfd_length", 8) || 8, 0.1),
+      diameter: Math.max(getNumber("cfd_diameter", 0.18) || 0.18, 0.01),
+      mass_flow: Math.max(getNumber("cfd_mass_flow", 5.5) || 5.5, 0.01),
+      density: Math.max(getNumber("cfd_density", 998) || 998, 1),
+      viscosity: Math.max(getNumber("cfd_viscosity", 0.001) || 0.001, 0.000001),
+      roughness: Math.max(getNumber("cfd_roughness", 0.000045) || 0.000045, 0),
+      inlet_temp: Math.max(getNumber("cfd_inlet_temp", 295) || 295, 200),
+      wall_temp: Math.max(getNumber("cfd_wall_temp", 335) || 335, 200),
+      cp: Math.max(getNumber("cfd_cp", 4180) || 4180, 1),
+      conductivity: Math.max(getNumber("cfd_k", 0.6) || 0.6, 0.001),
+      axial_points: 60,
+      radial_points: 26,
+    };
+  }
+
+  function renderCFDCanvas(points, params) {
+    if (!cfdCanvas) {
+      return;
+    }
+    const context = cfdCanvas.getContext("2d");
+    if (!context) {
+      return;
+    }
+    if (cfd3DState.animationId) {
+      cancelAnimationFrame(cfd3DState.animationId);
+      cfd3DState.animationId = null;
+    }
+    cfd3DState.points = points;
+    cfd3DState.length = params.length;
+    cfd3DState.radius = params.diameter / 2;
+    cfd3DState.angleY = 0;
+
+    const width = cfdCanvas.width;
+    const height = cfdCanvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const lengthScale = (width * 0.68) / Math.max(params.length, 1);
+    const radiusScale = (height * 0.22) / Math.max(cfd3DState.radius, 1e-6);
+
+    function drawFrame() {
+      context.clearRect(0, 0, width, height);
+      const background = context.createLinearGradient(0, 0, width, height);
+      background.addColorStop(0, "rgba(15, 23, 42, 0.96)");
+      background.addColorStop(1, "rgba(2, 6, 23, 0.99)");
+      context.fillStyle = background;
+      context.beginPath();
+      context.roundRect(0, 0, width, height, 24);
+      context.fill();
+
+      const cosY = Math.cos(cfd3DState.angleY);
+      const sinY = Math.sin(cfd3DState.angleY);
+      const cosX = Math.cos(cfd3DState.angleX);
+      const sinX = Math.sin(cfd3DState.angleX);
+      const maxVelocity = Math.max(...cfd3DState.points.map((point) => point.velocity), 1e-6);
+
+      const projected = cfd3DState.points.map((point, index) => {
+        const theta = ((index % 17) / 17) * Math.PI * 2;
+        const localY = point.r * Math.cos(theta);
+        const localZ = point.r * Math.sin(theta);
+        const xShift = point.x - cfd3DState.length / 2;
+
+        const x1 = xShift * cosY - localZ * sinY;
+        const z1 = xShift * sinY + localZ * cosY;
+        const y1 = localY * cosX - z1 * sinX;
+        const z2 = localY * sinX + z1 * cosX;
+        const perspective = 1 / (1 + z2 / (cfd3DState.radius * 8 + 1));
+        return {
+          x: centerX + x1 * lengthScale * perspective,
+          y: centerY - y1 * radiusScale * perspective,
+          z: z2,
+          velocityRatio: point.velocity / maxVelocity,
+          temperatureRatio: (point.temperature - params.inlet_temp) /
+            Math.max(params.wall_temp - params.inlet_temp, 1),
+        };
+      });
+
+      projected.sort((a, b) => a.z - b.z);
+
+      for (const point of projected) {
+        const radius = 1.1 + 2.4 * point.velocityRatio;
+        const hue = 205 - 145 * Math.max(0, Math.min(point.temperatureRatio, 1));
+        const alpha = 0.18 + 0.65 * point.velocityRatio;
+        context.fillStyle = `hsla(${hue}, 92%, ${54 + 16 * point.velocityRatio}%, ${alpha})`;
+        context.beginPath();
+        context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      context.fillStyle = "rgba(148, 163, 184, 0.85)";
+      context.font = "12px Montserrat, sans-serif";
+      context.fillText("rotating CFD point cloud", 24, height - 18);
+
+      cfd3DState.angleY += 0.012;
+      cfd3DState.animationId = requestAnimationFrame(drawFrame);
+    }
+
+    drawFrame();
+  }
+
+  function updateCFDResults(result) {
+    cfdMetrics.re.textContent = `${result.summary.reynolds.toFixed(0)}`;
+    cfdMetrics.dp.textContent = `${result.summary.pressure_drop.toFixed(1)} Pa`;
+    cfdMetrics.h.textContent = `${result.summary.heat_transfer_coeff.toFixed(1)} W/m2K`;
+    cfdMetrics.vmax.textContent = `${result.summary.max_velocity.toFixed(2)} m/s`;
+
+    const regime =
+      result.summary.reynolds < 2300
+        ? "laminar"
+        : result.summary.reynolds < 4000
+          ? "transitional"
+          : "turbulent";
+
+    cfdInsight.textContent =
+      `The pipe flow is ${regime} at Re = ${result.summary.reynolds.toFixed(0)}. ` +
+      `Pressure drop is ${result.summary.pressure_drop.toFixed(1)} Pa with Nusselt ${result.summary.nusselt.toFixed(2)} and peak velocity ${result.summary.max_velocity.toFixed(2)} m/s.`;
+  }
+
+  async function runCFDStudy() {
+    const payload = getCFDPayload();
+    const result = await fetchJson(api.cfdRun, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const lastSlice = result.points.slice(-result.meta.radial_points);
+    const byAxial = result.points.filter((_, index) => index % result.meta.radial_points === 0);
+
+    buildChart(cfdPrimaryChart, [
+      { values: lastSlice.map((point) => point.velocity), color: "#22d3ee" },
+      { values: lastSlice.map((point) => point.temperature), color: "#f97316" },
+    ]);
+
+    buildChart(cfdSecondaryChart, [
+      { values: byAxial.map((point) => point.pressure), color: "#60a5fa" },
+      { values: lastSlice.map((point) => point.turbulence_intensity * 100), color: "#f472b6" },
+    ]);
+
+    renderCFDCanvas(result.points, payload);
+    updateCFDResults(result);
+  }
+
   async function runOrbitalStudy() {
     const payload = getOrbitalPayload();
     if (payload.l >= payload.n || Math.abs(payload.m) > payload.l) {
@@ -723,6 +948,10 @@
     if (orbitalForm && orbitalRunButton) {
       await runOrbitalStudy();
     }
+    if (cfdForm && cfdPreset && cfdRunButton) {
+      applyCFDPreset(cfdPreset.value);
+      await runCFDStudy();
+    }
   }
 
   form.addEventListener("submit", async function (event) {
@@ -823,6 +1052,29 @@
       } catch (error) {
         orbitalNote.textContent = error.message;
         orbitalInsight.textContent = error.message;
+      }
+    });
+  }
+
+  if (cfdForm && cfdPreset && cfdRunButton) {
+    cfdRunButton.addEventListener("click", async function () {
+      try {
+        cfdNote.textContent = "Running CFD native-core study...";
+        await runCFDStudy();
+        cfdNote.textContent = "CFD study completed with the native C++ core.";
+      } catch (error) {
+        cfdNote.textContent = error.message;
+        cfdInsight.textContent = error.message;
+      }
+    });
+
+    cfdPreset.addEventListener("change", async function () {
+      try {
+        applyCFDPreset(cfdPreset.value);
+        await runCFDStudy();
+      } catch (error) {
+        cfdNote.textContent = error.message;
+        cfdInsight.textContent = error.message;
       }
     });
   }

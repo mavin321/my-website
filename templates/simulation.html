@@ -779,6 +779,153 @@
           </div>
         </div>
       </section>
+
+      <section class="simulation-workbench simulation-cfd-workbench pb-5">
+        <div class="container">
+          <div class="row g-4 align-items-start">
+            <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1000">
+              <div class="simulation-panel">
+                <div class="simulation-panel-header">
+                  <p class="simulation-panel-kicker">Controls</p>
+                  <h2>CFD flow visualizer</h2>
+                  <p>
+                    Native C++ pipe-flow simulation with pressure drop,
+                    laminar/turbulent profile response, Reynolds-number sweeps,
+                    and wall-heating overlays.
+                  </p>
+                </div>
+
+                <div class="simulation-code-badge">
+                  C++ flow core using Darcy-Weisbach pressure loss, Reynolds
+                  classification, Nusselt heat-transfer response, and sampled
+                  radial field points for 3D visualization.
+                </div>
+
+                <form id="cfd-form" class="simulation-form">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label" for="cfd_preset">Flow case</label>
+                      <select class="form-select" id="cfd_preset" name="cfd_preset">
+                        <option value="laminar">Laminar heating line</option>
+                        <option value="transition">Transition zone</option>
+                        <option value="turbulent">Turbulent process loop</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_length">Pipe length (m)</label>
+                      <input class="form-control" id="cfd_length" name="cfd_length" type="number" step="0.1" min="0.1" value="8" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_diameter">Diameter (m)</label>
+                      <input class="form-control" id="cfd_diameter" name="cfd_diameter" type="number" step="0.01" min="0.01" value="0.18" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_mass_flow">Mass flow (kg/s)</label>
+                      <input class="form-control" id="cfd_mass_flow" name="cfd_mass_flow" type="number" step="0.1" min="0.1" value="5.5" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_density">Density (kg/m3)</label>
+                      <input class="form-control" id="cfd_density" name="cfd_density" type="number" step="1" min="1" value="998" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_viscosity">Viscosity (Pa.s)</label>
+                      <input class="form-control" id="cfd_viscosity" name="cfd_viscosity" type="number" step="0.0001" min="0.0001" value="0.0010" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_roughness">Roughness (m)</label>
+                      <input class="form-control" id="cfd_roughness" name="cfd_roughness" type="number" step="0.000001" min="0" value="0.000045" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_inlet_temp">Inlet temp (K)</label>
+                      <input class="form-control" id="cfd_inlet_temp" name="cfd_inlet_temp" type="number" step="1" min="250" value="295" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_wall_temp">Wall temp (K)</label>
+                      <input class="form-control" id="cfd_wall_temp" name="cfd_wall_temp" type="number" step="1" min="250" value="335" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_cp">Cp (J/kg.K)</label>
+                      <input class="form-control" id="cfd_cp" name="cfd_cp" type="number" step="10" min="100" value="4180" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="cfd_k">Conductivity (W/m.K)</label>
+                      <input class="form-control" id="cfd_k" name="cfd_k" type="number" step="0.01" min="0.01" value="0.60" />
+                    </div>
+                  </div>
+                  <div class="simulation-preset-note" id="cfd-note">
+                    CFD presets are ready.
+                  </div>
+                  <div class="simulation-actions">
+                    <button class="btn btn-primary simulation-run-btn" id="cfd-run-btn" type="button">
+                      Run CFD study
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-xl-8" data-aos="fade-up" data-aos-duration="1200">
+              <div class="simulation-panel simulation-panel-wide">
+                <div class="simulation-output-header">
+                  <div>
+                    <p class="simulation-panel-kicker">Results</p>
+                    <h2>Flow response</h2>
+                  </div>
+                  <p class="simulation-output-note">
+                    A rotating 3D pipe flow field plus profile plots show how
+                    velocity, pressure, turbulence, and thermal response evolve
+                    across the pipe.
+                  </p>
+                </div>
+
+                <div class="metrics-grid reactor-metrics-grid">
+                  <div class="metric-card">
+                    <span>Reynolds number</span>
+                    <strong id="cfd-metric-re">0</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Pressure drop</span>
+                    <strong id="cfd-metric-dp">0 Pa</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Heat transfer coeff</span>
+                    <strong id="cfd-metric-h">0 W/m2K</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Peak velocity</span>
+                    <strong id="cfd-metric-vmax">0 m/s</strong>
+                  </div>
+                </div>
+
+                <div class="chart-grid orbital-grid">
+                  <div class="chart-card orbital-canvas-card">
+                    <div class="chart-header">
+                      <h3>3D pipe flow field</h3>
+                    </div>
+                    <canvas id="cfd-3d-canvas" class="orbital-canvas" width="720" height="420"></canvas>
+                  </div>
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>Velocity and temperature profile</h3>
+                    </div>
+                    <svg id="cfd-primary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                  </div>
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>Pressure and turbulence profile</h3>
+                    </div>
+                    <svg id="cfd-secondary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                  </div>
+                </div>
+
+                <div class="simulation-insight" id="cfd-insight">
+                  The CFD flow visualizer is ready to simulate.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script
