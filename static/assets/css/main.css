@@ -444,6 +444,25 @@ footer.container {
   pointer-events: none;
 }
 
+.simulation-orbital-workbench::before {
+  content: "";
+  position: absolute;
+  inset: 2rem 0 auto;
+  height: 18rem;
+  background:
+    radial-gradient(circle at 24% 35%, rgba(96, 165, 250, 0.16), transparent 32%),
+    radial-gradient(circle at 76% 38%, rgba(244, 114, 182, 0.16), transparent 30%);
+  pointer-events: none;
+}
+
+.orbital-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.orbital-plot {
+  height: 360px;
+}
+
 .reactor-metrics-grid .metric-card:nth-child(1) strong {
   color: #f9a8d4;
 }
@@ -616,6 +635,10 @@ footer.container {
 
 @media (max-width: 767.98px) {
   .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .orbital-grid {
     grid-template-columns: 1fr;
   }
 

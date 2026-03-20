@@ -16,6 +16,7 @@ from .fermentation_bridge import (
 )
 from .thermal_reactor_bridge import run_reactor_simulation
 from .separation_bridge import run_separation_simulation
+from .atomic_orbital_bridge import run_atomic_orbital_simulation
 
 
 def index(request):
@@ -103,6 +104,19 @@ def separation_simulation_run(request):
     try:
         payload = json.loads(request.body or "{}")
         result = run_separation_simulation(payload)
+        return JsonResponse(_clean_json(result))
+    except json.JSONDecodeError:
+        return JsonResponse({"detail": "Invalid JSON payload"}, status=400)
+    except Exception as exc:
+        return JsonResponse({"detail": str(exc)}, status=500)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def atomic_orbital_simulation_run(request):
+    try:
+        payload = json.loads(request.body or "{}")
+        result = run_atomic_orbital_simulation(payload)
         return JsonResponse(_clean_json(result))
     except json.JSONDecodeError:
         return JsonResponse({"detail": "Invalid JSON payload"}, status=400)

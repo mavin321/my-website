@@ -88,6 +88,7 @@
                 <span class="simulation-chip">Bioprocess modeling</span>
                 <span class="simulation-chip">Interactive controls</span>
                 <span class="simulation-chip">Portfolio-ready demos</span>
+                <span class="simulation-chip">Quantum orbital sampling</span>
               </div>
             </div>
             <div class="col-lg-5" data-aos="fade-up" data-aos-duration="1200">
@@ -648,6 +649,124 @@
 
                 <div class="simulation-insight" id="separation-insight">
                   The separation process model is ready to simulate.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="simulation-workbench simulation-orbital-workbench pb-5">
+        <div class="container">
+          <div class="row g-4 align-items-start">
+            <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1000">
+              <div class="simulation-panel">
+                <div class="simulation-panel-header">
+                  <p class="simulation-panel-kicker">Controls</p>
+                  <h2>Atomic orbital sampler</h2>
+                  <p>
+                    Native C++ quantum-orbital sampling from hydrogen-like
+                    quantum numbers. The model samples spatial coordinates from
+                    the orbital probability density and highlights high-density
+                    regions with brighter points.
+                  </p>
+                </div>
+
+                <div class="simulation-code-badge">
+                  Schrödinger-inspired orbital density sampling in C++ with
+                  radial and angular wavefunction terms derived from quantum
+                  numbers <code>(n, l, m)</code>.
+                </div>
+
+                <form id="orbital-form" class="simulation-form">
+                  <div class="row g-3">
+                    <div class="col-6">
+                      <label class="form-label" for="orbital_n">Principal n</label>
+                      <input class="form-control" id="orbital_n" name="orbital_n" type="number" min="1" step="1" value="3" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="orbital_l">Azimuthal l</label>
+                      <input class="form-control" id="orbital_l" name="orbital_l" type="number" min="0" step="1" value="2" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="orbital_m">Magnetic m</label>
+                      <input class="form-control" id="orbital_m" name="orbital_m" type="number" step="1" value="1" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="orbital_samples">Sample count</label>
+                      <input class="form-control" id="orbital_samples" name="orbital_samples" type="number" min="200" step="100" value="1400" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="orbital_radial_max">Radial extent</label>
+                      <input class="form-control" id="orbital_radial_max" name="orbital_radial_max" type="number" min="1" step="1" value="24" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="orbital_seed">Seed</label>
+                      <input class="form-control" id="orbital_seed" name="orbital_seed" type="number" min="1" step="1" value="12345" />
+                    </div>
+                  </div>
+                  <div class="simulation-preset-note" id="orbital-note">
+                    Orbital sampling is ready.
+                  </div>
+                  <div class="simulation-actions">
+                    <button class="btn btn-primary simulation-run-btn" id="orbital-run-btn" type="button">
+                      Sample orbital
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-xl-8" data-aos="fade-up" data-aos-duration="1200">
+              <div class="simulation-panel simulation-panel-wide">
+                <div class="simulation-output-header">
+                  <div>
+                    <p class="simulation-panel-kicker">Results</p>
+                    <h2>Orbital probability cloud</h2>
+                  </div>
+                  <p class="simulation-output-note">
+                    Two orthogonal projections show where sampled electron
+                    positions are most likely to appear. Brighter regions have
+                    higher probability density.
+                  </p>
+                </div>
+
+                <div class="metrics-grid reactor-metrics-grid">
+                  <div class="metric-card">
+                    <span>Mean radius</span>
+                    <strong id="orbital-metric-mean-radius">0.0 a0</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Max radius</span>
+                    <strong id="orbital-metric-max-radius">0.0 a0</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Mean intensity</span>
+                    <strong id="orbital-metric-mean-intensity">0.0</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Orbital label</span>
+                    <strong id="orbital-metric-label">3d1</strong>
+                  </div>
+                </div>
+
+                <div class="chart-grid orbital-grid">
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>XY projection</h3>
+                    </div>
+                    <svg id="orbital-xy-plot" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                  </div>
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>XZ projection</h3>
+                    </div>
+                    <svg id="orbital-xz-plot" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                  </div>
+                </div>
+
+                <div class="simulation-insight" id="orbital-insight">
+                  The orbital sampler is ready to render.
                 </div>
               </div>
             </div>

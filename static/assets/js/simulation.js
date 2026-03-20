@@ -19,6 +19,12 @@
   const separationInsight = document.getElementById("separation-insight");
   const separationPrimaryChart = document.getElementById("separation-primary-chart");
   const separationSecondaryChart = document.getElementById("separation-secondary-chart");
+  const orbitalForm = document.getElementById("orbital-form");
+  const orbitalRunButton = document.getElementById("orbital-run-btn");
+  const orbitalNote = document.getElementById("orbital-note");
+  const orbitalInsight = document.getElementById("orbital-insight");
+  const orbitalXYPlot = document.getElementById("orbital-xy-plot");
+  const orbitalXZPlot = document.getElementById("orbital-xz-plot");
 
   if (!form || !primaryChart || !secondaryChart || !microbeSelect || !substrateSelect) {
     return;
@@ -44,11 +50,18 @@
     energy: document.getElementById("sep-metric-energy"),
     index: document.getElementById("sep-metric-index"),
   };
+  const orbitalMetrics = {
+    meanRadius: document.getElementById("orbital-metric-mean-radius"),
+    maxRadius: document.getElementById("orbital-metric-max-radius"),
+    meanIntensity: document.getElementById("orbital-metric-mean-intensity"),
+    label: document.getElementById("orbital-metric-label"),
+  };
   const api = {
     microbes: "/api/simulation/microbes/",
     run: "/api/simulation/run/",
     reactorRun: "/api/reactor/run/",
     separationRun: "/api/separation/run/",
+    orbitalRun: "/api/atomic-orbital/run/",
   };
   const reactorPresets = {
     stable: {
@@ -411,6 +424,83 @@
       `Peak separation leverage is ${result.summary.max_separation_index.toFixed(2)} with an energy intensity of ${result.summary.energy_intensity.toFixed(1)} kJ/kmol distillate.`;
   }
 
+  function getOrbitalPayload() {
+    const getNumber = function (fieldName, fallback) {
+      const field = orbitalForm.elements.namedItem(fieldName);
+      return Number(field && field.value !== "" ? field.value : fallback);
+    };
+    return {
+      n: Math.max(Math.round(getNumber("orbital_n", 3) || 3), 1),
+      l: Math.max(Math.round(getNumber("orbital_l", 2) || 2), 0),
+      m: Math.round(getNumber("orbital_m", 1) || 1),
+      sample_count: Math.max(Math.round(getNumber("orbital_samples", 1400) || 1400), 200),
+      radial_max: Math.max(getNumber("orbital_radial_max", 24) || 24, 1),
+      seed: Math.max(Math.round(getNumber("orbital_seed", 12345) || 12345), 1),
+    };
+  }
+
+  function orbitalLabel(n, l, m) {
+    const letters = ["s", "p", "d", "f", "g", "h"];
+    const shell = letters[l] || `l${l}`;
+    return `${n}${shell}${m >= 0 ? `+${m}` : m}`;
+  }
+
+  function renderOrbitalProjection(svg, samples, xKey, yKey, radialMax) {
+    const width = 520;
+    const height = 360;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radiusScale = (Math.min(width, height) * 0.42) / Math.max(radialMax, 1);
+
+    const axes = `
+      <rect x="0" y="0" width="${width}" height="${height}" rx="24" class="chart-bg" />
+      <line x1="20" y1="${centerY}" x2="${width - 20}" y2="${centerY}" class="chart-axis" />
+      <line x1="${centerX}" y1="20" x2="${centerX}" y2="${height - 20}" class="chart-axis" />
+    `;
+
+    const points = samples
+      .map((sample) => {
+        const x = centerX + sample[xKey] * radiusScale;
+        const y = centerY - sample[yKey] * radiusScale;
+        const alpha = Math.max(0.1, Math.min(sample.normalized_intensity, 1));
+        const r = 1.2 + 1.8 * alpha;
+        const fill = `rgba(96, 165, 250, ${alpha.toFixed(3)})`;
+        return `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${r.toFixed(2)}" fill="${fill}" />`;
+      })
+      .join("");
+
+    svg.innerHTML = `${axes}${points}`;
+  }
+
+  function updateOrbitalResults(result) {
+    orbitalMetrics.meanRadius.textContent = `${result.summary.mean_radius.toFixed(2)} a0`;
+    orbitalMetrics.maxRadius.textContent = `${result.summary.max_radius.toFixed(2)} a0`;
+    orbitalMetrics.meanIntensity.textContent = `${result.summary.mean_intensity.toFixed(3)}`;
+    orbitalMetrics.label.textContent = orbitalLabel(result.meta.n, result.meta.l, result.meta.m);
+
+    orbitalInsight.textContent =
+      `Sampled ${result.meta.sample_count} positions for the ${orbitalLabel(result.meta.n, result.meta.l, result.meta.m)} orbital. ` +
+      `Brighter zones in the projections correspond to higher probability density from the sampled wavefunction.`;
+  }
+
+  async function runOrbitalStudy() {
+    const payload = getOrbitalPayload();
+    if (payload.l >= payload.n || Math.abs(payload.m) > payload.l) {
+      throw new Error("Use valid quantum numbers: n > l and |m| <= l.");
+    }
+    const result = await fetchJson(api.orbitalRun, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    renderOrbitalProjection(orbitalXYPlot, result.samples, "x", "y", result.meta.radial_max);
+    renderOrbitalProjection(orbitalXZPlot, result.samples, "x", "z", result.meta.radial_max);
+    updateOrbitalResults(result);
+  }
+
   async function runSeparationStudy() {
     const payload = getSeparationPayload();
     const result = await fetchJson(api.separationRun, {
@@ -534,6 +624,9 @@
       applySeparationPreset(separationPreset.value);
       await runSeparationStudy();
     }
+    if (orbitalForm && orbitalRunButton) {
+      await runOrbitalStudy();
+    }
   }
 
   form.addEventListener("submit", async function (event) {
@@ -621,6 +714,19 @@
       } catch (error) {
         separationNote.textContent = error.message;
         separationInsight.textContent = error.message;
+      }
+    });
+  }
+
+  if (orbitalForm && orbitalRunButton) {
+    orbitalRunButton.addEventListener("click", async function () {
+      try {
+        orbitalNote.textContent = "Sampling orbital with the native C++ core...";
+        await runOrbitalStudy();
+        orbitalNote.textContent = "Orbital sampling completed.";
+      } catch (error) {
+        orbitalNote.textContent = error.message;
+        orbitalInsight.textContent = error.message;
       }
     });
   }
