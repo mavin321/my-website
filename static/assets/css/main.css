@@ -477,6 +477,28 @@ footer.container {
   pointer-events: none;
 }
 
+.simulation-design-workbench::before {
+  content: "";
+  position: absolute;
+  inset: 2rem 0 auto;
+  height: 18rem;
+  background:
+    radial-gradient(circle at 22% 34%, rgba(74, 222, 128, 0.15), transparent 30%),
+    radial-gradient(circle at 78% 40%, rgba(56, 189, 248, 0.16), transparent 30%);
+  pointer-events: none;
+}
+
+.simulation-vizlab-workbench::before {
+  content: "";
+  position: absolute;
+  inset: 2rem 0 auto;
+  height: 18rem;
+  background:
+    radial-gradient(circle at 20% 34%, rgba(244, 114, 182, 0.16), transparent 30%),
+    radial-gradient(circle at 80% 42%, rgba(34, 211, 238, 0.16), transparent 30%);
+  pointer-events: none;
+}
+
 .orbital-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }

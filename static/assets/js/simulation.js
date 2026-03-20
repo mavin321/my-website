@@ -42,6 +42,22 @@
   const fusionCanvas = document.getElementById("fusion-3d-canvas");
   const fusionPrimaryChart = document.getElementById("fusion-primary-chart");
   const fusionSecondaryChart = document.getElementById("fusion-secondary-chart");
+  const designSpaceForm = document.getElementById("design-space-form");
+  const designSpacePreset = document.getElementById("ds_preset");
+  const designSpaceRunButton = document.getElementById("ds-run-btn");
+  const designSpaceNote = document.getElementById("ds-note");
+  const designSpaceInsight = document.getElementById("ds-insight");
+  const designSpaceCanvas = document.getElementById("ds-3d-canvas");
+  const designSpacePrimaryChart = document.getElementById("ds-primary-chart");
+  const designSpaceSecondaryChart = document.getElementById("ds-secondary-chart");
+  const vizForm = document.getElementById("viz-form");
+  const vizPreset = document.getElementById("viz_preset");
+  const vizRunButton = document.getElementById("viz-run-btn");
+  const vizNote = document.getElementById("viz-note");
+  const vizInsight = document.getElementById("viz-insight");
+  const vizCanvas = document.getElementById("viz-3d-canvas");
+  const vizPrimaryChart = document.getElementById("viz-primary-chart");
+  const vizSecondaryChart = document.getElementById("viz-secondary-chart");
 
   if (!form || !primaryChart || !secondaryChart || !microbeSelect || !substrateSelect) {
     return;
@@ -85,6 +101,18 @@
     q: document.getElementById("fusion-metric-q"),
     triple: document.getElementById("fusion-metric-triple"),
   };
+  const designSpaceMetrics = {
+    yield: document.getElementById("ds-metric-yield"),
+    profit: document.getElementById("ds-metric-profit"),
+    sty: document.getElementById("ds-metric-sty"),
+    pareto: document.getElementById("ds-metric-pareto"),
+  };
+  const vizMetrics = {
+    concentration: document.getElementById("viz-metric-conc"),
+    temperature: document.getElementById("viz-metric-temp"),
+    speed: document.getElementById("viz-metric-speed"),
+    radius: document.getElementById("viz-metric-radius"),
+  };
   const orbital3DState = {
     animationId: null,
     points: [],
@@ -108,6 +136,24 @@
     angleY: 0,
     angleX: 0.48,
   };
+  const design3DState = {
+    animationId: null,
+    points: [],
+    angleY: 0,
+    angleX: 0.52,
+    tempMin: 320,
+    tempRange: 100,
+    tauMin: 0.4,
+    tauRange: 5,
+    yieldScale: 1,
+  };
+  const viz3DState = {
+    animationId: null,
+    points: [],
+    angleY: 0,
+    angleX: 0.46,
+    domain: 12,
+  };
   const api = {
     microbes: "/api/simulation/microbes/",
     run: "/api/simulation/run/",
@@ -116,6 +162,8 @@
     orbitalRun: "/api/atomic-orbital/run/",
     cfdRun: "/api/cfd/run/",
     fusionRun: "/api/fusion/run/",
+    designSpaceRun: "/api/design-space/run/",
+    vizLabRun: "/api/visualization-lab/run/",
   };
   const reactorPresets = {
     stable: {
@@ -297,6 +345,88 @@
       fusion_impurity: 0.018,
       fusion_time_end: 16,
       fusion_wall_reflectivity: 0.35,
+    },
+  };
+  const designSpacePresets = {
+    balanced: {
+      ds_temp_min: 320,
+      ds_temp_max: 430,
+      ds_tau_min: 0.4,
+      ds_tau_max: 6.0,
+      ds_feed_conc: 2.8,
+      ds_coolant_temp: 305,
+      ds_main_k0: 8500000,
+      ds_main_ea: 68000,
+      ds_side_k0: 12000000,
+      ds_side_ea: 76000,
+      ds_ua: 240,
+      ds_product_price: 1500,
+    },
+    selectivity: {
+      ds_temp_min: 315,
+      ds_temp_max: 405,
+      ds_tau_min: 0.6,
+      ds_tau_max: 5.5,
+      ds_feed_conc: 2.2,
+      ds_coolant_temp: 300,
+      ds_main_k0: 7200000,
+      ds_main_ea: 65000,
+      ds_side_k0: 17000000,
+      ds_side_ea: 80500,
+      ds_ua: 285,
+      ds_product_price: 1650,
+    },
+    throughput: {
+      ds_temp_min: 330,
+      ds_temp_max: 450,
+      ds_tau_min: 0.25,
+      ds_tau_max: 4.5,
+      ds_feed_conc: 3.6,
+      ds_coolant_temp: 308,
+      ds_main_k0: 10200000,
+      ds_main_ea: 70000,
+      ds_side_k0: 13600000,
+      ds_side_ea: 77000,
+      ds_ua: 210,
+      ds_product_price: 1425,
+    },
+  };
+  const vizPresets = {
+    plume: {
+      viz_domain: 12,
+      viz_time: 4.5,
+      viz_diffusivity: 0.18,
+      viz_strength: 48,
+      viz_sigma: 0.95,
+      viz_vortex: 6.5,
+      viz_adv_x: 0.55,
+      viz_adv_y: -0.18,
+      viz_adv_z: 0.10,
+      viz_thermal: 24,
+    },
+    shear: {
+      viz_domain: 14,
+      viz_time: 3.8,
+      viz_diffusivity: 0.12,
+      viz_strength: 42,
+      viz_sigma: 0.75,
+      viz_vortex: 4.2,
+      viz_adv_x: 0.90,
+      viz_adv_y: 0.25,
+      viz_adv_z: 0.05,
+      viz_thermal: 18,
+    },
+    mixing: {
+      viz_domain: 10,
+      viz_time: 5.2,
+      viz_diffusivity: 0.24,
+      viz_strength: 54,
+      viz_sigma: 1.15,
+      viz_vortex: 8.2,
+      viz_adv_x: 0.30,
+      viz_adv_y: -0.10,
+      viz_adv_z: 0.18,
+      viz_thermal: 28,
     },
   };
 
@@ -980,6 +1110,284 @@
       `The pulse achieves max Q ${result.summary.max_q.toFixed(2)} and closes at Q ${finalQ.toFixed(2)}.`;
   }
 
+  function applyDesignSpacePreset(name) {
+    const preset = designSpacePresets[name];
+    if (!designSpaceForm || !preset) {
+      return;
+    }
+    Object.entries(preset).forEach(([key, value]) => {
+      const field = designSpaceForm.elements.namedItem(key);
+      if (field) {
+        field.value = value;
+      }
+    });
+    designSpaceNote.textContent = `${designSpacePreset.options[designSpacePreset.selectedIndex].text} loaded.`;
+  }
+
+  function getDesignSpacePayload() {
+    const getNumber = function (fieldName, fallback) {
+      const field = designSpaceForm.elements.namedItem(fieldName);
+      return Number(field && field.value !== "" ? field.value : fallback);
+    };
+    const tempMin = Math.max(getNumber("ds_temp_min", 320) || 320, 250);
+    const tempMax = Math.max(getNumber("ds_temp_max", 430) || 430, tempMin + 1);
+    const tauMin = Math.max(getNumber("ds_tau_min", 0.4) || 0.4, 0.05);
+    const tauMax = Math.max(getNumber("ds_tau_max", 6.0) || 6.0, tauMin + 0.05);
+    return {
+      temp_min: tempMin,
+      temp_max: tempMax,
+      tau_min: tauMin,
+      tau_max: tauMax,
+      feed_concentration: Math.max(getNumber("ds_feed_conc", 2.8) || 2.8, 0.01),
+      coolant_temp: Math.max(getNumber("ds_coolant_temp", 305) || 305, 200),
+      pre_exponential_main: Math.max(getNumber("ds_main_k0", 8500000) || 8500000, 1),
+      activation_energy_main: Math.max(getNumber("ds_main_ea", 68000) || 68000, 1),
+      pre_exponential_side: Math.max(getNumber("ds_side_k0", 12000000) || 12000000, 1),
+      activation_energy_side: Math.max(getNumber("ds_side_ea", 76000) || 76000, 1),
+      delta_h_main: -72000,
+      delta_h_side: -98000,
+      ua: Math.max(getNumber("ds_ua", 240) || 240, 1),
+      rho_cp: 4200,
+      reactor_volume: 1.0,
+      product_price: Math.max(getNumber("ds_product_price", 1500) || 1500, 1),
+      utility_cost: 0.02,
+      temp_points: 24,
+      tau_points: 20,
+    };
+  }
+
+  function renderDesignSpaceCanvas(points, payload) {
+    if (!designSpaceCanvas) {
+      return;
+    }
+    const context = designSpaceCanvas.getContext("2d");
+    if (!context) {
+      return;
+    }
+    if (design3DState.animationId) {
+      cancelAnimationFrame(design3DState.animationId);
+      design3DState.animationId = null;
+    }
+
+    const maxProfit = Math.max(...points.map((point) => point.profitability), 1);
+    design3DState.points = points.map((point) => ({
+      x: point.temperature,
+      y: point.yield_value,
+      z: point.residence_time,
+      pareto: point.pareto,
+      profitRatio: Math.max(0, point.profitability / maxProfit),
+    }));
+    design3DState.tempMin = payload.temp_min;
+    design3DState.tempRange = Math.max(payload.temp_max - payload.temp_min, 1);
+    design3DState.tauMin = payload.tau_min;
+    design3DState.tauRange = Math.max(payload.tau_max - payload.tau_min, 1);
+    design3DState.yieldScale = 1;
+    design3DState.angleY = 0;
+
+    const width = designSpaceCanvas.width;
+    const height = designSpaceCanvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    function drawFrame() {
+      context.clearRect(0, 0, width, height);
+      const background = context.createLinearGradient(0, 0, width, height);
+      background.addColorStop(0, "rgba(10, 20, 30, 0.98)");
+      background.addColorStop(1, "rgba(4, 10, 20, 1)");
+      context.fillStyle = background;
+      context.beginPath();
+      context.roundRect(0, 0, width, height, 24);
+      context.fill();
+
+      const cosY = Math.cos(design3DState.angleY);
+      const sinY = Math.sin(design3DState.angleY);
+      const cosX = Math.cos(design3DState.angleX);
+      const sinX = Math.sin(design3DState.angleX);
+
+      const projected = design3DState.points.map((point) => {
+        const px = ((point.x - design3DState.tempMin) / design3DState.tempRange - 0.5) * 2.4;
+        const py = (point.y / design3DState.yieldScale - 0.5) * 2.0;
+        const pz = ((point.z - design3DState.tauMin) / design3DState.tauRange - 0.5) * 2.0;
+        const x1 = px * cosY - pz * sinY;
+        const z1 = px * sinY + pz * cosY;
+        const y1 = py * cosX - z1 * sinX;
+        const z2 = py * sinX + z1 * cosX;
+        const perspective = 1 / (1 + z2 / 5.5);
+        return {
+          x: centerX + x1 * 190 * perspective,
+          y: centerY - y1 * 120 * perspective,
+          z: z2,
+          pareto: point.pareto,
+          profitRatio: point.profitRatio,
+        };
+      });
+
+      projected.sort((a, b) => a.z - b.z);
+      for (const point of projected) {
+        const alpha = point.pareto ? 0.92 : 0.22 + 0.4 * point.profitRatio;
+        const radius = point.pareto ? 4.2 : 1.5 + 2.0 * point.profitRatio;
+        const hue = point.pareto ? 48 : 195 - 120 * point.profitRatio;
+        context.fillStyle = `hsla(${hue}, 95%, ${55 + 18 * point.profitRatio}%, ${alpha})`;
+        context.beginPath();
+        context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      context.fillStyle = "rgba(148, 163, 184, 0.85)";
+      context.font = "12px Montserrat, sans-serif";
+      context.fillText("temperature x yield x residence-time landscape", 24, height - 18);
+
+      design3DState.angleY += 0.01;
+      design3DState.animationId = requestAnimationFrame(drawFrame);
+    }
+
+    drawFrame();
+  }
+
+  function updateDesignSpaceResults(result) {
+    designSpaceMetrics.yield.textContent = `${(result.summary.best_yield * 100).toFixed(1)} %`;
+    designSpaceMetrics.profit.textContent = `${result.summary.best_profitability.toFixed(1)}`;
+    designSpaceMetrics.sty.textContent = `${result.summary.best_space_time_yield.toFixed(2)}`;
+    designSpaceMetrics.pareto.textContent = `${result.summary.pareto_count}`;
+
+    const bestPoint = result.points.reduce((best, point) =>
+      point.profitability > best.profitability ? point : best
+    );
+
+    designSpaceInsight.textContent =
+      `The Pareto set contains ${result.summary.pareto_count} operating points. ` +
+      `The strongest profitability occurs near ${bestPoint.temperature.toFixed(0)} K and ${bestPoint.residence_time.toFixed(2)} h, ` +
+      `where yield reaches ${(bestPoint.yield_value * 100).toFixed(1)}% with safety index ${bestPoint.safety_index.toFixed(2)}.`;
+  }
+
+  function applyVizPreset(name) {
+    const preset = vizPresets[name];
+    if (!vizForm || !preset) {
+      return;
+    }
+    Object.entries(preset).forEach(([key, value]) => {
+      const field = vizForm.elements.namedItem(key);
+      if (field) {
+        field.value = value;
+      }
+    });
+    vizNote.textContent = `${vizPreset.options[vizPreset.selectedIndex].text} loaded.`;
+  }
+
+  function getVizPayload() {
+    const getNumber = function (fieldName, fallback) {
+      const field = vizForm.elements.namedItem(fieldName);
+      return Number(field && field.value !== "" ? field.value : fallback);
+    };
+    return {
+      domain_size: Math.max(getNumber("viz_domain", 12) || 12, 2),
+      diffusivity: Math.max(getNumber("viz_diffusivity", 0.18) || 0.18, 0.0001),
+      advection_x: getNumber("viz_adv_x", 0.55) || 0,
+      advection_y: getNumber("viz_adv_y", -0.18) || 0,
+      advection_z: getNumber("viz_adv_z", 0.10) || 0,
+      source_strength: Math.max(getNumber("viz_strength", 48) || 48, 1),
+      source_sigma: Math.max(getNumber("viz_sigma", 0.95) || 0.95, 0.01),
+      vortex_strength: Math.max(getNumber("viz_vortex", 6.5) || 6.5, 0.01),
+      thermal_gain: Math.max(getNumber("viz_thermal", 24) || 24, 0.1),
+      time_value: Math.max(getNumber("viz_time", 4.5) || 4.5, 0.01),
+      grid_points: 14,
+    };
+  }
+
+  function renderVizCanvas(points, payload) {
+    if (!vizCanvas) {
+      return;
+    }
+    const context = vizCanvas.getContext("2d");
+    if (!context) {
+      return;
+    }
+    if (viz3DState.animationId) {
+      cancelAnimationFrame(viz3DState.animationId);
+      viz3DState.animationId = null;
+    }
+    const maxConc = Math.max(...points.map((point) => point.concentration), 1e-9);
+    viz3DState.points = points
+      .filter((point) => point.concentration > maxConc * 0.02)
+      .map((point) => ({
+        x: point.x,
+        y: point.y,
+        z: point.z,
+        intensity: point.concentration / maxConc,
+        speed: point.speed,
+      }));
+    viz3DState.domain = payload.domain_size;
+    viz3DState.angleY = 0;
+
+    const width = vizCanvas.width;
+    const height = vizCanvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const scale = Math.min(width, height) * 0.24 / Math.max(viz3DState.domain, 1);
+
+    function drawFrame() {
+      context.clearRect(0, 0, width, height);
+      const background = context.createLinearGradient(0, 0, width, height);
+      background.addColorStop(0, "rgba(16, 16, 32, 0.98)");
+      background.addColorStop(1, "rgba(2, 6, 23, 1)");
+      context.fillStyle = background;
+      context.beginPath();
+      context.roundRect(0, 0, width, height, 24);
+      context.fill();
+
+      const cosY = Math.cos(viz3DState.angleY);
+      const sinY = Math.sin(viz3DState.angleY);
+      const cosX = Math.cos(viz3DState.angleX);
+      const sinX = Math.sin(viz3DState.angleX);
+
+      const projected = viz3DState.points.map((point) => {
+        const x1 = point.x * cosY - point.z * sinY;
+        const z1 = point.x * sinY + point.z * cosY;
+        const y1 = point.y * cosX - z1 * sinX;
+        const z2 = point.y * sinX + z1 * cosX;
+        const perspective = 1 / (1 + z2 / (viz3DState.domain * 1.6));
+        return {
+          x: centerX + x1 * scale * perspective,
+          y: centerY - y1 * scale * perspective,
+          z: z2,
+          intensity: point.intensity,
+          speed: point.speed,
+        };
+      });
+
+      projected.sort((a, b) => a.z - b.z);
+      for (const point of projected) {
+        const alpha = 0.10 + 0.72 * point.intensity;
+        const radius = 1.0 + 3.2 * point.intensity;
+        const hue = 210 - 170 * point.intensity;
+        context.fillStyle = `hsla(${hue}, 92%, ${54 + 18 * point.intensity}%, ${alpha})`;
+        context.beginPath();
+        context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      context.fillStyle = "rgba(148, 163, 184, 0.85)";
+      context.font = "12px Montserrat, sans-serif";
+      context.fillText("advected scalar plume with vortex transport", 24, height - 18);
+
+      viz3DState.angleY += 0.009;
+      viz3DState.animationId = requestAnimationFrame(drawFrame);
+    }
+
+    drawFrame();
+  }
+
+  function updateVizResults(result) {
+    vizMetrics.concentration.textContent = `${result.summary.max_concentration.toExponential(2)}`;
+    vizMetrics.temperature.textContent = `${result.summary.max_temperature.toFixed(1)} K`;
+    vizMetrics.speed.textContent = `${result.summary.mean_speed.toFixed(2)} m/s`;
+    vizMetrics.radius.textContent = `${result.summary.plume_radius.toFixed(2)} m`;
+
+    vizInsight.textContent =
+      `The volumetric field peaks at ${result.summary.max_temperature.toFixed(1)} K with plume radius ${result.summary.plume_radius.toFixed(2)} m. ` +
+      `Mean transport speed is ${result.summary.mean_speed.toFixed(2)} m/s as the source diffuses and curls under vortex forcing.`;
+  }
+
   async function runFusionStudy() {
     const payload = getFusionPayload();
     const result = await fetchJson(api.fusionRun, {
@@ -1005,6 +1413,63 @@
 
     renderFusionCanvas(result, payload);
     updateFusionResults(result);
+  }
+
+  async function runDesignSpaceStudy() {
+    const payload = getDesignSpacePayload();
+    const result = await fetchJson(api.designSpaceRun, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const paretoPoints = result.points.filter((point) => point.pareto);
+    const sortedPareto = paretoPoints
+      .slice()
+      .sort((a, b) => a.residence_time - b.residence_time);
+
+    buildChart(designSpacePrimaryChart, [
+      { values: sortedPareto.map((point) => point.yield_value * 100), color: "#22d3ee" },
+      { values: sortedPareto.map((point) => point.selectivity * 100), color: "#facc15" },
+      { values: sortedPareto.map((point) => point.conversion * 100), color: "#f472b6" },
+    ]);
+
+    buildChart(designSpaceSecondaryChart, [
+      { values: sortedPareto.map((point) => point.heat_duty / 1000), color: "#fb923c" },
+      { values: sortedPareto.map((point) => point.heat_release / 1000), color: "#60a5fa" },
+      { values: sortedPareto.map((point) => point.profitability), color: "#4ade80" },
+    ]);
+
+    renderDesignSpaceCanvas(result.points, payload);
+    updateDesignSpaceResults(result);
+  }
+
+  async function runVizStudy() {
+    const payload = getVizPayload();
+    const result = await fetchJson(api.vizLabRun, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const slice = result.points.filter((point) => Math.abs(point.y) < payload.domain_size / result.meta.grid_points);
+    const sortedSlice = slice.slice().sort((a, b) => a.x - b.x);
+    buildChart(vizPrimaryChart, [
+      { values: sortedSlice.map((point) => point.concentration * 1e3), color: "#22d3ee" },
+      { values: sortedSlice.map((point) => point.temperature), color: "#fb7185" },
+    ]);
+    buildChart(vizSecondaryChart, [
+      { values: sortedSlice.map((point) => point.vx), color: "#60a5fa" },
+      { values: sortedSlice.map((point) => point.vy), color: "#a78bfa" },
+      { values: sortedSlice.map((point) => point.speed), color: "#4ade80" },
+    ]);
+
+    renderVizCanvas(result.points, payload);
+    updateVizResults(result);
   }
 
   async function runCFDStudy() {
@@ -1187,6 +1652,14 @@
       applyFusionPreset(fusionPreset.value);
       await runFusionStudy();
     }
+    if (designSpaceForm && designSpacePreset && designSpaceRunButton) {
+      applyDesignSpacePreset(designSpacePreset.value);
+      await runDesignSpaceStudy();
+    }
+    if (vizForm && vizPreset && vizRunButton) {
+      applyVizPreset(vizPreset.value);
+      await runVizStudy();
+    }
   }
 
   form.addEventListener("submit", async function (event) {
@@ -1333,6 +1806,52 @@
       } catch (error) {
         fusionNote.textContent = error.message;
         fusionInsight.textContent = error.message;
+      }
+    });
+  }
+
+  if (designSpaceForm && designSpacePreset && designSpaceRunButton) {
+    designSpaceRunButton.addEventListener("click", async function () {
+      try {
+        designSpaceNote.textContent = "Running native design-space sweep...";
+        await runDesignSpaceStudy();
+        designSpaceNote.textContent = "Design-space sweep completed with the native C++ core.";
+      } catch (error) {
+        designSpaceNote.textContent = error.message;
+        designSpaceInsight.textContent = error.message;
+      }
+    });
+
+    designSpacePreset.addEventListener("change", async function () {
+      try {
+        applyDesignSpacePreset(designSpacePreset.value);
+        await runDesignSpaceStudy();
+      } catch (error) {
+        designSpaceNote.textContent = error.message;
+        designSpaceInsight.textContent = error.message;
+      }
+    });
+  }
+
+  if (vizForm && vizPreset && vizRunButton) {
+    vizRunButton.addEventListener("click", async function () {
+      try {
+        vizNote.textContent = "Rendering volumetric field with the native C++ core...";
+        await runVizStudy();
+        vizNote.textContent = "Visualization lab completed with the native C++ core.";
+      } catch (error) {
+        vizNote.textContent = error.message;
+        vizInsight.textContent = error.message;
+      }
+    });
+
+    vizPreset.addEventListener("change", async function () {
+      try {
+        applyVizPreset(vizPreset.value);
+        await runVizStudy();
+      } catch (error) {
+        vizNote.textContent = error.message;
+        vizInsight.textContent = error.message;
       }
     });
   }
