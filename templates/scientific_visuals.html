@@ -107,13 +107,25 @@
       </section>
 
       <section class="science-gallery-showcase pb-5">
-        <div class="container">
-          <div class="row g-4 align-items-start">
-            <div class="col-xl-8" data-aos="fade-up" data-aos-duration="1100">
-              <div class="science-stage-panel">
+        <div class="container pt-4">
+          <div class="science-exhibit-strip-panel" data-aos="fade-up" data-aos-duration="1250">
+            <div class="science-sidebar-header">
+              <div>
+                <p class="science-gallery-kicker">Scenes</p>
+                <h2>Browse Exhibits</h2>
+              </div>
+              <p class="science-strip-note">Scroll horizontally to move through the gallery.</p>
+            </div>
+            <div class="science-scene-list science-scene-list-horizontal" id="science-scene-list"></div>
+          </div>
+        </div>
+
+        <div class="science-theater-shell" data-aos="fade-up" data-aos-duration="1100">
+          <div class="container-fluid px-xl-4 px-3">
+            <div class="science-stage-panel science-stage-panel-theater">
                 <div class="science-stage-header">
                   <div>
-                    <p class="science-gallery-kicker">Live Exhibit</p>
+                    <p class="science-gallery-kicker">Theater Mode</p>
                     <h2 id="science-scene-title">Loading scene...</h2>
                   </div>
                   <div class="science-stage-controls">
@@ -128,7 +140,7 @@
                 </div>
 
                 <div class="science-stage-canvas-wrap">
-                  <canvas id="science-main-canvas" class="science-main-canvas" width="960" height="520"></canvas>
+                  <canvas id="science-main-canvas" class="science-main-canvas science-main-canvas-theater" width="1440" height="820"></canvas>
                 </div>
 
                 <div class="science-overlay-row">
@@ -153,22 +165,13 @@
                 <div class="science-insight" id="science-insight">
                   Initializing scientific visuals gallery.
                 </div>
-              </div>
-            </div>
-
-            <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1250">
-              <div class="science-sidebar-panel">
-                <div class="science-sidebar-header">
-                  <p class="science-gallery-kicker">Scenes</p>
-                  <h2>Browse Exhibits</h2>
-                </div>
-                <div class="science-scene-list" id="science-scene-list"></div>
-              </div>
             </div>
           </div>
+        </div>
 
-          <div class="row g-4 pt-4">
-            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1100">
+        <div class="container pt-4">
+          <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1100">
               <div class="science-gallery-card">
                 <div class="chart-header">
                   <h3>Orthographic View</h3>
@@ -176,7 +179,7 @@
                 <canvas id="science-projection-canvas" class="science-mini-canvas" width="520" height="340"></canvas>
               </div>
             </div>
-            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1200">
               <div class="science-gallery-card">
                 <div class="chart-header">
                   <h3>Transient Trace</h3>
@@ -184,7 +187,7 @@
                 <svg id="science-trace-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 340" preserveAspectRatio="none"></svg>
               </div>
             </div>
-            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1300">
+            <div class="col-12" data-aos="fade-up" data-aos-duration="1300">
               <div class="science-gallery-card">
                 <div class="chart-header">
                   <h3>Scene Metrics</h3>
