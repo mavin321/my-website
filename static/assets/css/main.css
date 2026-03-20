@@ -259,6 +259,321 @@ footer.container {
   color: #94a3b8;
 }
 
+/* ---------- Simulation page ---------- */
+
+.simulation-page {
+  padding-top: 4.5rem;
+}
+
+.simulation-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.18), transparent 32%),
+    radial-gradient(circle at 85% 20%, rgba(249, 115, 22, 0.18), transparent 28%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.35));
+}
+
+.simulation-kicker,
+.simulation-panel-kicker,
+.simulation-card-tag,
+.simulation-summary-label {
+  margin-bottom: 0.8rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #67e8f9;
+}
+
+.simulation-hero h1 {
+  max-width: 640px;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 700;
+  line-height: 1.03;
+}
+
+.simulation-intro {
+  max-width: 640px;
+  margin-top: 1.2rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+}
+
+.simulation-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+}
+
+.simulation-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(103, 232, 249, 0.18);
+  color: #e2e8f0;
+  box-shadow: 0 18px 45px rgba(2, 6, 23, 0.45);
+}
+
+.simulation-summary-card,
+.simulation-panel,
+.simulation-catalog-card {
+  height: 100%;
+  background: rgba(15, 23, 42, 0.84);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 1.6rem;
+  box-shadow: 0 28px 70px rgba(2, 6, 23, 0.55);
+}
+
+.simulation-summary-card {
+  padding: 2rem;
+}
+
+.simulation-summary-card h2,
+.simulation-panel h2,
+.simulation-catalog-card h3 {
+  font-weight: 600;
+}
+
+.simulation-summary-card p,
+.simulation-panel p,
+.simulation-catalog-card p {
+  color: #cbd5e1;
+}
+
+.simulation-summary-list {
+  margin: 1.1rem 0 0;
+  padding-left: 1.1rem;
+  color: #e2e8f0;
+}
+
+.simulation-catalog-card {
+  padding: 1.6rem;
+}
+
+.simulation-catalog-card-active {
+  border-color: rgba(34, 211, 238, 0.45);
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 34%),
+    rgba(15, 23, 42, 0.9);
+}
+
+.simulation-panel {
+  padding: 1.8rem;
+}
+
+.simulation-panel-wide {
+  min-height: 100%;
+}
+
+.simulation-form .form-label {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.simulation-form .form-control,
+.simulation-form .form-select {
+  background: rgba(2, 6, 23, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #f8fafc;
+  border-radius: 0.95rem;
+  padding: 0.75rem 0.9rem;
+}
+
+.simulation-form .form-control:focus,
+.simulation-form .form-select:focus {
+  background: rgba(2, 6, 23, 0.9);
+  color: #fff;
+  border-color: rgba(34, 211, 238, 0.55);
+  box-shadow: 0 0 0 0.2rem rgba(34, 211, 238, 0.14);
+}
+
+.simulation-actions {
+  margin-top: 1.4rem;
+}
+
+.simulation-preset-note {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background: rgba(8, 47, 73, 0.45);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  color: #bae6fd;
+  line-height: 1.6;
+}
+
+.simulation-run-btn {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #0891b2, #2563eb, #ea580c);
+  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.35);
+}
+
+.simulation-output-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.simulation-output-note {
+  max-width: 360px;
+  margin: 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.metric-card,
+.chart-card,
+.simulation-insight {
+  background: rgba(2, 6, 23, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 1.25rem;
+}
+
+.metric-card {
+  padding: 1rem 1.1rem;
+}
+
+.metric-card span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.metric-card strong {
+  font-size: 1.2rem;
+}
+
+.chart-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.chart-card {
+  padding: 1rem;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.9rem;
+  color: #cbd5e1;
+  font-size: 0.86rem;
+}
+
+.chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legend-line {
+  width: 1.3rem;
+  height: 0.2rem;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.legend-line-cyan { background: #22d3ee; }
+.legend-line-orange { background: #fb923c; }
+.legend-line-green { background: #4ade80; }
+.legend-line-blue { background: #60a5fa; }
+.legend-line-pink { background: #f472b6; }
+.legend-line-gold { background: #facc15; }
+
+.simulation-chart {
+  width: 100%;
+  height: 320px;
+  display: block;
+}
+
+.chart-bg {
+  fill: rgba(15, 23, 42, 0.62);
+}
+
+.chart-grid-line {
+  stroke: rgba(148, 163, 184, 0.12);
+  stroke-width: 1;
+}
+
+.chart-axis {
+  stroke: rgba(148, 163, 184, 0.35);
+  stroke-width: 1.2;
+}
+
+.chart-label {
+  fill: #94a3b8;
+  font-size: 12px;
+}
+
+.simulation-insight {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  color: #e2e8f0;
+  line-height: 1.7;
+}
+
+@media (max-width: 1199.98px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991.98px) {
+  .simulation-output-header,
+  .chart-header {
+    flex-direction: column;
+  }
+
+  .chart-legend {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .simulation-panel,
+  .simulation-summary-card,
+  .simulation-catalog-card {
+    padding: 1.25rem;
+  }
+
+  .simulation-chart {
+    height: 260px;
+  }
+}
+
 footer.container a {
   color: #e5e7eb;
   font-weight: 500;

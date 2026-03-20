@@ -1,0 +1,333 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Interactive engineering simulations for Mavin's portfolio website"
+    />
+    <title>Simulation Lab</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+  </head>
+  <body>
+    <header data-bs-theme="dark">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Mavin</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul
+              class="navbar-nav me-auto mb-2 mb-md-0 justify-content-center w-100"
+            >
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/projects/">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/simulation/"
+                  >Simulation</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contacts/">Contacts</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://mavinsblog.pythonanywhere.com/"
+                  >My Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="simulation-page">
+      <section class="simulation-hero">
+        <div class="container py-5">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1000">
+              <p class="simulation-kicker">Simulation Lab</p>
+              <h1>Interactive engineering demos for my portfolio.</h1>
+              <p class="simulation-intro">
+                This tab is a home for process models, control experiments, and
+                engineering visualizations. The first demo is a fermentation
+                simulator that shows how biomass grows, substrate is consumed,
+                and product forms over time.
+              </p>
+              <div class="simulation-chip-row">
+                <span class="simulation-chip">Bioprocess modeling</span>
+                <span class="simulation-chip">Interactive controls</span>
+                <span class="simulation-chip">Portfolio-ready demos</span>
+              </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-up" data-aos-duration="1200">
+              <div class="simulation-summary-card">
+                <p class="simulation-summary-label">Now Showing</p>
+                <h2>Fermentation Simulator</h2>
+                <p>
+                  A browser-based demo adapted from the larger
+                  <code>FermentationSim</code> project in this repository.
+                </p>
+                <ul class="simulation-summary-list">
+                  <li>Batch and fed-batch style runs</li>
+                  <li>Preset loading for quick scenarios</li>
+                  <li>Live trend charts and end-point metrics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="simulation-catalog py-5">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1000">
+              <article class="simulation-catalog-card simulation-catalog-card-active">
+                <p class="simulation-card-tag">Available now</p>
+                <h3>Fermentation Dynamics</h3>
+                <p>
+                  Explore microbial growth, substrate depletion, dissolved
+                  oxygen response, product generation, and volume change.
+                </p>
+              </article>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1100">
+              <article class="simulation-catalog-card">
+                <p class="simulation-card-tag">Next slot</p>
+                <h3>Thermal Reactor Study</h3>
+                <p>
+                  Reserved for future reactor temperature and heat-transfer
+                  projects you want to add to this section.
+                </p>
+              </article>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200">
+              <article class="simulation-catalog-card">
+                <p class="simulation-card-tag">Next slot</p>
+                <h3>Separation Process Model</h3>
+                <p>
+                  Another open card so the Simulation tab stays broader than a
+                  single project.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="simulation-workbench pb-5">
+        <div class="container">
+          <div class="row g-4 align-items-start">
+            <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1000">
+              <div class="simulation-panel">
+                <div class="simulation-panel-header">
+                  <p class="simulation-panel-kicker">Controls</p>
+                  <h2>Fermentation simulator</h2>
+                  <p>
+                    Choose a preset, tune the process variables, and run the
+                    simulation.
+                  </p>
+                </div>
+
+                <form id="simulation-form" class="simulation-form">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label" for="microbe_id">Microbe preset</label>
+                      <select class="form-select" id="microbe_id" name="microbe_id"></select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label" for="substrate_id">Substrate preset</label>
+                      <select class="form-select" id="substrate_id" name="substrate_id"></select>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="mode">Mode</label>
+                      <select class="form-select" id="mode" name="mode">
+                        <option value="batch">Batch</option>
+                        <option value="fed_batch">Fed-batch</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="feed_mode">Feed strategy</label>
+                      <select class="form-select" id="feed_mode" name="feed_mode">
+                        <option value="constant">Constant</option>
+                        <option value="ramp">Ramp</option>
+                        <option value="exponential">Exponential</option>
+                        <option value="do_control">DO control</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="t_end">Duration (h)</label>
+                      <input class="form-control" id="t_end" name="t_end" type="number" step="1" min="6" max="72" value="24" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="x0">Biomass X0</label>
+                      <input class="form-control" id="x0" name="x0" type="number" step="0.01" min="0.01" value="0.5" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="s0">Substrate S0</label>
+                      <input class="form-control" id="s0" name="s0" type="number" step="0.1" min="1" value="20" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="do0">DO0</label>
+                      <input class="form-control" id="do0" name="do0" type="number" step="0.1" min="0.001" value="0.005" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="t0">Temp (deg C)</label>
+                      <input class="form-control" id="t0" name="t0" type="number" step="0.1" min="20" max="45" value="30" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="mu_max">mu max</label>
+                      <input class="form-control" id="mu_max" name="mu_max" type="number" step="0.01" min="0.05" value="0.4" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="ks">Ks</label>
+                      <input class="form-control" id="ks" name="ks" type="number" step="0.1" min="0.01" value="0.1" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="yxs">Yxs</label>
+                      <input class="form-control" id="yxs" name="yxs" type="number" step="0.01" min="0.05" value="0.5" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="ypx">Ypx</label>
+                      <input class="form-control" id="ypx" name="ypx" type="number" step="0.01" min="0" value="0.1" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="feed_rate">Feed rate</label>
+                      <input class="form-control" id="feed_rate" name="feed_rate" type="number" step="0.01" min="0" value="0" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="feed_start">Feed start (h)</label>
+                      <input class="form-control" id="feed_start" name="feed_start" type="number" step="0.5" min="0" value="0" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="volume">Volume (L)</label>
+                      <input class="form-control" id="volume" name="volume" type="number" step="0.1" min="0.5" value="5" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="agitation_speed">Agitation (rpm)</label>
+                      <input class="form-control" id="agitation_speed" name="agitation_speed" type="number" step="10" min="50" value="300" />
+                    </div>
+                  </div>
+                  <div class="simulation-preset-note" id="preset-note">
+                    Loading preset details...
+                  </div>
+                  <div class="simulation-actions">
+                    <button class="btn btn-primary simulation-run-btn" type="submit">
+                      Run simulation
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-xl-8" data-aos="fade-up" data-aos-duration="1200">
+              <div class="simulation-panel simulation-panel-wide">
+                <div class="simulation-output-header">
+                  <div>
+                    <p class="simulation-panel-kicker">Results</p>
+                    <h2>Process response</h2>
+                  </div>
+                  <p class="simulation-output-note">
+                    Curves update in the browser immediately so visitors can
+                    see the process logic in action.
+                  </p>
+                </div>
+
+                <div class="metrics-grid" id="metrics-grid">
+                  <div class="metric-card">
+                    <span>Final biomass</span>
+                    <strong id="metric-biomass">0.00 g/L</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Final product</span>
+                    <strong id="metric-product">0.00 g/L</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Substrate used</span>
+                    <strong id="metric-substrate">0.00 g/L</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Max volume</span>
+                    <strong id="metric-volume">0.00 L</strong>
+                  </div>
+                </div>
+
+                <div class="chart-grid">
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>Growth, substrate, and product</h3>
+                      <div class="chart-legend">
+                        <span><i class="legend-line legend-line-cyan"></i>Biomass</span>
+                        <span><i class="legend-line legend-line-orange"></i>Substrate</span>
+                        <span><i class="legend-line legend-line-green"></i>Product</span>
+                      </div>
+                    </div>
+                    <svg id="primary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                  </div>
+
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>DO, temperature, and volume</h3>
+                      <div class="chart-legend">
+                        <span><i class="legend-line legend-line-blue"></i>DO</span>
+                        <span><i class="legend-line legend-line-pink"></i>Temp</span>
+                        <span><i class="legend-line legend-line-gold"></i>Volume</span>
+                      </div>
+                    </div>
+                    <svg id="secondary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                  </div>
+                </div>
+
+                <div class="simulation-insight" id="simulation-insight">
+                  The current setup is ready to simulate.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="{% static 'assets/js/simulation.js' %}"></script>
+  </body>
+</html>
