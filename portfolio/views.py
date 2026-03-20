@@ -18,6 +18,7 @@ from .thermal_reactor_bridge import run_reactor_simulation
 from .separation_bridge import run_separation_simulation
 from .atomic_orbital_bridge import run_atomic_orbital_simulation
 from .cfd_flow_bridge import run_cfd_flow_simulation
+from .fusion_bridge import run_fusion_simulation
 
 
 def index(request):
@@ -131,6 +132,19 @@ def cfd_flow_simulation_run(request):
     try:
         payload = json.loads(request.body or "{}")
         result = run_cfd_flow_simulation(payload)
+        return JsonResponse(_clean_json(result))
+    except json.JSONDecodeError:
+        return JsonResponse({"detail": "Invalid JSON payload"}, status=400)
+    except Exception as exc:
+        return JsonResponse({"detail": str(exc)}, status=500)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def fusion_simulation_run(request):
+    try:
+        payload = json.loads(request.body or "{}")
+        result = run_fusion_simulation(payload)
         return JsonResponse(_clean_json(result))
     except json.JSONDecodeError:
         return JsonResponse({"detail": "Invalid JSON payload"}, status=400)

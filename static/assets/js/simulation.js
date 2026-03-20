@@ -34,6 +34,14 @@
   const cfdCanvas = document.getElementById("cfd-3d-canvas");
   const cfdPrimaryChart = document.getElementById("cfd-primary-chart");
   const cfdSecondaryChart = document.getElementById("cfd-secondary-chart");
+  const fusionForm = document.getElementById("fusion-form");
+  const fusionPreset = document.getElementById("fusion_preset");
+  const fusionRunButton = document.getElementById("fusion-run-btn");
+  const fusionNote = document.getElementById("fusion-note");
+  const fusionInsight = document.getElementById("fusion-insight");
+  const fusionCanvas = document.getElementById("fusion-3d-canvas");
+  const fusionPrimaryChart = document.getElementById("fusion-primary-chart");
+  const fusionSecondaryChart = document.getElementById("fusion-secondary-chart");
 
   if (!form || !primaryChart || !secondaryChart || !microbeSelect || !substrateSelect) {
     return;
@@ -71,6 +79,12 @@
     h: document.getElementById("cfd-metric-h"),
     vmax: document.getElementById("cfd-metric-vmax"),
   };
+  const fusionMetrics = {
+    temp: document.getElementById("fusion-metric-temp"),
+    power: document.getElementById("fusion-metric-power"),
+    q: document.getElementById("fusion-metric-q"),
+    triple: document.getElementById("fusion-metric-triple"),
+  };
   const orbital3DState = {
     animationId: null,
     points: [],
@@ -86,6 +100,14 @@
     angleY: 0,
     angleX: 0.42,
   };
+  const fusion3DState = {
+    animationId: null,
+    points: [],
+    majorRadius: 6.2,
+    minorRadius: 2.0,
+    angleY: 0,
+    angleX: 0.48,
+  };
   const api = {
     microbes: "/api/simulation/microbes/",
     run: "/api/simulation/run/",
@@ -93,6 +115,7 @@
     separationRun: "/api/separation/run/",
     orbitalRun: "/api/atomic-orbital/run/",
     cfdRun: "/api/cfd/run/",
+    fusionRun: "/api/fusion/run/",
   };
   const reactorPresets = {
     stable: {
@@ -230,6 +253,50 @@
       cfd_wall_temp: 335,
       cfd_cp: 4180,
       cfd_k: 0.60,
+    },
+  };
+  const fusionPresets = {
+    baseline: {
+      fusion_major_radius: 6.2,
+      fusion_minor_radius: 2.0,
+      fusion_bfield: 5.3,
+      fusion_current: 15.0,
+      fusion_density: 8.5e19,
+      fusion_temp: 12.0,
+      fusion_tau: 3.5,
+      fusion_aux: 45000000,
+      fusion_fueling: 1.4e18,
+      fusion_impurity: 0.015,
+      fusion_time_end: 18,
+      fusion_wall_reflectivity: 0.25,
+    },
+    high_q: {
+      fusion_major_radius: 6.6,
+      fusion_minor_radius: 2.1,
+      fusion_bfield: 5.7,
+      fusion_current: 16.5,
+      fusion_density: 9.0e19,
+      fusion_temp: 15.0,
+      fusion_tau: 4.8,
+      fusion_aux: 38000000,
+      fusion_fueling: 1.1e18,
+      fusion_impurity: 0.012,
+      fusion_time_end: 20,
+      fusion_wall_reflectivity: 0.32,
+    },
+    ignition_edge: {
+      fusion_major_radius: 6.4,
+      fusion_minor_radius: 2.0,
+      fusion_bfield: 5.9,
+      fusion_current: 17.2,
+      fusion_density: 1.05e20,
+      fusion_temp: 18.0,
+      fusion_tau: 5.4,
+      fusion_aux: 29000000,
+      fusion_fueling: 1.0e18,
+      fusion_impurity: 0.018,
+      fusion_time_end: 16,
+      fusion_wall_reflectivity: 0.35,
     },
   };
 
@@ -776,6 +843,170 @@
       `Pressure drop is ${result.summary.pressure_drop.toFixed(1)} Pa with Nusselt ${result.summary.nusselt.toFixed(2)} and peak velocity ${result.summary.max_velocity.toFixed(2)} m/s.`;
   }
 
+  function applyFusionPreset(name) {
+    const preset = fusionPresets[name];
+    if (!fusionForm || !preset) {
+      return;
+    }
+    Object.entries(preset).forEach(([key, value]) => {
+      const field = fusionForm.elements.namedItem(key);
+      if (field) {
+        field.value = value;
+      }
+    });
+    fusionNote.textContent = `${fusionPreset.options[fusionPreset.selectedIndex].text} loaded.`;
+  }
+
+  function getFusionPayload() {
+    const getNumber = function (fieldName, fallback) {
+      const field = fusionForm.elements.namedItem(fieldName);
+      return Number(field && field.value !== "" ? field.value : fallback);
+    };
+    return {
+      major_radius: Math.max(getNumber("fusion_major_radius", 6.2) || 6.2, 0.5),
+      minor_radius: Math.max(getNumber("fusion_minor_radius", 2.0) || 2.0, 0.2),
+      magnetic_field: Math.max(getNumber("fusion_bfield", 5.3) || 5.3, 0.1),
+      plasma_current: Math.max((getNumber("fusion_current", 15.0) || 15.0) * 1e6, 1e4),
+      density_0: Math.max(getNumber("fusion_density", 8.5e19) || 8.5e19, 1e18),
+      temperature_0: Math.max(getNumber("fusion_temp", 12.0) || 12.0, 0.1),
+      confinement_time: Math.max(getNumber("fusion_tau", 3.5) || 3.5, 0.05),
+      auxiliary_power: Math.max(getNumber("fusion_aux", 45000000) || 45000000, 1e3),
+      fueling_rate: Math.max(getNumber("fusion_fueling", 1.4e18) || 1.4e18, 0),
+      impurity_fraction: Math.max(getNumber("fusion_impurity", 0.015) || 0.015, 0),
+      time_end: Math.max(getNumber("fusion_time_end", 18) || 18, 1),
+      wall_reflectivity: Math.max(getNumber("fusion_wall_reflectivity", 0.25) || 0.25, 0),
+      helium_fraction_0: 0.02,
+      radiation_coeff: 5.35e-37,
+      alpha_heating_fraction: 0.88,
+      n_points: 280,
+    };
+  }
+
+  function renderFusionCanvas(result, payload) {
+    if (!fusionCanvas) {
+      return;
+    }
+    const context = fusionCanvas.getContext("2d");
+    if (!context) {
+      return;
+    }
+    if (fusion3DState.animationId) {
+      cancelAnimationFrame(fusion3DState.animationId);
+      fusion3DState.animationId = null;
+    }
+
+    const temperature = result.summary.peak_temperature;
+    const density = result.summary.final_density;
+    fusion3DState.majorRadius = payload.major_radius;
+    fusion3DState.minorRadius = payload.minor_radius;
+    fusion3DState.points = Array.from({ length: 1400 }, (_, index) => {
+      const u = (index / 1400) * Math.PI * 2;
+      const v = ((index * 13) % 1400) / 1400 * Math.PI * 2;
+      const ripple = 0.75 + 0.25 * Math.sin(index * 0.17 + temperature * 0.2);
+      const localMinor = fusion3DState.minorRadius * ripple;
+      const x = (fusion3DState.majorRadius + localMinor * Math.cos(v)) * Math.cos(u);
+      const z = (fusion3DState.majorRadius + localMinor * Math.cos(v)) * Math.sin(u);
+      const y = localMinor * Math.sin(v) * 0.65;
+      const intensity = 0.35 + 0.65 * ((index % 37) / 36) * Math.min(temperature / 25, 1.2);
+      return { x, y, z, intensity };
+    });
+
+    const width = fusionCanvas.width;
+    const height = fusionCanvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const scale = Math.min(width, height) * 0.10 / Math.max(fusion3DState.majorRadius, 1);
+
+    function drawFrame() {
+      context.clearRect(0, 0, width, height);
+      const background = context.createLinearGradient(0, 0, width, height);
+      background.addColorStop(0, "rgba(12, 18, 33, 0.98)");
+      background.addColorStop(1, "rgba(2, 6, 23, 1)");
+      context.fillStyle = background;
+      context.beginPath();
+      context.roundRect(0, 0, width, height, 24);
+      context.fill();
+
+      const cosY = Math.cos(fusion3DState.angleY);
+      const sinY = Math.sin(fusion3DState.angleY);
+      const cosX = Math.cos(fusion3DState.angleX);
+      const sinX = Math.sin(fusion3DState.angleX);
+
+      const projected = fusion3DState.points.map((point) => {
+        const x1 = point.x * cosY - point.z * sinY;
+        const z1 = point.x * sinY + point.z * cosY;
+        const y1 = point.y * cosX - z1 * sinX;
+        const z2 = point.y * sinX + z1 * cosX;
+        const perspective = 1 / (1 + z2 / (fusion3DState.majorRadius * 3.5));
+        return {
+          x: centerX + x1 * scale * perspective,
+          y: centerY - y1 * scale * perspective,
+          z: z2,
+          intensity: point.intensity,
+        };
+      });
+
+      projected.sort((a, b) => a.z - b.z);
+      for (const point of projected) {
+        const alpha = Math.max(0.1, Math.min(point.intensity, 1));
+        const radius = 1.0 + 2.8 * alpha;
+        const hue = 220 - 180 * alpha;
+        context.fillStyle = `hsla(${hue}, 95%, ${58 + 16 * alpha}%, ${0.2 + 0.65 * alpha})`;
+        context.beginPath();
+        context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      context.fillStyle = "rgba(148, 163, 184, 0.85)";
+      context.font = "12px Montserrat, sans-serif";
+      context.fillText(`tokamak torus | density ${density.toExponential(2)} m^-3`, 24, height - 18);
+
+      fusion3DState.angleY += 0.008;
+      fusion3DState.animationId = requestAnimationFrame(drawFrame);
+    }
+
+    drawFrame();
+  }
+
+  function updateFusionResults(result) {
+    fusionMetrics.temp.textContent = `${result.summary.peak_temperature.toFixed(2)} keV`;
+    fusionMetrics.power.textContent = `${(result.summary.peak_fusion_power / 1e6).toFixed(2)} MW`;
+    fusionMetrics.q.textContent = `${result.summary.max_q.toFixed(2)}`;
+    fusionMetrics.triple.textContent = `${result.summary.triple_product_peak.toExponential(2)}`;
+
+    const finalQ = result.states.q_value[result.states.q_value.length - 1];
+    fusionInsight.textContent =
+      `Peak plasma temperature reaches ${result.summary.peak_temperature.toFixed(2)} keV with peak fusion power ${(result.summary.peak_fusion_power / 1e6).toFixed(2)} MW. ` +
+      `The pulse achieves max Q ${result.summary.max_q.toFixed(2)} and closes at Q ${finalQ.toFixed(2)}.`;
+  }
+
+  async function runFusionStudy() {
+    const payload = getFusionPayload();
+    const result = await fetchJson(api.fusionRun, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    buildChart(fusionPrimaryChart, [
+      { values: result.states.temperature, color: "#fb923c" },
+      { values: result.states.density.map((value) => value / 1e19), color: "#22d3ee" },
+      { values: result.states.beta_n, color: "#f472b6" },
+    ]);
+
+    buildChart(fusionSecondaryChart, [
+      { values: result.states.fusion_power.map((value) => value / 1e6), color: "#facc15" },
+      { values: result.states.bremsstrahlung_loss.map((value) => value / 1e6), color: "#60a5fa" },
+      { values: result.states.confinement_loss.map((value) => value / 1e6), color: "#4ade80" },
+      { values: result.states.q_value, color: "#f97316" },
+    ]);
+
+    renderFusionCanvas(result, payload);
+    updateFusionResults(result);
+  }
+
   async function runCFDStudy() {
     const payload = getCFDPayload();
     const result = await fetchJson(api.cfdRun, {
@@ -952,6 +1183,10 @@
       applyCFDPreset(cfdPreset.value);
       await runCFDStudy();
     }
+    if (fusionForm && fusionPreset && fusionRunButton) {
+      applyFusionPreset(fusionPreset.value);
+      await runFusionStudy();
+    }
   }
 
   form.addEventListener("submit", async function (event) {
@@ -1075,6 +1310,29 @@
       } catch (error) {
         cfdNote.textContent = error.message;
         cfdInsight.textContent = error.message;
+      }
+    });
+  }
+
+  if (fusionForm && fusionPreset && fusionRunButton) {
+    fusionRunButton.addEventListener("click", async function () {
+      try {
+        fusionNote.textContent = "Running fusion pulse with the native C++ core...";
+        await runFusionStudy();
+        fusionNote.textContent = "Fusion pulse completed with the native C++ core.";
+      } catch (error) {
+        fusionNote.textContent = error.message;
+        fusionInsight.textContent = error.message;
+      }
+    });
+
+    fusionPreset.addEventListener("change", async function () {
+      try {
+        applyFusionPreset(fusionPreset.value);
+        await runFusionStudy();
+      } catch (error) {
+        fusionNote.textContent = error.message;
+        fusionInsight.textContent = error.message;
       }
     });
   }

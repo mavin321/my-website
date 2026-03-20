@@ -466,6 +466,17 @@ footer.container {
   pointer-events: none;
 }
 
+.simulation-fusion-workbench::before {
+  content: "";
+  position: absolute;
+  inset: 2rem 0 auto;
+  height: 18rem;
+  background:
+    radial-gradient(circle at 20% 32%, rgba(251, 146, 60, 0.16), transparent 32%),
+    radial-gradient(circle at 80% 42%, rgba(96, 165, 250, 0.16), transparent 30%);
+  pointer-events: none;
+}
+
 .orbital-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }

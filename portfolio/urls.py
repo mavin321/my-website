@@ -14,4 +14,5 @@ urlpatterns=[
     path('api/separation/run/', views.separation_simulation_run, name='separation_simulation_run'),
     path('api/atomic-orbital/run/', views.atomic_orbital_simulation_run, name='atomic_orbital_simulation_run'),
     path('api/cfd/run/', views.cfd_flow_simulation_run, name='cfd_flow_simulation_run'),
+    path('api/fusion/run/', views.fusion_simulation_run, name='fusion_simulation_run'),
 ]
