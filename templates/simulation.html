@@ -134,12 +134,13 @@
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200">
-              <article class="simulation-catalog-card">
-                <p class="simulation-card-tag">Next slot</p>
+              <article class="simulation-catalog-card simulation-catalog-card-active">
+                <p class="simulation-card-tag">Available now</p>
                 <h3>Separation Process Model</h3>
                 <p>
-                  Another open card so the Simulation tab stays broader than a
-                  single project.
+                  Native C++ binary separation column dynamics with reflux,
+                  boilup, VLE-driven enrichment, condenser duty, and reboiler
+                  energy tracking.
                 </p>
               </article>
             </div>
@@ -473,6 +474,180 @@
 
                 <div class="simulation-insight" id="reactor-insight">
                   The thermal reactor study is ready to simulate.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="simulation-workbench simulation-separation-workbench pb-5">
+        <div class="container">
+          <div class="row g-4 align-items-start">
+            <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1000">
+              <div class="simulation-panel">
+                <div class="simulation-panel-header">
+                  <p class="simulation-panel-kicker">Controls</p>
+                  <h2>Separation process model</h2>
+                  <p>
+                    Native binary column dynamics with composition envelopes,
+                    thermal profile, condenser load, reboiler load, and
+                    separation-factor tracking.
+                  </p>
+                </div>
+
+                <div class="simulation-code-badge">
+                  C++ dynamic separation core with RK4 integration, relative
+                  volatility response, reflux control, and thermal-duty
+                  reporting.
+                </div>
+
+                <form id="separation-form" class="simulation-form">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label" for="separation_preset">Column case</label>
+                      <select class="form-select" id="separation_preset" name="separation_preset">
+                        <option value="purification">Purification train</option>
+                        <option value="energy_saver">Energy saver</option>
+                        <option value="throughput">Throughput push</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_horizon">Time horizon (min)</label>
+                      <input class="form-control" id="sep_horizon" name="sep_horizon" type="number" step="1" min="10" value="90" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_points">Resolution</label>
+                      <input class="form-control" id="sep_points" name="sep_points" type="number" step="10" min="60" value="300" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_feed_flow">Feed flow (kmol/h)</label>
+                      <input class="form-control" id="sep_feed_flow" name="sep_feed_flow" type="number" step="1" min="1" value="100" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_feed_z">Feed light fraction</label>
+                      <input class="form-control" id="sep_feed_z" name="sep_feed_z" type="number" step="0.01" min="0.01" max="0.99" value="0.55" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_reflux">Reflux ratio</label>
+                      <input class="form-control" id="sep_reflux" name="sep_reflux" type="number" step="0.1" min="0.1" value="2.4" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_boilup">Boilup ratio</label>
+                      <input class="form-control" id="sep_boilup" name="sep_boilup" type="number" step="0.1" min="0.1" value="1.7" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_efficiency">Tray efficiency</label>
+                      <input class="form-control" id="sep_efficiency" name="sep_efficiency" type="number" step="0.01" min="0.1" max="0.99" value="0.72" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_alpha">Relative volatility</label>
+                      <input class="form-control" id="sep_alpha" name="sep_alpha" type="number" step="0.01" min="1.01" value="2.2" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_feed_temp">Feed temp (K)</label>
+                      <input class="form-control" id="sep_feed_temp" name="sep_feed_temp" type="number" step="1" min="280" value="360" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_condenser_temp">Condenser temp (K)</label>
+                      <input class="form-control" id="sep_condenser_temp" name="sep_condenser_temp" type="number" step="1" min="260" value="305" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_steam_temp">Steam temp (K)</label>
+                      <input class="form-control" id="sep_steam_temp" name="sep_steam_temp" type="number" step="1" min="320" value="420" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_top_x">Top x(light)</label>
+                      <input class="form-control" id="sep_top_x" name="sep_top_x" type="number" step="0.01" min="0.01" max="0.99" value="0.92" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_bottom_x">Bottom x(light)</label>
+                      <input class="form-control" id="sep_bottom_x" name="sep_bottom_x" type="number" step="0.01" min="0.01" max="0.99" value="0.12" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_top_temp">Top temp (K)</label>
+                      <input class="form-control" id="sep_top_temp" name="sep_top_temp" type="number" step="1" min="280" value="338" />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="sep_bottom_temp">Bottom temp (K)</label>
+                      <input class="form-control" id="sep_bottom_temp" name="sep_bottom_temp" type="number" step="1" min="320" value="392" />
+                    </div>
+                  </div>
+                  <div class="simulation-preset-note" id="separation-note">
+                    Separation presets are ready.
+                  </div>
+                  <div class="simulation-actions">
+                    <button class="btn btn-primary simulation-run-btn" id="separation-run-btn" type="button">
+                      Run separation model
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-xl-8" data-aos="fade-up" data-aos-duration="1200">
+              <div class="simulation-panel simulation-panel-wide">
+                <div class="simulation-output-header">
+                  <div>
+                    <p class="simulation-panel-kicker">Results</p>
+                    <h2>Column response</h2>
+                  </div>
+                  <p class="simulation-output-note">
+                    Native separation output showing top and bottom composition,
+                    thermal profile, condenser and reboiler load, and separation
+                    leverage over time.
+                  </p>
+                </div>
+
+                <div class="metrics-grid reactor-metrics-grid">
+                  <div class="metric-card">
+                    <span>Peak top purity</span>
+                    <strong id="sep-metric-top-purity">0.0 %</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Min bottom impurity</span>
+                    <strong id="sep-metric-bottom-impurity">0.0 %</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Energy intensity</span>
+                    <strong id="sep-metric-energy">0.0 kJ/kmol</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Max separation index</span>
+                    <strong id="sep-metric-index">0.0</strong>
+                  </div>
+                </div>
+
+                <div class="chart-grid">
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>Composition and thermal profile</h3>
+                      <div class="chart-legend">
+                        <span><i class="legend-line legend-line-cyan"></i>Top x</span>
+                        <span><i class="legend-line legend-line-gold"></i>Bottom x</span>
+                        <span><i class="legend-line legend-line-pink"></i>Top T</span>
+                        <span><i class="legend-line legend-line-blue"></i>Bottom T</span>
+                      </div>
+                    </div>
+                    <svg id="separation-primary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                  </div>
+
+                  <div class="chart-card">
+                    <div class="chart-header">
+                      <h3>Duties and separation leverage</h3>
+                      <div class="chart-legend">
+                        <span><i class="legend-line legend-line-orange"></i>Condenser duty</span>
+                        <span><i class="legend-line legend-line-green"></i>Reboiler duty</span>
+                        <span><i class="legend-line legend-line-blue"></i>Distillate flow</span>
+                        <span><i class="legend-line legend-line-pink"></i>Separation index</span>
+                      </div>
+                    </div>
+                    <svg id="separation-secondary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                  </div>
+                </div>
+
+                <div class="simulation-insight" id="separation-insight">
+                  The separation process model is ready to simulate.
                 </div>
               </div>
             </div>

@@ -12,6 +12,13 @@
   const reactorInsight = document.getElementById("reactor-insight");
   const reactorPreset = document.getElementById("reactor_preset");
   const reactorRunButton = document.getElementById("reactor-run-btn");
+  const separationForm = document.getElementById("separation-form");
+  const separationPreset = document.getElementById("separation_preset");
+  const separationRunButton = document.getElementById("separation-run-btn");
+  const separationNote = document.getElementById("separation-note");
+  const separationInsight = document.getElementById("separation-insight");
+  const separationPrimaryChart = document.getElementById("separation-primary-chart");
+  const separationSecondaryChart = document.getElementById("separation-secondary-chart");
 
   if (!form || !primaryChart || !secondaryChart || !microbeSelect || !substrateSelect) {
     return;
@@ -31,10 +38,17 @@
     heatRelease: document.getElementById("reactor-metric-heat-release"),
     margin: document.getElementById("reactor-metric-margin"),
   };
+  const separationMetrics = {
+    topPurity: document.getElementById("sep-metric-top-purity"),
+    bottomImpurity: document.getElementById("sep-metric-bottom-impurity"),
+    energy: document.getElementById("sep-metric-energy"),
+    index: document.getElementById("sep-metric-index"),
+  };
   const api = {
     microbes: "/api/simulation/microbes/",
     run: "/api/simulation/run/",
     reactorRun: "/api/reactor/run/",
+    separationRun: "/api/separation/run/",
   };
   const reactorPresets = {
     stable: {
@@ -81,6 +95,59 @@
       reactor_cp: 3920,
       reactor_coolant_gain: 0.018,
       reactor_feed_temp: 340,
+    },
+  };
+  const separationPresets = {
+    purification: {
+      sep_horizon: 90,
+      sep_points: 300,
+      sep_feed_flow: 100,
+      sep_feed_z: 0.55,
+      sep_reflux: 2.4,
+      sep_boilup: 1.7,
+      sep_efficiency: 0.72,
+      sep_alpha: 2.2,
+      sep_feed_temp: 360,
+      sep_condenser_temp: 305,
+      sep_steam_temp: 420,
+      sep_top_x: 0.92,
+      sep_bottom_x: 0.12,
+      sep_top_temp: 338,
+      sep_bottom_temp: 392,
+    },
+    energy_saver: {
+      sep_horizon: 100,
+      sep_points: 320,
+      sep_feed_flow: 90,
+      sep_feed_z: 0.5,
+      sep_reflux: 1.8,
+      sep_boilup: 1.4,
+      sep_efficiency: 0.69,
+      sep_alpha: 2.05,
+      sep_feed_temp: 354,
+      sep_condenser_temp: 303,
+      sep_steam_temp: 410,
+      sep_top_x: 0.89,
+      sep_bottom_x: 0.15,
+      sep_top_temp: 336,
+      sep_bottom_temp: 386,
+    },
+    throughput: {
+      sep_horizon: 70,
+      sep_points: 280,
+      sep_feed_flow: 125,
+      sep_feed_z: 0.6,
+      sep_reflux: 2.7,
+      sep_boilup: 1.9,
+      sep_efficiency: 0.75,
+      sep_alpha: 2.3,
+      sep_feed_temp: 366,
+      sep_condenser_temp: 307,
+      sep_steam_temp: 426,
+      sep_top_x: 0.94,
+      sep_bottom_x: 0.14,
+      sep_top_temp: 340,
+      sep_bottom_temp: 398,
     },
   };
 
@@ -285,6 +352,92 @@
       `Final conversion reaches ${finalConversion.toFixed(1)}% over ${params.horizon.toFixed(0)} minutes. ${riskText}`;
   }
 
+  function applySeparationPreset(name) {
+    const preset = separationPresets[name];
+    if (!separationForm || !preset) {
+      return;
+    }
+    Object.entries(preset).forEach(([key, value]) => {
+      const field = separationForm.elements.namedItem(key);
+      if (field) {
+        field.value = value;
+      }
+    });
+    separationNote.textContent = `${separationPreset.options[separationPreset.selectedIndex].text} loaded.`;
+  }
+
+  function getSeparationPayload() {
+    const getNumber = function (fieldName, fallback) {
+      const field = separationForm.elements.namedItem(fieldName);
+      return Number(field && field.value !== "" ? field.value : fallback);
+    };
+
+    return {
+      horizon: Math.max(getNumber("sep_horizon", 90) || 90, 1),
+      n_points: Math.max(getNumber("sep_points", 300) || 300, 20),
+      feed_flow: Math.max(getNumber("sep_feed_flow", 100) || 100, 0.1),
+      feed_z_light: Math.min(Math.max(getNumber("sep_feed_z", 0.55) || 0.55, 0.01), 0.99),
+      reflux_ratio: Math.max(getNumber("sep_reflux", 2.4) || 2.4, 0.1),
+      boilup_ratio: Math.max(getNumber("sep_boilup", 1.7) || 1.7, 0.1),
+      tray_efficiency: Math.min(Math.max(getNumber("sep_efficiency", 0.72) || 0.72, 0.1), 0.99),
+      relative_volatility_ref: Math.max(getNumber("sep_alpha", 2.2) || 2.2, 1.01),
+      feed_temp: Math.max(getNumber("sep_feed_temp", 360) || 360, 250),
+      condenser_temp: Math.max(getNumber("sep_condenser_temp", 305) || 305, 200),
+      steam_temp: Math.max(getNumber("sep_steam_temp", 420) || 420, 250),
+      top_x_light: Math.min(Math.max(getNumber("sep_top_x", 0.92) || 0.92, 0.01), 0.99),
+      bottom_x_light: Math.min(Math.max(getNumber("sep_bottom_x", 0.12) || 0.12, 0.01), 0.99),
+      top_temp: Math.max(getNumber("sep_top_temp", 338) || 338, 250),
+      bottom_temp: Math.max(getNumber("sep_bottom_temp", 392) || 392, 250),
+      feed_pressure: 1.8,
+      alpha_temp_coeff: 0.004,
+      condenser_ua: 240,
+      reboiler_ua: 280,
+      top_holdup: 12,
+      bottom_holdup: 18,
+      top_tau: 8,
+      bottom_tau: 10,
+      cp_mixture: 3200,
+    };
+  }
+
+  function updateSeparationResults(result) {
+    separationMetrics.topPurity.textContent = `${(result.summary.top_purity * 100).toFixed(1)} %`;
+    separationMetrics.bottomImpurity.textContent = `${(result.summary.bottom_impurity * 100).toFixed(1)} %`;
+    separationMetrics.energy.textContent = `${result.summary.energy_intensity.toFixed(1)} kJ/kmol`;
+    separationMetrics.index.textContent = `${result.summary.max_separation_index.toFixed(2)}`;
+
+    separationInsight.textContent =
+      `Top purity reaches ${(result.summary.top_purity * 100).toFixed(1)}% while bottom light-key slip falls to ${(result.summary.bottom_impurity * 100).toFixed(1)}%. ` +
+      `Peak separation leverage is ${result.summary.max_separation_index.toFixed(2)} with an energy intensity of ${result.summary.energy_intensity.toFixed(1)} kJ/kmol distillate.`;
+  }
+
+  async function runSeparationStudy() {
+    const payload = getSeparationPayload();
+    const result = await fetchJson(api.separationRun, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    buildChart(separationPrimaryChart, [
+      { values: result.states.x_top.map((value) => value * 100), color: "#22d3ee" },
+      { values: result.states.x_bottom.map((value) => value * 100), color: "#facc15" },
+      { values: result.states.T_top, color: "#f472b6" },
+      { values: result.states.T_bottom, color: "#60a5fa" },
+    ]);
+
+    buildChart(separationSecondaryChart, [
+      { values: result.derived.condenser_duty.map((value) => value / 1000), color: "#fb923c" },
+      { values: result.derived.reboiler_duty.map((value) => value / 1000), color: "#4ade80" },
+      { values: result.derived.distillate_flow, color: "#60a5fa" },
+      { values: result.derived.separation_index, color: "#f472b6" },
+    ]);
+
+    updateSeparationResults(result);
+  }
+
   async function runReactorStudy() {
     const params = getReactorPayload();
     const result = await fetchJson(api.reactorRun, {
@@ -377,6 +530,10 @@
       applyReactorPreset(reactorPreset.value);
       await runReactorStudy();
     }
+    if (separationForm && separationPreset) {
+      applySeparationPreset(separationPreset.value);
+      await runSeparationStudy();
+    }
   }
 
   form.addEventListener("submit", async function (event) {
@@ -441,6 +598,29 @@
       } catch (error) {
         reactorNote.textContent = error.message;
         reactorInsight.textContent = error.message;
+      }
+    });
+  }
+
+  if (separationForm && separationPreset && separationRunButton) {
+    separationRunButton.addEventListener("click", async function () {
+      try {
+        separationNote.textContent = "Running separation process model...";
+        await runSeparationStudy();
+        separationNote.textContent = "Separation process completed with the native C++ core.";
+      } catch (error) {
+        separationNote.textContent = error.message;
+        separationInsight.textContent = error.message;
+      }
+    });
+
+    separationPreset.addEventListener("change", async function () {
+      try {
+        applySeparationPreset(separationPreset.value);
+        await runSeparationStudy();
+      } catch (error) {
+        separationNote.textContent = error.message;
+        separationInsight.textContent = error.message;
       }
     });
   }

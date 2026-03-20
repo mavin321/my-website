@@ -433,6 +433,17 @@ footer.container {
   pointer-events: none;
 }
 
+.simulation-separation-workbench::before {
+  content: "";
+  position: absolute;
+  inset: 2rem 0 auto;
+  height: 18rem;
+  background:
+    radial-gradient(circle at 22% 30%, rgba(250, 204, 21, 0.14), transparent 32%),
+    radial-gradient(circle at 78% 45%, rgba(34, 211, 238, 0.14), transparent 30%);
+  pointer-events: none;
+}
+
 .reactor-metrics-grid .metric-card:nth-child(1) strong {
   color: #f9a8d4;
 }
