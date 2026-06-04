@@ -1,6 +1,6 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
     <meta charset="utf-8" />
@@ -53,18 +53,25 @@
                 <a class="nav-link" href="/projects/">Projects</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/simulation/"
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="/simulation/"
                   >Simulation</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/scientific-visuals/">Scientific Visuals</a>
+                <a class="nav-link" href="/scientific-visuals/"
+                  >Scientific Visuals</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/contacts/">Contacts</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://mavinsblog.pythonanywhere.com/"
+                <a
+                  class="nav-link"
+                  href="https://mavinsblog.pythonanywhere.com/"
                   >My Blog</a
                 >
               </li>
@@ -83,11 +90,12 @@
               <h1>Interactive engineering demos for my portfolio.</h1>
               <p class="simulation-intro">
                 This tab is a home for process models, control experiments, and
-                engineering visualizations. It currently includes live native-core
-                simulations for fermentation dynamics, thermal reactor behavior,
-                separation process modeling, atomic orbital sampling, CFD flow
-                visualization, fusion plasma dynamics, multi-objective design
-                sweeps, and volumetric field visualization.
+                engineering visualizations. It currently includes live
+                native-core simulations for fermentation dynamics, thermal
+                reactor behavior, separation process modeling, atomic orbital
+                sampling, CFD flow visualization, fusion plasma dynamics,
+                multi-objective design sweeps, and volumetric field
+                visualization.
               </p>
               <div class="simulation-chip-row">
                 <span class="simulation-chip">Bioprocess modeling</span>
@@ -109,13 +117,31 @@
                   visual frontends.
                 </p>
                 <ul class="simulation-summary-list">
-                  <li>Fermentation simulator with batch and fed-batch process dynamics</li>
-                  <li>Thermal reactor study with exothermic energy-balance tracking</li>
+                  <li>
+                    Fermentation simulator with batch and fed-batch process
+                    dynamics
+                  </li>
+                  <li>
+                    Thermal reactor study with exothermic energy-balance
+                    tracking
+                  </li>
                   <li>Separation process model for binary column behavior</li>
-                  <li>Atomic orbital sampler with probability-density visualization</li>
-                  <li>CFD flow visualizer with pressure, velocity, and heat-transfer fields</li>
-                  <li>Fusion plasma simulator with Q, confinement, and power-balance tracking</li>
-                  <li>Design space explorer with Pareto-front identification and multi-objective ranking</li>
+                  <li>
+                    Atomic orbital sampler with probability-density
+                    visualization
+                  </li>
+                  <li>
+                    CFD flow visualizer with pressure, velocity, and
+                    heat-transfer fields
+                  </li>
+                  <li>
+                    Fusion plasma simulator with Q, confinement, and
+                    power-balance tracking
+                  </li>
+                  <li>
+                    Design space explorer with Pareto-front identification and
+                    multi-objective ranking
+                  </li>
                 </ul>
               </div>
             </div>
@@ -127,8 +153,9 @@
         <div class="container">
           <div class="row g-4">
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1000">
-              <article class="simulation-catalog-card simulation-catalog-card-active">
-                <p class="simulation-card-tag">Available now</p>
+              <article
+                class="simulation-catalog-card simulation-catalog-card-active"
+              >
                 <h3>Fermentation Dynamics</h3>
                 <p>
                   Explore microbial growth, substrate depletion, dissolved
@@ -137,8 +164,9 @@
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1100">
-              <article class="simulation-catalog-card simulation-catalog-card-active">
-                <p class="simulation-card-tag">Available now</p>
+              <article
+                class="simulation-catalog-card simulation-catalog-card-active"
+              >
                 <h3>Thermal Reactor Study</h3>
                 <p>
                   Detailed exothermic reactor dynamics with energy balance,
@@ -148,8 +176,9 @@
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200">
-              <article class="simulation-catalog-card simulation-catalog-card-active">
-                <p class="simulation-card-tag">Available now</p>
+              <article
+                class="simulation-catalog-card simulation-catalog-card-active"
+              >
                 <h3>Separation Process Model</h3>
                 <p>
                   Native C++ binary separation column dynamics with reflux,
@@ -159,8 +188,9 @@
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1300">
-              <article class="simulation-catalog-card simulation-catalog-card-active">
-                <p class="simulation-card-tag">Available now</p>
+              <article
+                class="simulation-catalog-card simulation-catalog-card-active"
+              >
                 <h3>Atomic Orbital Sampler</h3>
                 <p>
                   Quantum-number-driven orbital point sampling with probability
@@ -169,18 +199,21 @@
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1400">
-              <article class="simulation-catalog-card simulation-catalog-card-active">
-                <p class="simulation-card-tag">Available now</p>
+              <article
+                class="simulation-catalog-card simulation-catalog-card-active"
+              >
                 <h3>CFD Flow Visualizer</h3>
                 <p>
-                  Pipe-flow field simulation with Reynolds-number classification,
-                  pressure loss, thermal wall effects, and 3D flow rendering.
+                  Pipe-flow field simulation with Reynolds-number
+                  classification, pressure loss, thermal wall effects, and 3D
+                  flow rendering.
                 </p>
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1500">
-              <article class="simulation-catalog-card simulation-catalog-card-active">
-                <p class="simulation-card-tag">Available now</p>
+              <article
+                class="simulation-catalog-card simulation-catalog-card-active"
+              >
                 <h3>Fusion Plasma Simulator</h3>
                 <p>
                   D-T tokamak pulse simulation with alpha heating, radiation,
@@ -190,8 +223,9 @@
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1600">
-              <article class="simulation-catalog-card simulation-catalog-card-active">
-                <p class="simulation-card-tag">Available now</p>
+              <article
+                class="simulation-catalog-card simulation-catalog-card-active"
+              >
                 <h3>Design Space Explorer</h3>
                 <p>
                   Native multi-objective reaction design sweeps with yield,
@@ -201,8 +235,9 @@
               </article>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1700">
-              <article class="simulation-catalog-card simulation-catalog-card-active">
-                <p class="simulation-card-tag">Available now</p>
+              <article
+                class="simulation-catalog-card simulation-catalog-card-active"
+              >
                 <h3>Visualization Lab</h3>
                 <p>
                   Native 3D scalar and vector field generation for advection,
@@ -232,12 +267,24 @@
                 <form id="simulation-form" class="simulation-form">
                   <div class="row g-3">
                     <div class="col-12">
-                      <label class="form-label" for="microbe_id">Microbe preset</label>
-                      <select class="form-select" id="microbe_id" name="microbe_id"></select>
+                      <label class="form-label" for="microbe_id"
+                        >Microbe preset</label
+                      >
+                      <select
+                        class="form-select"
+                        id="microbe_id"
+                        name="microbe_id"
+                      ></select>
                     </div>
                     <div class="col-12">
-                      <label class="form-label" for="substrate_id">Substrate preset</label>
-                      <select class="form-select" id="substrate_id" name="substrate_id"></select>
+                      <label class="form-label" for="substrate_id"
+                        >Substrate preset</label
+                      >
+                      <select
+                        class="form-select"
+                        id="substrate_id"
+                        name="substrate_id"
+                      ></select>
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="mode">Mode</label>
@@ -247,8 +294,14 @@
                       </select>
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="feed_mode">Feed strategy</label>
-                      <select class="form-select" id="feed_mode" name="feed_mode">
+                      <label class="form-label" for="feed_mode"
+                        >Feed strategy</label
+                      >
+                      <select
+                        class="form-select"
+                        id="feed_mode"
+                        name="feed_mode"
+                      >
                         <option value="constant">Constant</option>
                         <option value="ramp">Ramp</option>
                         <option value="exponential">Exponential</option>
@@ -257,62 +310,177 @@
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="t_end">Duration (h)</label>
-                      <input class="form-control" id="t_end" name="t_end" type="number" step="1" min="6" max="72" value="24" />
+                      <input
+                        class="form-control"
+                        id="t_end"
+                        name="t_end"
+                        type="number"
+                        step="1"
+                        min="6"
+                        max="72"
+                        value="24"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="x0">Biomass X0</label>
-                      <input class="form-control" id="x0" name="x0" type="number" step="0.01" min="0.01" value="0.5" />
+                      <input
+                        class="form-control"
+                        id="x0"
+                        name="x0"
+                        type="number"
+                        step="0.01"
+                        min="0.01"
+                        value="0.5"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="s0">Substrate S0</label>
-                      <input class="form-control" id="s0" name="s0" type="number" step="0.1" min="1" value="20" />
+                      <input
+                        class="form-control"
+                        id="s0"
+                        name="s0"
+                        type="number"
+                        step="0.1"
+                        min="1"
+                        value="20"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="do0">DO0</label>
-                      <input class="form-control" id="do0" name="do0" type="number" step="0.001" min="0.0001" value="0.005" />
+                      <input
+                        class="form-control"
+                        id="do0"
+                        name="do0"
+                        type="number"
+                        step="0.001"
+                        min="0.0001"
+                        value="0.005"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="t0">Temp (deg C)</label>
-                      <input class="form-control" id="t0" name="t0" type="number" step="0.1" min="20" max="45" value="30" />
+                      <input
+                        class="form-control"
+                        id="t0"
+                        name="t0"
+                        type="number"
+                        step="0.1"
+                        min="20"
+                        max="45"
+                        value="30"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="mu_max">mu max</label>
-                      <input class="form-control" id="mu_max" name="mu_max" type="number" step="0.01" min="0.05" value="0.4" />
+                      <input
+                        class="form-control"
+                        id="mu_max"
+                        name="mu_max"
+                        type="number"
+                        step="0.01"
+                        min="0.05"
+                        value="0.4"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="ks">Ks</label>
-                      <input class="form-control" id="ks" name="ks" type="number" step="0.001" min="0.001" value="0.1" />
+                      <input
+                        class="form-control"
+                        id="ks"
+                        name="ks"
+                        type="number"
+                        step="0.001"
+                        min="0.001"
+                        value="0.1"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="yxs">Yxs</label>
-                      <input class="form-control" id="yxs" name="yxs" type="number" step="0.01" min="0.05" value="0.5" />
+                      <input
+                        class="form-control"
+                        id="yxs"
+                        name="yxs"
+                        type="number"
+                        step="0.01"
+                        min="0.05"
+                        value="0.5"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="ypx">Ypx</label>
-                      <input class="form-control" id="ypx" name="ypx" type="number" step="0.01" min="0" value="0.1" />
+                      <input
+                        class="form-control"
+                        id="ypx"
+                        name="ypx"
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value="0.1"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="feed_rate">Feed rate</label>
-                      <input class="form-control" id="feed_rate" name="feed_rate" type="number" step="0.01" min="0" value="0" />
+                      <label class="form-label" for="feed_rate"
+                        >Feed rate</label
+                      >
+                      <input
+                        class="form-control"
+                        id="feed_rate"
+                        name="feed_rate"
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value="0"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="feed_start">Feed start (h)</label>
-                      <input class="form-control" id="feed_start" name="feed_start" type="number" step="0.5" min="0" value="0" />
+                      <label class="form-label" for="feed_start"
+                        >Feed start (h)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="feed_start"
+                        name="feed_start"
+                        type="number"
+                        step="0.5"
+                        min="0"
+                        value="0"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="volume">Volume (L)</label>
-                      <input class="form-control" id="volume" name="volume" type="number" step="0.1" min="0.5" value="5" />
+                      <input
+                        class="form-control"
+                        id="volume"
+                        name="volume"
+                        type="number"
+                        step="0.1"
+                        min="0.5"
+                        value="5"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="agitation_speed">Agitation (rpm)</label>
-                      <input class="form-control" id="agitation_speed" name="agitation_speed" type="number" step="10" min="50" value="300" />
+                      <label class="form-label" for="agitation_speed"
+                        >Agitation (rpm)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="agitation_speed"
+                        name="agitation_speed"
+                        type="number"
+                        step="10"
+                        min="50"
+                        value="300"
+                      />
                     </div>
                   </div>
                   <div class="simulation-preset-note" id="preset-note">
                     Loading preset details...
                   </div>
                   <div class="simulation-actions">
-                    <button class="btn btn-primary simulation-run-btn" type="submit">
+                    <button
+                      class="btn btn-primary simulation-run-btn"
+                      type="submit"
+                    >
                       Run simulation
                     </button>
                   </div>
@@ -328,8 +496,8 @@
                     <h2>Process response</h2>
                   </div>
                   <p class="simulation-output-note">
-                    Curves update in the browser immediately so visitors can
-                    see the process logic in action.
+                    Curves update in the browser immediately so visitors can see
+                    the process logic in action.
                   </p>
                 </div>
 
@@ -357,24 +525,51 @@
                     <div class="chart-header">
                       <h3>Growth, substrate, and product</h3>
                       <div class="chart-legend">
-                        <span><i class="legend-line legend-line-cyan"></i>Biomass</span>
-                        <span><i class="legend-line legend-line-orange"></i>Substrate</span>
-                        <span><i class="legend-line legend-line-green"></i>Product</span>
+                        <span
+                          ><i class="legend-line legend-line-cyan"></i
+                          >Biomass</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-orange"></i
+                          >Substrate</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-green"></i
+                          >Product</span
+                        >
                       </div>
                     </div>
-                    <svg id="primary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="primary-chart"
+                      class="simulation-chart"
+                      viewBox="0 0 720 320"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
 
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>DO, temperature, and volume</h3>
                       <div class="chart-legend">
-                        <span><i class="legend-line legend-line-blue"></i>DO</span>
-                        <span><i class="legend-line legend-line-pink"></i>Temp</span>
-                        <span><i class="legend-line legend-line-gold"></i>Volume</span>
+                        <span
+                          ><i class="legend-line legend-line-blue"></i>DO</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-pink"></i
+                          >Temp</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-gold"></i
+                          >Volume</span
+                        >
                       </div>
                     </div>
-                    <svg id="secondary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="secondary-chart"
+                      class="simulation-chart"
+                      viewBox="0 0 720 320"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                 </div>
 
@@ -409,71 +604,218 @@
                 <form id="reactor-form" class="simulation-form">
                   <div class="row g-3">
                     <div class="col-12">
-                      <label class="form-label" for="reactor_preset">Study case</label>
-                      <select class="form-select" id="reactor_preset" name="reactor_preset">
+                      <label class="form-label" for="reactor_preset"
+                        >Study case</label
+                      >
+                      <select
+                        class="form-select"
+                        id="reactor_preset"
+                        name="reactor_preset"
+                      >
                         <option value="stable">Stable cooling window</option>
-                        <option value="intensified">Intensified production</option>
+                        <option value="intensified">
+                          Intensified production
+                        </option>
                         <option value="runaway">Runaway stress test</option>
                       </select>
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_time">Time horizon (min)</label>
-                      <input class="form-control" id="reactor_time" name="reactor_time" type="number" step="1" min="5" max="180" value="60" />
+                      <label class="form-label" for="reactor_time"
+                        >Time horizon (min)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_time"
+                        name="reactor_time"
+                        type="number"
+                        step="1"
+                        min="5"
+                        max="180"
+                        value="60"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_points">Resolution</label>
-                      <input class="form-control" id="reactor_points" name="reactor_points" type="number" step="10" min="60" max="1200" value="240" />
+                      <label class="form-label" for="reactor_points"
+                        >Resolution</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_points"
+                        name="reactor_points"
+                        type="number"
+                        step="10"
+                        min="60"
+                        max="1200"
+                        value="240"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_ca0">CA0 (mol/L)</label>
-                      <input class="form-control" id="reactor_ca0" name="reactor_ca0" type="number" step="0.05" min="0.1" value="2.4" />
+                      <label class="form-label" for="reactor_ca0"
+                        >CA0 (mol/L)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_ca0"
+                        name="reactor_ca0"
+                        type="number"
+                        step="0.05"
+                        min="0.1"
+                        value="2.4"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_t0">Reactor temp (K)</label>
-                      <input class="form-control" id="reactor_t0" name="reactor_t0" type="number" step="1" min="280" max="520" value="335" />
+                      <label class="form-label" for="reactor_t0"
+                        >Reactor temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_t0"
+                        name="reactor_t0"
+                        type="number"
+                        step="1"
+                        min="280"
+                        max="520"
+                        value="335"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_tc0">Coolant temp (K)</label>
-                      <input class="form-control" id="reactor_tc0" name="reactor_tc0" type="number" step="1" min="260" max="420" value="300" />
+                      <label class="form-label" for="reactor_tc0"
+                        >Coolant temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_tc0"
+                        name="reactor_tc0"
+                        type="number"
+                        step="1"
+                        min="260"
+                        max="420"
+                        value="300"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_flow">Feed / refresh (1/min)</label>
-                      <input class="form-control" id="reactor_flow" name="reactor_flow" type="number" step="0.001" min="0" value="0.08" />
+                      <label class="form-label" for="reactor_flow"
+                        >Feed / refresh (1/min)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_flow"
+                        name="reactor_flow"
+                        type="number"
+                        step="0.001"
+                        min="0"
+                        value="0.08"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_k0">Pre-exponential k0</label>
-                      <input class="form-control" id="reactor_k0" name="reactor_k0" type="number" step="100000" min="1000" value="7200000" />
+                      <label class="form-label" for="reactor_k0"
+                        >Pre-exponential k0</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_k0"
+                        name="reactor_k0"
+                        type="number"
+                        step="100000"
+                        min="1000"
+                        value="7200000"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_ea">Activation energy (J/mol)</label>
-                      <input class="form-control" id="reactor_ea" name="reactor_ea" type="number" step="1000" min="10000" value="68000" />
+                      <label class="form-label" for="reactor_ea"
+                        >Activation energy (J/mol)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_ea"
+                        name="reactor_ea"
+                        type="number"
+                        step="1000"
+                        min="10000"
+                        value="68000"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_delta_h">Reaction enthalpy (J/mol)</label>
-                      <input class="form-control" id="reactor_delta_h" name="reactor_delta_h" type="number" step="5000" max="-1000" value="-85000" />
+                      <label class="form-label" for="reactor_delta_h"
+                        >Reaction enthalpy (J/mol)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_delta_h"
+                        name="reactor_delta_h"
+                        type="number"
+                        step="5000"
+                        max="-1000"
+                        value="-85000"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_ua">UA (W/K)</label>
-                      <input class="form-control" id="reactor_ua" name="reactor_ua" type="number" step="5" min="1" value="180" />
+                      <label class="form-label" for="reactor_ua"
+                        >UA (W/K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_ua"
+                        name="reactor_ua"
+                        type="number"
+                        step="5"
+                        min="1"
+                        value="180"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_cp">Heat capacity term</label>
-                      <input class="form-control" id="reactor_cp" name="reactor_cp" type="number" step="100" min="1000" value="4200" />
+                      <label class="form-label" for="reactor_cp"
+                        >Heat capacity term</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_cp"
+                        name="reactor_cp"
+                        type="number"
+                        step="100"
+                        min="1000"
+                        value="4200"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_coolant_gain">Coolant response</label>
-                      <input class="form-control" id="reactor_coolant_gain" name="reactor_coolant_gain" type="number" step="0.001" min="0" value="0.03" />
+                      <label class="form-label" for="reactor_coolant_gain"
+                        >Coolant response</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_coolant_gain"
+                        name="reactor_coolant_gain"
+                        type="number"
+                        step="0.001"
+                        min="0"
+                        value="0.03"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="reactor_feed_temp">Feed temp (K)</label>
-                      <input class="form-control" id="reactor_feed_temp" name="reactor_feed_temp" type="number" step="1" min="260" max="500" value="330" />
+                      <label class="form-label" for="reactor_feed_temp"
+                        >Feed temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="reactor_feed_temp"
+                        name="reactor_feed_temp"
+                        type="number"
+                        step="1"
+                        min="260"
+                        max="500"
+                        value="330"
+                      />
                     </div>
                   </div>
                   <div class="simulation-preset-note" id="reactor-note">
                     Thermal reactor presets are ready.
                   </div>
                   <div class="simulation-actions">
-                    <button class="btn btn-primary simulation-run-btn" id="reactor-run-btn" type="button">
+                    <button
+                      class="btn btn-primary simulation-run-btn"
+                      id="reactor-run-btn"
+                      type="button"
+                    >
                       Run reactor study
                     </button>
                   </div>
@@ -489,8 +831,9 @@
                     <h2>Thermal response</h2>
                   </div>
                   <p class="simulation-output-note">
-                    This study tracks temperature escalation, reactant depletion,
-                    heat generation versus removal, and coolant lag over time.
+                    This study tracks temperature escalation, reactant
+                    depletion, heat generation versus removal, and coolant lag
+                    over time.
                   </p>
                 </div>
 
@@ -518,24 +861,51 @@
                     <div class="chart-header">
                       <h3>Temperatures and concentration</h3>
                       <div class="chart-legend">
-                        <span><i class="legend-line legend-line-pink"></i>Reactor T</span>
-                        <span><i class="legend-line legend-line-blue"></i>Coolant T</span>
-                        <span><i class="legend-line legend-line-cyan"></i>CA</span>
+                        <span
+                          ><i class="legend-line legend-line-pink"></i>Reactor
+                          T</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-blue"></i>Coolant
+                          T</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-cyan"></i>CA</span
+                        >
                       </div>
                     </div>
-                    <svg id="reactor-primary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="reactor-primary-chart"
+                      class="simulation-chart"
+                      viewBox="0 0 720 320"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
 
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>Heat release, heat removal, and conversion</h3>
                       <div class="chart-legend">
-                        <span><i class="legend-line legend-line-orange"></i>Q release</span>
-                        <span><i class="legend-line legend-line-green"></i>Q removal</span>
-                        <span><i class="legend-line legend-line-gold"></i>Conversion</span>
+                        <span
+                          ><i class="legend-line legend-line-orange"></i>Q
+                          release</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-green"></i>Q
+                          removal</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-gold"></i
+                          >Conversion</span
+                        >
                       </div>
                     </div>
-                    <svg id="reactor-secondary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="reactor-secondary-chart"
+                      class="simulation-chart"
+                      viewBox="0 0 720 320"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                 </div>
 
@@ -548,7 +918,9 @@
         </div>
       </section>
 
-      <section class="simulation-workbench simulation-separation-workbench pb-5">
+      <section
+        class="simulation-workbench simulation-separation-workbench pb-5"
+      >
         <div class="container">
           <div class="row g-4 align-items-start">
             <div class="col-xl-4" data-aos="fade-up" data-aos-duration="1000">
@@ -572,79 +944,243 @@
                 <form id="separation-form" class="simulation-form">
                   <div class="row g-3">
                     <div class="col-12">
-                      <label class="form-label" for="separation_preset">Column case</label>
-                      <select class="form-select" id="separation_preset" name="separation_preset">
+                      <label class="form-label" for="separation_preset"
+                        >Column case</label
+                      >
+                      <select
+                        class="form-select"
+                        id="separation_preset"
+                        name="separation_preset"
+                      >
                         <option value="purification">Purification train</option>
                         <option value="energy_saver">Energy saver</option>
                         <option value="throughput">Throughput push</option>
                       </select>
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_horizon">Time horizon (min)</label>
-                      <input class="form-control" id="sep_horizon" name="sep_horizon" type="number" step="1" min="10" value="90" />
+                      <label class="form-label" for="sep_horizon"
+                        >Time horizon (min)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_horizon"
+                        name="sep_horizon"
+                        type="number"
+                        step="1"
+                        min="10"
+                        value="90"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_points">Resolution</label>
-                      <input class="form-control" id="sep_points" name="sep_points" type="number" step="10" min="60" value="300" />
+                      <label class="form-label" for="sep_points"
+                        >Resolution</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_points"
+                        name="sep_points"
+                        type="number"
+                        step="10"
+                        min="60"
+                        value="300"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_feed_flow">Feed flow (kmol/h)</label>
-                      <input class="form-control" id="sep_feed_flow" name="sep_feed_flow" type="number" step="1" min="1" value="100" />
+                      <label class="form-label" for="sep_feed_flow"
+                        >Feed flow (kmol/h)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_feed_flow"
+                        name="sep_feed_flow"
+                        type="number"
+                        step="1"
+                        min="1"
+                        value="100"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_feed_z">Feed light fraction</label>
-                      <input class="form-control" id="sep_feed_z" name="sep_feed_z" type="number" step="0.01" min="0.01" max="0.99" value="0.55" />
+                      <label class="form-label" for="sep_feed_z"
+                        >Feed light fraction</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_feed_z"
+                        name="sep_feed_z"
+                        type="number"
+                        step="0.01"
+                        min="0.01"
+                        max="0.99"
+                        value="0.55"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_reflux">Reflux ratio</label>
-                      <input class="form-control" id="sep_reflux" name="sep_reflux" type="number" step="0.1" min="0.1" value="2.4" />
+                      <label class="form-label" for="sep_reflux"
+                        >Reflux ratio</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_reflux"
+                        name="sep_reflux"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="2.4"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_boilup">Boilup ratio</label>
-                      <input class="form-control" id="sep_boilup" name="sep_boilup" type="number" step="0.1" min="0.1" value="1.7" />
+                      <label class="form-label" for="sep_boilup"
+                        >Boilup ratio</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_boilup"
+                        name="sep_boilup"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="1.7"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_efficiency">Tray efficiency</label>
-                      <input class="form-control" id="sep_efficiency" name="sep_efficiency" type="number" step="0.01" min="0.1" max="0.99" value="0.72" />
+                      <label class="form-label" for="sep_efficiency"
+                        >Tray efficiency</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_efficiency"
+                        name="sep_efficiency"
+                        type="number"
+                        step="0.01"
+                        min="0.1"
+                        max="0.99"
+                        value="0.72"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_alpha">Relative volatility</label>
-                      <input class="form-control" id="sep_alpha" name="sep_alpha" type="number" step="0.01" min="1.01" value="2.2" />
+                      <label class="form-label" for="sep_alpha"
+                        >Relative volatility</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_alpha"
+                        name="sep_alpha"
+                        type="number"
+                        step="0.01"
+                        min="1.01"
+                        value="2.2"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_feed_temp">Feed temp (K)</label>
-                      <input class="form-control" id="sep_feed_temp" name="sep_feed_temp" type="number" step="1" min="280" value="360" />
+                      <label class="form-label" for="sep_feed_temp"
+                        >Feed temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_feed_temp"
+                        name="sep_feed_temp"
+                        type="number"
+                        step="1"
+                        min="280"
+                        value="360"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_condenser_temp">Condenser temp (K)</label>
-                      <input class="form-control" id="sep_condenser_temp" name="sep_condenser_temp" type="number" step="1" min="260" value="305" />
+                      <label class="form-label" for="sep_condenser_temp"
+                        >Condenser temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_condenser_temp"
+                        name="sep_condenser_temp"
+                        type="number"
+                        step="1"
+                        min="260"
+                        value="305"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_steam_temp">Steam temp (K)</label>
-                      <input class="form-control" id="sep_steam_temp" name="sep_steam_temp" type="number" step="1" min="320" value="420" />
+                      <label class="form-label" for="sep_steam_temp"
+                        >Steam temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_steam_temp"
+                        name="sep_steam_temp"
+                        type="number"
+                        step="1"
+                        min="320"
+                        value="420"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_top_x">Top x(light)</label>
-                      <input class="form-control" id="sep_top_x" name="sep_top_x" type="number" step="0.01" min="0.01" max="0.99" value="0.92" />
+                      <label class="form-label" for="sep_top_x"
+                        >Top x(light)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_top_x"
+                        name="sep_top_x"
+                        type="number"
+                        step="0.01"
+                        min="0.01"
+                        max="0.99"
+                        value="0.92"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_bottom_x">Bottom x(light)</label>
-                      <input class="form-control" id="sep_bottom_x" name="sep_bottom_x" type="number" step="0.01" min="0.01" max="0.99" value="0.12" />
+                      <label class="form-label" for="sep_bottom_x"
+                        >Bottom x(light)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_bottom_x"
+                        name="sep_bottom_x"
+                        type="number"
+                        step="0.01"
+                        min="0.01"
+                        max="0.99"
+                        value="0.12"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_top_temp">Top temp (K)</label>
-                      <input class="form-control" id="sep_top_temp" name="sep_top_temp" type="number" step="1" min="280" value="338" />
+                      <label class="form-label" for="sep_top_temp"
+                        >Top temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_top_temp"
+                        name="sep_top_temp"
+                        type="number"
+                        step="1"
+                        min="280"
+                        value="338"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="sep_bottom_temp">Bottom temp (K)</label>
-                      <input class="form-control" id="sep_bottom_temp" name="sep_bottom_temp" type="number" step="1" min="320" value="392" />
+                      <label class="form-label" for="sep_bottom_temp"
+                        >Bottom temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="sep_bottom_temp"
+                        name="sep_bottom_temp"
+                        type="number"
+                        step="1"
+                        min="320"
+                        value="392"
+                      />
                     </div>
                   </div>
                   <div class="simulation-preset-note" id="separation-note">
                     Separation presets are ready.
                   </div>
                   <div class="simulation-actions">
-                    <button class="btn btn-primary simulation-run-btn" id="separation-run-btn" type="button">
+                    <button
+                      class="btn btn-primary simulation-run-btn"
+                      id="separation-run-btn"
+                      type="button"
+                    >
                       Run separation model
                     </button>
                   </div>
@@ -690,26 +1226,60 @@
                     <div class="chart-header">
                       <h3>Composition and thermal profile</h3>
                       <div class="chart-legend">
-                        <span><i class="legend-line legend-line-cyan"></i>Top x</span>
-                        <span><i class="legend-line legend-line-gold"></i>Bottom x</span>
-                        <span><i class="legend-line legend-line-pink"></i>Top T</span>
-                        <span><i class="legend-line legend-line-blue"></i>Bottom T</span>
+                        <span
+                          ><i class="legend-line legend-line-cyan"></i>Top
+                          x</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-gold"></i>Bottom
+                          x</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-pink"></i>Top
+                          T</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-blue"></i>Bottom
+                          T</span
+                        >
                       </div>
                     </div>
-                    <svg id="separation-primary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="separation-primary-chart"
+                      class="simulation-chart"
+                      viewBox="0 0 720 320"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
 
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>Duties and separation leverage</h3>
                       <div class="chart-legend">
-                        <span><i class="legend-line legend-line-orange"></i>Condenser duty</span>
-                        <span><i class="legend-line legend-line-green"></i>Reboiler duty</span>
-                        <span><i class="legend-line legend-line-blue"></i>Distillate flow</span>
-                        <span><i class="legend-line legend-line-pink"></i>Separation index</span>
+                        <span
+                          ><i class="legend-line legend-line-orange"></i
+                          >Condenser duty</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-green"></i>Reboiler
+                          duty</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-blue"></i
+                          >Distillate flow</span
+                        >
+                        <span
+                          ><i class="legend-line legend-line-pink"></i
+                          >Separation index</span
+                        >
                       </div>
                     </div>
-                    <svg id="separation-secondary-chart" class="simulation-chart" viewBox="0 0 720 320" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="separation-secondary-chart"
+                      class="simulation-chart"
+                      viewBox="0 0 720 320"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                 </div>
 
@@ -747,35 +1317,96 @@
                 <form id="orbital-form" class="simulation-form">
                   <div class="row g-3">
                     <div class="col-6">
-                      <label class="form-label" for="orbital_n">Principal n</label>
-                      <input class="form-control" id="orbital_n" name="orbital_n" type="number" min="1" step="1" value="3" />
+                      <label class="form-label" for="orbital_n"
+                        >Principal n</label
+                      >
+                      <input
+                        class="form-control"
+                        id="orbital_n"
+                        name="orbital_n"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value="3"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="orbital_l">Azimuthal l</label>
-                      <input class="form-control" id="orbital_l" name="orbital_l" type="number" min="0" step="1" value="2" />
+                      <label class="form-label" for="orbital_l"
+                        >Azimuthal l</label
+                      >
+                      <input
+                        class="form-control"
+                        id="orbital_l"
+                        name="orbital_l"
+                        type="number"
+                        min="0"
+                        step="1"
+                        value="2"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="orbital_m">Magnetic m</label>
-                      <input class="form-control" id="orbital_m" name="orbital_m" type="number" step="1" value="1" />
+                      <label class="form-label" for="orbital_m"
+                        >Magnetic m</label
+                      >
+                      <input
+                        class="form-control"
+                        id="orbital_m"
+                        name="orbital_m"
+                        type="number"
+                        step="1"
+                        value="1"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="orbital_samples">Sample count</label>
-                      <input class="form-control" id="orbital_samples" name="orbital_samples" type="number" min="200" step="100" value="1400" />
+                      <label class="form-label" for="orbital_samples"
+                        >Sample count</label
+                      >
+                      <input
+                        class="form-control"
+                        id="orbital_samples"
+                        name="orbital_samples"
+                        type="number"
+                        min="200"
+                        step="100"
+                        value="1400"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="orbital_radial_max">Radial extent</label>
-                      <input class="form-control" id="orbital_radial_max" name="orbital_radial_max" type="number" min="1" step="1" value="24" />
+                      <label class="form-label" for="orbital_radial_max"
+                        >Radial extent</label
+                      >
+                      <input
+                        class="form-control"
+                        id="orbital_radial_max"
+                        name="orbital_radial_max"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value="24"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="orbital_seed">Seed</label>
-                      <input class="form-control" id="orbital_seed" name="orbital_seed" type="number" min="1" step="1" value="12345" />
+                      <input
+                        class="form-control"
+                        id="orbital_seed"
+                        name="orbital_seed"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value="12345"
+                      />
                     </div>
                   </div>
                   <div class="simulation-preset-note" id="orbital-note">
                     Orbital sampling is ready.
                   </div>
                   <div class="simulation-actions">
-                    <button class="btn btn-primary simulation-run-btn" id="orbital-run-btn" type="button">
+                    <button
+                      class="btn btn-primary simulation-run-btn"
+                      id="orbital-run-btn"
+                      type="button"
+                    >
                       Sample orbital
                     </button>
                   </div>
@@ -821,19 +1452,34 @@
                     <div class="chart-header">
                       <h3>3D orbital cloud</h3>
                     </div>
-                    <canvas id="orbital-3d-canvas" class="orbital-canvas" width="720" height="420"></canvas>
+                    <canvas
+                      id="orbital-3d-canvas"
+                      class="orbital-canvas"
+                      width="720"
+                      height="420"
+                    ></canvas>
                   </div>
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>XY projection</h3>
                     </div>
-                    <svg id="orbital-xy-plot" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="orbital-xy-plot"
+                      class="simulation-chart orbital-plot"
+                      viewBox="0 0 520 360"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>XZ projection</h3>
                     </div>
-                    <svg id="orbital-xz-plot" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="orbital-xz-plot"
+                      class="simulation-chart orbital-plot"
+                      viewBox="0 0 520 360"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                 </div>
 
@@ -870,59 +1516,169 @@
                 <form id="cfd-form" class="simulation-form">
                   <div class="row g-3">
                     <div class="col-12">
-                      <label class="form-label" for="cfd_preset">Flow case</label>
-                      <select class="form-select" id="cfd_preset" name="cfd_preset">
+                      <label class="form-label" for="cfd_preset"
+                        >Flow case</label
+                      >
+                      <select
+                        class="form-select"
+                        id="cfd_preset"
+                        name="cfd_preset"
+                      >
                         <option value="laminar">Laminar heating line</option>
                         <option value="transition">Transition zone</option>
-                        <option value="turbulent">Turbulent process loop</option>
+                        <option value="turbulent">
+                          Turbulent process loop
+                        </option>
                       </select>
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_length">Pipe length (m)</label>
-                      <input class="form-control" id="cfd_length" name="cfd_length" type="number" step="0.1" min="0.1" value="8" />
+                      <label class="form-label" for="cfd_length"
+                        >Pipe length (m)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_length"
+                        name="cfd_length"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="8"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_diameter">Diameter (m)</label>
-                      <input class="form-control" id="cfd_diameter" name="cfd_diameter" type="number" step="0.01" min="0.01" value="0.18" />
+                      <label class="form-label" for="cfd_diameter"
+                        >Diameter (m)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_diameter"
+                        name="cfd_diameter"
+                        type="number"
+                        step="0.01"
+                        min="0.01"
+                        value="0.18"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_mass_flow">Mass flow (kg/s)</label>
-                      <input class="form-control" id="cfd_mass_flow" name="cfd_mass_flow" type="number" step="0.1" min="0.1" value="5.5" />
+                      <label class="form-label" for="cfd_mass_flow"
+                        >Mass flow (kg/s)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_mass_flow"
+                        name="cfd_mass_flow"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="5.5"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_density">Density (kg/m3)</label>
-                      <input class="form-control" id="cfd_density" name="cfd_density" type="number" step="1" min="1" value="998" />
+                      <label class="form-label" for="cfd_density"
+                        >Density (kg/m3)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_density"
+                        name="cfd_density"
+                        type="number"
+                        step="1"
+                        min="1"
+                        value="998"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_viscosity">Viscosity (Pa.s)</label>
-                      <input class="form-control" id="cfd_viscosity" name="cfd_viscosity" type="number" step="0.0001" min="0.0001" value="0.0010" />
+                      <label class="form-label" for="cfd_viscosity"
+                        >Viscosity (Pa.s)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_viscosity"
+                        name="cfd_viscosity"
+                        type="number"
+                        step="0.0001"
+                        min="0.0001"
+                        value="0.0010"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_roughness">Roughness (m)</label>
-                      <input class="form-control" id="cfd_roughness" name="cfd_roughness" type="number" step="0.000001" min="0" value="0.000045" />
+                      <label class="form-label" for="cfd_roughness"
+                        >Roughness (m)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_roughness"
+                        name="cfd_roughness"
+                        type="number"
+                        step="0.000001"
+                        min="0"
+                        value="0.000045"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_inlet_temp">Inlet temp (K)</label>
-                      <input class="form-control" id="cfd_inlet_temp" name="cfd_inlet_temp" type="number" step="1" min="250" value="295" />
+                      <label class="form-label" for="cfd_inlet_temp"
+                        >Inlet temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_inlet_temp"
+                        name="cfd_inlet_temp"
+                        type="number"
+                        step="1"
+                        min="250"
+                        value="295"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_wall_temp">Wall temp (K)</label>
-                      <input class="form-control" id="cfd_wall_temp" name="cfd_wall_temp" type="number" step="1" min="250" value="335" />
+                      <label class="form-label" for="cfd_wall_temp"
+                        >Wall temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_wall_temp"
+                        name="cfd_wall_temp"
+                        type="number"
+                        step="1"
+                        min="250"
+                        value="335"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="cfd_cp">Cp (J/kg.K)</label>
-                      <input class="form-control" id="cfd_cp" name="cfd_cp" type="number" step="10" min="100" value="4180" />
+                      <input
+                        class="form-control"
+                        id="cfd_cp"
+                        name="cfd_cp"
+                        type="number"
+                        step="10"
+                        min="100"
+                        value="4180"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="cfd_k">Conductivity (W/m.K)</label>
-                      <input class="form-control" id="cfd_k" name="cfd_k" type="number" step="0.01" min="0.01" value="0.60" />
+                      <label class="form-label" for="cfd_k"
+                        >Conductivity (W/m.K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="cfd_k"
+                        name="cfd_k"
+                        type="number"
+                        step="0.01"
+                        min="0.01"
+                        value="0.60"
+                      />
                     </div>
                   </div>
                   <div class="simulation-preset-note" id="cfd-note">
                     CFD presets are ready.
                   </div>
                   <div class="simulation-actions">
-                    <button class="btn btn-primary simulation-run-btn" id="cfd-run-btn" type="button">
+                    <button
+                      class="btn btn-primary simulation-run-btn"
+                      id="cfd-run-btn"
+                      type="button"
+                    >
                       Run CFD study
                     </button>
                   </div>
@@ -968,19 +1724,34 @@
                     <div class="chart-header">
                       <h3>3D pipe flow field</h3>
                     </div>
-                    <canvas id="cfd-3d-canvas" class="orbital-canvas" width="720" height="420"></canvas>
+                    <canvas
+                      id="cfd-3d-canvas"
+                      class="orbital-canvas"
+                      width="720"
+                      height="420"
+                    ></canvas>
                   </div>
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>Velocity and temperature profile</h3>
                     </div>
-                    <svg id="cfd-primary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="cfd-primary-chart"
+                      class="simulation-chart orbital-plot"
+                      viewBox="0 0 520 360"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>Pressure and turbulence profile</h3>
                     </div>
-                    <svg id="cfd-secondary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="cfd-secondary-chart"
+                      class="simulation-chart orbital-plot"
+                      viewBox="0 0 520 360"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                 </div>
 
@@ -1017,67 +1788,201 @@
                 <form id="fusion-form" class="simulation-form">
                   <div class="row g-3">
                     <div class="col-12">
-                      <label class="form-label" for="fusion_preset">Plasma scenario</label>
-                      <select class="form-select" id="fusion_preset" name="fusion_preset">
+                      <label class="form-label" for="fusion_preset"
+                        >Plasma scenario</label
+                      >
+                      <select
+                        class="form-select"
+                        id="fusion_preset"
+                        name="fusion_preset"
+                      >
                         <option value="baseline">Baseline D-T pulse</option>
                         <option value="high_q">High-Q confinement</option>
-                        <option value="ignition_edge">Ignition-edge stress test</option>
+                        <option value="ignition_edge">
+                          Ignition-edge stress test
+                        </option>
                       </select>
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_major_radius">Major radius (m)</label>
-                      <input class="form-control" id="fusion_major_radius" name="fusion_major_radius" type="number" step="0.1" min="1" value="6.2" />
+                      <label class="form-label" for="fusion_major_radius"
+                        >Major radius (m)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_major_radius"
+                        name="fusion_major_radius"
+                        type="number"
+                        step="0.1"
+                        min="1"
+                        value="6.2"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_minor_radius">Minor radius (m)</label>
-                      <input class="form-control" id="fusion_minor_radius" name="fusion_minor_radius" type="number" step="0.1" min="0.5" value="2.0" />
+                      <label class="form-label" for="fusion_minor_radius"
+                        >Minor radius (m)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_minor_radius"
+                        name="fusion_minor_radius"
+                        type="number"
+                        step="0.1"
+                        min="0.5"
+                        value="2.0"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_bfield">Magnetic field (T)</label>
-                      <input class="form-control" id="fusion_bfield" name="fusion_bfield" type="number" step="0.1" min="0.5" value="5.3" />
+                      <label class="form-label" for="fusion_bfield"
+                        >Magnetic field (T)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_bfield"
+                        name="fusion_bfield"
+                        type="number"
+                        step="0.1"
+                        min="0.5"
+                        value="5.3"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_current">Plasma current (MA)</label>
-                      <input class="form-control" id="fusion_current" name="fusion_current" type="number" step="0.1" min="0.1" value="15.0" />
+                      <label class="form-label" for="fusion_current"
+                        >Plasma current (MA)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_current"
+                        name="fusion_current"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="15.0"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_density">Density (m^-3)</label>
-                      <input class="form-control" id="fusion_density" name="fusion_density" type="number" step="1e18" min="1e18" value="8.5e19" />
+                      <label class="form-label" for="fusion_density"
+                        >Density (m^-3)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_density"
+                        name="fusion_density"
+                        type="number"
+                        step="1e18"
+                        min="1e18"
+                        value="8.5e19"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_temp">Temperature (keV)</label>
-                      <input class="form-control" id="fusion_temp" name="fusion_temp" type="number" step="0.1" min="0.1" value="12.0" />
+                      <label class="form-label" for="fusion_temp"
+                        >Temperature (keV)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_temp"
+                        name="fusion_temp"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="12.0"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_tau">Confinement time (s)</label>
-                      <input class="form-control" id="fusion_tau" name="fusion_tau" type="number" step="0.1" min="0.1" value="3.5" />
+                      <label class="form-label" for="fusion_tau"
+                        >Confinement time (s)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_tau"
+                        name="fusion_tau"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="3.5"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_aux">Auxiliary power (W)</label>
-                      <input class="form-control" id="fusion_aux" name="fusion_aux" type="number" step="1000000" min="1000" value="45000000" />
+                      <label class="form-label" for="fusion_aux"
+                        >Auxiliary power (W)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_aux"
+                        name="fusion_aux"
+                        type="number"
+                        step="1000000"
+                        min="1000"
+                        value="45000000"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_fueling">Fueling rate</label>
-                      <input class="form-control" id="fusion_fueling" name="fusion_fueling" type="number" step="1e17" min="0" value="1.4e18" />
+                      <label class="form-label" for="fusion_fueling"
+                        >Fueling rate</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_fueling"
+                        name="fusion_fueling"
+                        type="number"
+                        step="1e17"
+                        min="0"
+                        value="1.4e18"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_impurity">Impurity fraction</label>
-                      <input class="form-control" id="fusion_impurity" name="fusion_impurity" type="number" step="0.001" min="0" max="0.2" value="0.015" />
+                      <label class="form-label" for="fusion_impurity"
+                        >Impurity fraction</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_impurity"
+                        name="fusion_impurity"
+                        type="number"
+                        step="0.001"
+                        min="0"
+                        max="0.2"
+                        value="0.015"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_time_end">Pulse time (s)</label>
-                      <input class="form-control" id="fusion_time_end" name="fusion_time_end" type="number" step="0.5" min="1" value="18" />
+                      <label class="form-label" for="fusion_time_end"
+                        >Pulse time (s)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_time_end"
+                        name="fusion_time_end"
+                        type="number"
+                        step="0.5"
+                        min="1"
+                        value="18"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="fusion_wall_reflectivity">Wall reflectivity</label>
-                      <input class="form-control" id="fusion_wall_reflectivity" name="fusion_wall_reflectivity" type="number" step="0.01" min="0" max="1" value="0.25" />
+                      <label class="form-label" for="fusion_wall_reflectivity"
+                        >Wall reflectivity</label
+                      >
+                      <input
+                        class="form-control"
+                        id="fusion_wall_reflectivity"
+                        name="fusion_wall_reflectivity"
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        max="1"
+                        value="0.25"
+                      />
                     </div>
                   </div>
                   <div class="simulation-preset-note" id="fusion-note">
                     Fusion presets are ready.
                   </div>
                   <div class="simulation-actions">
-                    <button class="btn btn-primary simulation-run-btn" id="fusion-run-btn" type="button">
+                    <button
+                      class="btn btn-primary simulation-run-btn"
+                      id="fusion-run-btn"
+                      type="button"
+                    >
                       Run fusion pulse
                     </button>
                   </div>
@@ -1123,19 +2028,34 @@
                     <div class="chart-header">
                       <h3>3D toroidal plasma view</h3>
                     </div>
-                    <canvas id="fusion-3d-canvas" class="orbital-canvas" width="720" height="420"></canvas>
+                    <canvas
+                      id="fusion-3d-canvas"
+                      class="orbital-canvas"
+                      width="720"
+                      height="420"
+                    ></canvas>
                   </div>
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>Temperature and density</h3>
                     </div>
-                    <svg id="fusion-primary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="fusion-primary-chart"
+                      class="simulation-chart orbital-plot"
+                      viewBox="0 0 520 360"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>Fusion power and losses</h3>
                     </div>
-                    <svg id="fusion-secondary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="fusion-secondary-chart"
+                      class="simulation-chart orbital-plot"
+                      viewBox="0 0 520 360"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                 </div>
 
@@ -1172,67 +2092,195 @@
                 <form id="design-space-form" class="simulation-form">
                   <div class="row g-3">
                     <div class="col-12">
-                      <label class="form-label" for="ds_preset">Study preset</label>
-                      <select class="form-select" id="ds_preset" name="ds_preset">
-                        <option value="balanced">Balanced operating window</option>
-                        <option value="selectivity">High-selectivity map</option>
+                      <label class="form-label" for="ds_preset"
+                        >Study preset</label
+                      >
+                      <select
+                        class="form-select"
+                        id="ds_preset"
+                        name="ds_preset"
+                      >
+                        <option value="balanced">
+                          Balanced operating window
+                        </option>
+                        <option value="selectivity">
+                          High-selectivity map
+                        </option>
                         <option value="throughput">Throughput push</option>
                       </select>
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_temp_min">Temp min (K)</label>
-                      <input class="form-control" id="ds_temp_min" name="ds_temp_min" type="number" step="1" min="280" value="320" />
+                      <label class="form-label" for="ds_temp_min"
+                        >Temp min (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_temp_min"
+                        name="ds_temp_min"
+                        type="number"
+                        step="1"
+                        min="280"
+                        value="320"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_temp_max">Temp max (K)</label>
-                      <input class="form-control" id="ds_temp_max" name="ds_temp_max" type="number" step="1" min="300" value="430" />
+                      <label class="form-label" for="ds_temp_max"
+                        >Temp max (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_temp_max"
+                        name="ds_temp_max"
+                        type="number"
+                        step="1"
+                        min="300"
+                        value="430"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_tau_min">Tau min (h)</label>
-                      <input class="form-control" id="ds_tau_min" name="ds_tau_min" type="number" step="0.1" min="0.1" value="0.4" />
+                      <label class="form-label" for="ds_tau_min"
+                        >Tau min (h)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_tau_min"
+                        name="ds_tau_min"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="0.4"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_tau_max">Tau max (h)</label>
-                      <input class="form-control" id="ds_tau_max" name="ds_tau_max" type="number" step="0.1" min="0.2" value="6.0" />
+                      <label class="form-label" for="ds_tau_max"
+                        >Tau max (h)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_tau_max"
+                        name="ds_tau_max"
+                        type="number"
+                        step="0.1"
+                        min="0.2"
+                        value="6.0"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_feed_conc">Feed conc (kmol/m3)</label>
-                      <input class="form-control" id="ds_feed_conc" name="ds_feed_conc" type="number" step="0.1" min="0.1" value="2.8" />
+                      <label class="form-label" for="ds_feed_conc"
+                        >Feed conc (kmol/m3)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_feed_conc"
+                        name="ds_feed_conc"
+                        type="number"
+                        step="0.1"
+                        min="0.1"
+                        value="2.8"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_coolant_temp">Coolant temp (K)</label>
-                      <input class="form-control" id="ds_coolant_temp" name="ds_coolant_temp" type="number" step="1" min="250" value="305" />
+                      <label class="form-label" for="ds_coolant_temp"
+                        >Coolant temp (K)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_coolant_temp"
+                        name="ds_coolant_temp"
+                        type="number"
+                        step="1"
+                        min="250"
+                        value="305"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="ds_main_k0">Main A0</label>
-                      <input class="form-control" id="ds_main_k0" name="ds_main_k0" type="number" step="100000" min="1" value="8500000" />
+                      <input
+                        class="form-control"
+                        id="ds_main_k0"
+                        name="ds_main_k0"
+                        type="number"
+                        step="100000"
+                        min="1"
+                        value="8500000"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_main_ea">Main Ea (J/mol)</label>
-                      <input class="form-control" id="ds_main_ea" name="ds_main_ea" type="number" step="100" min="1000" value="68000" />
+                      <label class="form-label" for="ds_main_ea"
+                        >Main Ea (J/mol)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_main_ea"
+                        name="ds_main_ea"
+                        type="number"
+                        step="100"
+                        min="1000"
+                        value="68000"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="ds_side_k0">Side A0</label>
-                      <input class="form-control" id="ds_side_k0" name="ds_side_k0" type="number" step="100000" min="1" value="12000000" />
+                      <input
+                        class="form-control"
+                        id="ds_side_k0"
+                        name="ds_side_k0"
+                        type="number"
+                        step="100000"
+                        min="1"
+                        value="12000000"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_side_ea">Side Ea (J/mol)</label>
-                      <input class="form-control" id="ds_side_ea" name="ds_side_ea" type="number" step="100" min="1000" value="76000" />
+                      <label class="form-label" for="ds_side_ea"
+                        >Side Ea (J/mol)</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_side_ea"
+                        name="ds_side_ea"
+                        type="number"
+                        step="100"
+                        min="1000"
+                        value="76000"
+                      />
                     </div>
                     <div class="col-6">
                       <label class="form-label" for="ds_ua">UA (W/K)</label>
-                      <input class="form-control" id="ds_ua" name="ds_ua" type="number" step="1" min="1" value="240" />
+                      <input
+                        class="form-control"
+                        id="ds_ua"
+                        name="ds_ua"
+                        type="number"
+                        step="1"
+                        min="1"
+                        value="240"
+                      />
                     </div>
                     <div class="col-6">
-                      <label class="form-label" for="ds_product_price">Product price</label>
-                      <input class="form-control" id="ds_product_price" name="ds_product_price" type="number" step="10" min="1" value="1500" />
+                      <label class="form-label" for="ds_product_price"
+                        >Product price</label
+                      >
+                      <input
+                        class="form-control"
+                        id="ds_product_price"
+                        name="ds_product_price"
+                        type="number"
+                        step="10"
+                        min="1"
+                        value="1500"
+                      />
                     </div>
                   </div>
                   <div class="simulation-preset-note" id="ds-note">
                     Design-space presets are ready.
                   </div>
                   <div class="simulation-actions">
-                    <button class="btn btn-primary simulation-run-btn" id="ds-run-btn" type="button">
+                    <button
+                      class="btn btn-primary simulation-run-btn"
+                      id="ds-run-btn"
+                      type="button"
+                    >
                       Run design sweep
                     </button>
                   </div>
@@ -1278,19 +2326,34 @@
                     <div class="chart-header">
                       <h3>3D design-space map</h3>
                     </div>
-                    <canvas id="ds-3d-canvas" class="orbital-canvas" width="720" height="420"></canvas>
+                    <canvas
+                      id="ds-3d-canvas"
+                      class="orbital-canvas"
+                      width="720"
+                      height="420"
+                    ></canvas>
                   </div>
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>Yield and selectivity frontier</h3>
                     </div>
-                    <svg id="ds-primary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="ds-primary-chart"
+                      class="simulation-chart orbital-plot"
+                      viewBox="0 0 520 360"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                   <div class="chart-card">
                     <div class="chart-header">
                       <h3>Heat duty and profitability</h3>
                     </div>
-                    <svg id="ds-secondary-chart" class="simulation-chart orbital-plot" viewBox="0 0 520 360" preserveAspectRatio="none"></svg>
+                    <svg
+                      id="ds-secondary-chart"
+                      class="simulation-chart orbital-plot"
+                      viewBox="0 0 520 360"
+                      preserveAspectRatio="none"
+                    ></svg>
                   </div>
                 </div>
 
@@ -1302,7 +2365,6 @@
           </div>
         </div>
       </section>
-
     </main>
 
     <script

@@ -342,6 +342,95 @@ a:hover {
   transition: none !important;
 }
 
+/* ---------- Off-white light theme finish ---------- */
+
+:root {
+  --mavin-white: #f4efe4;
+  --mavin-paper: #eee7d8;
+  --mavin-cream: #e9e1d0;
+  --mavin-surface: #f7f2e8;
+  --mavin-surface-strong: #fbf7ef;
+  --mavin-stone: #d8cdb9;
+}
+
+html,
+body,
+main,
+.simulation-page,
+.visualization-page,
+.science-gallery-page,
+.marketing,
+.projects-section,
+.contact-section,
+.simulation-catalog,
+.simulation-workbench,
+.science-gallery-showcase {
+  background-color: var(--mavin-cream) !important;
+}
+
+main,
+.simulation-page,
+.visualization-page,
+.science-gallery-page,
+.marketing,
+.projects-section,
+.contact-section,
+.simulation-catalog,
+.simulation-workbench,
+.science-gallery-showcase {
+  background:
+    linear-gradient(90deg, rgba(36, 31, 22, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(36, 31, 22, 0.026) 1px, transparent 1px),
+    var(--mavin-cream) !important;
+  background-size: 96px 96px;
+}
+
+.navbar {
+  background: rgba(244, 239, 228, 0.94) !important;
+}
+
+.marketing .col-lg-4,
+.projects-grid .card,
+.contact-grid .card,
+.simulation-catalog-card,
+.simulation-summary-card,
+.science-gallery-summary-card,
+.science-exhibit-strip-panel,
+.science-gallery-card,
+.science-metric-card,
+.simulation-panel,
+.visualization-panel,
+.visualization-chart-card,
+.visualization-summary-card,
+.visualization-insight,
+.visualization-metric-card,
+.metric-card,
+.chart-card,
+.science-stage-panel,
+.science-insight,
+.science-scene-card {
+  background: rgba(247, 242, 232, 0.94) !important;
+}
+
+.marketing .col-lg-4:hover,
+.projects-grid .card:hover,
+.contact-grid .card:hover,
+.simulation-catalog-card:hover {
+  background: var(--mavin-surface-strong) !important;
+}
+
+.simulation-form .form-control,
+.simulation-form .form-select,
+.science-stage-select,
+.form-control,
+.form-select,
+.simulation-preset-note,
+.simulation-code-badge,
+.visualization-insight,
+.simulation-insight {
+  background: var(--mavin-surface-strong) !important;
+}
+
 /* ---------- Subtle professional motion system ---------- */
 
 :root {
