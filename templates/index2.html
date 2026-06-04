@@ -65,22 +65,22 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0 justify-content-center w-100">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/projects/">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/simulation/">Simulation</a>
+            <a class="nav-link" href="/simulation/">Simulation</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/scientific-visuals/">Scientific Visuals</a>
+            <a class="nav-link" href="/scientific-visuals/">Scientific Visuals</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/contacts/">Contacts</a>
+            <a class="nav-link" href="/contacts/">Contacts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://mavinsblog.pythonanywhere.com/">My Blog</a>
+            <a class="nav-link" href="https://mavinsblog.pythonanywhere.com/">My Blog</a>
           </li>
 
         </ul>
@@ -105,9 +105,9 @@
         </div>
       </div>
     </div>
-<div class="container">
+<div class="container projects-section">
     <!--body with projects-->
-    <div class="row">
+    <div class="row projects-grid">
         {% for project in projects%}
         <div class="col" data-aos="fade-up" data-aos-duration="1000">
             <div class="card" style="width: 18rem;">
@@ -128,9 +128,7 @@
 
 <!--AOS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-  AOS.init();
-</script>
+<script src="{% static 'assets/js/motion.js' %}"></script>
 
 </body>
 </html>
