@@ -4984,3 +4984,187 @@ main,
     background: rgba(5, 5, 5, 0.985) !important;
   }
 }
+
+/* ---------- ICOMAT-style scroll motion system ---------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.motion-enhanced body {
+  --page-scroll: 0;
+}
+
+.motion-enhanced .motion-section {
+  --section-progress: 0;
+  --section-focus: 0;
+  position: relative;
+}
+
+.motion-enhanced .motion-group {
+  will-change: transform, opacity, filter;
+  transform: translate3d(
+      0,
+      calc((1 - var(--section-focus)) * 44px),
+      0
+    )
+    scale(calc(0.972 + (var(--section-focus) * 0.028)));
+  opacity: calc(0.28 + (var(--section-focus) * 0.72));
+  filter: blur(calc((1 - var(--section-focus)) * 10px));
+  transition:
+    transform 980ms cubic-bezier(0.18, 1, 0.22, 1),
+    opacity 980ms cubic-bezier(0.18, 1, 0.22, 1),
+    filter 980ms cubic-bezier(0.18, 1, 0.22, 1);
+}
+
+.motion-enhanced .motion-section.is-active .motion-group {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.motion-enhanced .motion-section.is-past .motion-group {
+  transform: translate3d(0, -12px, 0) scale(0.992);
+  opacity: 0.8;
+  filter: blur(1.4px);
+}
+
+.motion-enhanced .motion-media {
+  will-change: transform, filter;
+  transform: translate3d(
+      0,
+      calc((0.5 - var(--section-progress)) * 56px),
+      0
+    )
+    scale(calc(1.015 + ((1 - var(--section-focus)) * 0.025)));
+  filter: saturate(calc(0.9 + (var(--section-focus) * 0.16)));
+  transition:
+    transform 1100ms cubic-bezier(0.18, 1, 0.22, 1),
+    filter 1100ms cubic-bezier(0.18, 1, 0.22, 1);
+}
+
+.motion-enhanced #myCarousel {
+  --hero-scroll-progress: 0;
+}
+
+.motion-enhanced #myCarousel .carousel-item img {
+  transform: translate3d(
+      0,
+      calc(var(--hero-scroll-progress) * 44px),
+      0
+    )
+    scale(1.08) !important;
+  transition:
+    transform 160ms linear,
+    filter 700ms cubic-bezier(0.18, 1, 0.22, 1) !important;
+}
+
+.motion-enhanced #myCarousel .carousel-caption {
+  transform: translate3d(
+    0,
+    calc(var(--hero-scroll-progress) * -18px),
+    0
+  );
+  transition: transform 160ms linear;
+}
+
+.motion-enhanced .aos-init[data-aos] {
+  opacity: 0;
+  filter: blur(10px);
+  clip-path: inset(0 0 14% 0);
+  transform: translate3d(0, 58px, 0) scale(0.985);
+  transition:
+    opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1200ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1200ms cubic-bezier(0.16, 1, 0.3, 1),
+    clip-path 1200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-delay: calc(var(--reveal-order, 0) * 80ms) !important;
+}
+
+.motion-enhanced .aos-init[data-aos].aos-animate {
+  opacity: 1;
+  filter: blur(0);
+  clip-path: inset(0 0 0 0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.motion-enhanced .projects-grid > .col.aos-init[data-aos],
+.motion-enhanced .contact-grid .card.aos-init[data-aos],
+.motion-enhanced .simulation-catalog .aos-init[data-aos],
+.motion-enhanced .science-gallery-showcase .aos-init[data-aos] {
+  transform: translate3d(0, 72px, 0) scale(0.982);
+}
+
+.motion-enhanced .projects-grid > .col.aos-init[data-aos].aos-animate,
+.motion-enhanced .contact-grid .card.aos-init[data-aos].aos-animate,
+.motion-enhanced .simulation-catalog .aos-init[data-aos].aos-animate,
+.motion-enhanced .science-gallery-showcase .aos-init[data-aos].aos-animate {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.motion-enhanced .text-word {
+  transform-origin: center bottom;
+}
+
+.motion-enhanced .carousel-caption.hero-animate-in h1 .text-word {
+  animation-duration: 920ms;
+  animation-delay: calc(120ms + var(--word-index) * 42ms);
+}
+
+.motion-enhanced .carousel-caption.hero-animate-in > p {
+  animation-duration: 1040ms;
+  animation-delay: 420ms;
+}
+
+.motion-enhanced .carousel-caption.hero-animate-in .home-hero-btn {
+  animation-delay: 560ms;
+}
+
+.motion-enhanced .carousel-caption.hero-animate-in .home-hero-link {
+  animation-delay: 640ms;
+}
+
+.motion-enhanced .home-proof-metric,
+.motion-enhanced .home-command-card,
+.motion-enhanced .simulation-catalog-card,
+.motion-enhanced .science-scene-card {
+  transition:
+    transform 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-enhanced .home-proof-metric:hover,
+.motion-enhanced .home-command-card:hover,
+.motion-enhanced .simulation-catalog-card:hover,
+.motion-enhanced .science-scene-card:hover {
+  transform: translate3d(0, -10px, 0) scale(1.01);
+}
+
+@media (max-width: 991.98px) {
+  .motion-enhanced .motion-group {
+    transform: translate3d(0, calc((1 - var(--section-focus)) * 28px), 0)
+      scale(calc(0.985 + (var(--section-focus) * 0.015)));
+    filter: blur(calc((1 - var(--section-focus)) * 6px));
+  }
+
+  .motion-enhanced .motion-media {
+    transform: translate3d(0, calc((0.5 - var(--section-progress)) * 28px), 0)
+      scale(calc(1.008 + ((1 - var(--section-focus)) * 0.014)));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .motion-enhanced #myCarousel .carousel-item img,
+  .motion-enhanced #myCarousel .carousel-caption,
+  .motion-enhanced .motion-media,
+  .motion-enhanced .motion-group {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .motion-enhanced .aos-init[data-aos] {
+    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, 30px, 0) scale(0.99);
+  }
+}
