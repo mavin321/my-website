@@ -4838,18 +4838,18 @@ main,
 /* ---------- Deeper monochrome balance ---------- */
 
 :root {
-  --premium-black: #050505;
-  --premium-ink: #0d0d0d;
-  --premium-muted: #4d4d4d;
-  --premium-soft: #e7e7e7;
-  --premium-surface: #f0f0f0;
+  --premium-black: #09090b;
+  --premium-ink: #18181b;
+  --premium-muted: #52525b;
+  --premium-soft: #e4e4e7;
+  --premium-surface: #f4f4f5;
   --premium-surface-strong: #fafafa;
-  --premium-line: rgba(0, 0, 0, 0.18);
-  --premium-line-strong: rgba(0, 0, 0, 0.34);
+  --premium-line: rgba(39, 39, 42, 0.16);
+  --premium-line-strong: rgba(39, 39, 42, 0.3);
   --premium-shadow: 0 24px 80px rgba(0, 0, 0, 0.12);
-  --mavin-paper: #dddddd;
-  --mavin-stone: #b9b9b9;
-  --mavin-muted: #4d4d4d;
+  --mavin-paper: #e4e4e7;
+  --mavin-stone: #a1a1aa;
+  --mavin-muted: #52525b;
 }
 
 body,
@@ -4862,7 +4862,7 @@ main,
 .simulation-catalog,
 .simulation-workbench,
 .science-gallery-showcase {
-  background-color: #e7e7e7 !important;
+  background-color: #e4e4e7 !important;
 }
 
 .navbar {
@@ -4895,7 +4895,7 @@ main,
 .marketing,
 .home-proof-section,
 .home-command-section {
-  background-color: #e1e1e1 !important;
+  background-color: #e4e4e7 !important;
 }
 
 .marketing .col-lg-4,
@@ -4928,8 +4928,8 @@ main,
 .simulation-preset-note,
 .simulation-code-badge,
 .simulation-insight {
-  background: #f3f3f3 !important;
-  border-color: rgba(0, 0, 0, 0.18) !important;
+  background: #f4f4f5 !important;
+  border-color: rgba(39, 39, 42, 0.16) !important;
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.1) !important;
 }
 
@@ -4940,8 +4940,8 @@ main,
 .science-scene-card:hover,
 .home-proof-metric:hover,
 .home-command-card:hover {
-  background: #ebebeb !important;
-  border-color: rgba(0, 0, 0, 0.3) !important;
+  background: #e4e4e7 !important;
+  border-color: rgba(39, 39, 42, 0.28) !important;
 }
 
 .marketing .col-lg-4 p,
@@ -4961,22 +4961,22 @@ main,
 .home-command-card p,
 .home-command-header p,
 .home-section-kicker {
-  color: #474747 !important;
+  color: #52525b !important;
 }
 
 .home-proof-metric span,
 .home-command-card span {
-  color: #3d3d3d !important;
+  color: #3f3f46 !important;
 }
 
 .home-proof-intro,
 .home-capability-panel {
-  background: linear-gradient(135deg, #050505 0%, #101010 48%, #232323 100%) !important;
+  background: linear-gradient(135deg, #09090b 0%, #18181b 48%, #3f3f46 100%) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .featurette-divider {
-  border-top-color: rgba(0, 0, 0, 0.18) !important;
+  border-top-color: rgba(39, 39, 42, 0.16) !important;
 }
 
 @media (max-width: 991.98px) {
