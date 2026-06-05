@@ -4834,3 +4834,153 @@ main,
   transform: none !important;
   animation: none !important;
 }
+
+/* ---------- Deeper monochrome balance ---------- */
+
+:root {
+  --premium-black: #050505;
+  --premium-ink: #0d0d0d;
+  --premium-muted: #4d4d4d;
+  --premium-soft: #e7e7e7;
+  --premium-surface: #f0f0f0;
+  --premium-surface-strong: #fafafa;
+  --premium-line: rgba(0, 0, 0, 0.18);
+  --premium-line-strong: rgba(0, 0, 0, 0.34);
+  --premium-shadow: 0 24px 80px rgba(0, 0, 0, 0.12);
+  --mavin-paper: #dddddd;
+  --mavin-stone: #b9b9b9;
+  --mavin-muted: #4d4d4d;
+}
+
+body,
+main,
+.simulation-page,
+.visualization-page,
+.science-gallery-page,
+.projects-section,
+.contact-section,
+.simulation-catalog,
+.simulation-workbench,
+.science-gallery-showcase {
+  background-color: #e7e7e7 !important;
+}
+
+.navbar {
+  background: rgba(5, 5, 5, 0.96) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: #fafafa !important;
+}
+
+.navbar-brand::after {
+  color: rgba(255, 255, 255, 0.48) !important;
+  border-left-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link.active {
+  background: #fafafa !important;
+  color: #050505 !important;
+}
+
+.marketing,
+.home-proof-section,
+.home-command-section {
+  background-color: #e1e1e1 !important;
+}
+
+.marketing .col-lg-4,
+.projects-grid .card,
+.contact-grid .card,
+.simulation-catalog-card,
+.simulation-summary-card,
+.science-gallery-summary-card,
+.science-exhibit-strip-panel,
+.science-gallery-card,
+.science-metric-card,
+.simulation-panel,
+.visualization-panel,
+.visualization-chart-card,
+.visualization-summary-card,
+.visualization-insight,
+.visualization-metric-card,
+.metric-card,
+.chart-card,
+.science-stage-panel,
+.science-insight,
+.science-scene-card,
+.home-proof-metric,
+.home-command-card,
+.simulation-form .form-control,
+.simulation-form .form-select,
+.science-stage-select,
+.form-control,
+.form-select,
+.simulation-preset-note,
+.simulation-code-badge,
+.simulation-insight {
+  background: #f3f3f3 !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.1) !important;
+}
+
+.marketing .col-lg-4:hover,
+.projects-grid .card:hover,
+.contact-grid .card:hover,
+.simulation-catalog-card:hover,
+.science-scene-card:hover,
+.home-proof-metric:hover,
+.home-command-card:hover {
+  background: #ebebeb !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.marketing .col-lg-4 p,
+.featurette .lead,
+.simulation-summary-card p,
+.simulation-panel p,
+.simulation-catalog-card p,
+.science-gallery-summary-list,
+.science-gallery-summary-list li,
+.simulation-summary-list,
+.simulation-summary-list li,
+.science-strip-note,
+.science-insight,
+.card-text,
+.simulation-output-note,
+.home-proof-metric p,
+.home-command-card p,
+.home-command-header p,
+.home-section-kicker {
+  color: #474747 !important;
+}
+
+.home-proof-metric span,
+.home-command-card span {
+  color: #3d3d3d !important;
+}
+
+.home-proof-intro,
+.home-capability-panel {
+  background: linear-gradient(135deg, #050505 0%, #101010 48%, #232323 100%) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.featurette-divider {
+  border-top-color: rgba(0, 0, 0, 0.18) !important;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: rgba(5, 5, 5, 0.985) !important;
+  }
+}
