@@ -1,159 +1,237 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="mavins portfolio">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Contacts</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-  
-    <!--AOS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-  
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-  
-  
-  
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s" sizes="180x180">
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s" sizes="32x32" type="image/png">
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s" sizes="16x16" type="image/png">
-    <link rel="manifest" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s">
-    <link rel="mask-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s" color="#712cf9">
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumyhMSbE5XlDd3iMGoAlmaGU3c7KKyCyTaQ&s">
-    <meta name="theme-color" content="#712cf9">
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Contact Mavin for software engineering, process engineering, and design-focused work."
+    />
+    <title>Contact | Mavin Engineering Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="{% static 'assets/css/main.css' %}"
-    />
-  
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-      </symbol>
-    </svg>
-
-    
-
-    
-<header data-bs-theme="dark">
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Mavin</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0 justify-content-center w-100">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/projects/">Builds</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/simulation/">Simulation</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/scientific-visuals/">OBSERVATORY</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/contacts/">Contacts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://mavinsblog.pythonanywhere.com/">My Blog</a>
-          </li>
-
-        </ul>
-        
-      </div>
-    </div>
-  </nav>
-</header>
-
-<main>
-<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-    
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height=0px xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <img src="https://img.freepik.com/free-vector/abstract-blue-light-pipe-speed-zoom-black-background-technology_1142-8392.jpg" class="d-block w-100" alt="Description of Image 1">
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Contacts.</h1>
-            <p class="opacity-75">Let’s connect! Whether you have questions, opportunities, or just want to say hi, I’d love to hear from you. Reach out and let’s create something amazing together!</p>
-            
+    <header data-bs-theme="dark">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand site-brand" href="/">
+            <span class="site-brand-mark">Mavin</span>
+            <span class="site-brand-separator"></span>
+            <span class="site-brand-role">Engineering</span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul
+              class="navbar-nav me-auto mb-2 mb-md-0 justify-content-center w-100"
+            >
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/projects/">Builds</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/simulation/">Simulation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/scientific-visuals/">OBSERVATORY</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/contacts/"
+                  >Contacts</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://mavinsblog.pythonanywhere.com/"
+                  >My Blog</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="container d-flex justify-content-center contact-section">
-        <div class="row contact-grid">
-            <div class="card mx-2 my-3 text-white" data-aos="fade-up" data-aos-duration="1000" style="width: 18rem; background-color: #343a40;">
-                <div class="card-body">
-                  <h5 class="card-title">Name</h5>
-                  <p class="card-text">Mavin Peter Omondi</p>
-                  
+      </nav>
+    </header>
+
+    <main class="contact-page">
+      <section class="page-hero page-hero-contact">
+        <div class="container py-5">
+          <div class="row g-5 align-items-end page-hero-grid">
+            <div class="col-lg-7" data-aos="fade-up" data-aos-duration="980">
+              <p class="page-hero-kicker">Contact</p>
+              <h1 class="page-hero-title">
+                Reach me for software, process, and design-driven engineering
+                work.
+              </h1>
+              <p class="page-hero-intro">
+                I am available for technical roles, engineering collaborations,
+                research-oriented work, and serious build discussions. This page
+                keeps the contact path direct and easy to scan.
+              </p>
+              <div class="page-chip-row">
+                <span class="page-chip">Roles</span>
+                <span class="page-chip">Projects</span>
+                <span class="page-chip">Research</span>
+                <span class="page-chip">Technical collaboration</span>
+              </div>
+              <div class="page-hero-actions">
+                <a class="home-hero-btn" href="mailto:{{ contact_profile.email }}"
+                  >Email Mavin</a
+                >
+                <a class="home-hero-link" href="/projects/">Review Builds</a>
+              </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-up" data-aos-duration="1140">
+              <aside class="page-hero-panel">
+                <div class="page-hero-media-card">
+                  <img
+                    class="page-hero-media"
+                    src="{% static 'assets/img/home-connect.jpg' %}"
+                    alt="Collaboration and technical discussion setting"
+                  />
+                  <div class="page-hero-media-overlay">
+                    <span>Collaboration route</span>
+                    <strong>
+                      Clear communication, technical range, and practical
+                      engineering focus.
+                    </strong>
+                  </div>
                 </div>
-            </div>
-            <div class="card mx-2 my-3 text-white" data-aos="fade-up" data-aos-duration="1000" style="width: 18rem; background-color: #343a40;">
-                <div class="card-body">
-                  <h5 class="card-title">Email</h5>
-                  <p class="card-text">mavinpeteromondi@gmail.com.</p>
-                  <a href="mailto:mavinpeteromondi@gmail.com" class="btn btn-primary" style="background-color: grey">email</a>
+                <div class="page-stat-grid">
+                  <article class="page-stat">
+                    <span>Direct</span>
+                    <strong>Email and phone access</strong>
+                  </article>
+                  <article class="page-stat">
+                    <span>Public</span>
+                    <strong>GitHub and LinkedIn presence</strong>
+                  </article>
+                  <article class="page-stat">
+                    <span>Open</span>
+                    <strong>Roles, contracts, and research</strong>
+                  </article>
                 </div>
+              </aside>
             </div>
-            <div class="card mx-2 my-3 text-white" data-aos="fade-up" data-aos-duration="1000" style="width: 18rem; background-color: #343a40;">
-                <div class="card-body">
-                  <h5 class="card-title">Phone number</h5>
-                  <p class="card-text">0714128700.</p>
-                </div>
-            </div>
-            <div class="card mx-2 my-3 text-white" data-aos="fade-up" data-aos-duration="1000" style="width: 18rem; background-color: #343a40;">
-                <div class="card-body" >
-                  <h5 class="card-title">linkedin</h5>
-                  <p class="card-text">Mavin Peter.</p>
-                  <a href="https://linkedin.com/in/mavin-peter-65422725b" class="btn btn-primary" style="background-color: grey;">linkdin</a>
-                </div>
-            </div>
-            <div class="card mx-2 my-3 text-white" data-aos="fade-up" data-aos-duration="1000" style="width: 18rem; background-color: #343a40;">
-                <div class="card-body">
-                  <h5 class="card-title">Github</h5>
-                  <p class="card-text">A link to my repository.</p>
-                  <a href="https://github.com/mavin321?tab=repositories" class="btn btn-primary" style="background-color: grey">Github</a>
-                </div>
-            </div>
-            
-            </div>
+          </div>
         </div>
-    </div>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
+      </section>
 
-<!--AOS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script src="{% static 'assets/js/motion.js' %}"></script>
+      <section class="contact-shell py-5">
+        <div class="container">
+          <div class="page-section-heading" data-aos="fade-up">
+            <p class="home-section-kicker">Contact methods</p>
+            <h2>Pick the route that matches the conversation.</h2>
+            <p>
+              Use email for detailed opportunities, phone for fast
+              coordination, LinkedIn for professional context, and GitHub for
+              implementation proof.
+            </p>
+          </div>
 
-</body>
+          <div class="row g-4 contact-method-grid">
+            {% for method in contact_methods %}
+              <div
+                class="col-12 col-md-6"
+                data-aos="fade-up"
+                data-aos-duration="1020"
+              >
+                <article class="contact-method-card">
+                  <span class="contact-method-label">{{ method.label }}</span>
+                  <h3 class="contact-method-value">{{ method.value }}</h3>
+                  <p>{{ method.detail }}</p>
+                  <a
+                    class="contact-method-action"
+                    href="{{ method.href }}"
+                    target="{% if method.label == 'Email' or method.label == 'Phone' %}_self{% else %}_blank{% endif %}"
+                    rel="noreferrer"
+                    >{{ method.action }}</a
+                  >
+                </article>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-presence pb-5">
+        <div class="container">
+          <div class="row g-4 contact-presence-grid">
+            <div class="col-lg-5" data-aos="fade-up" data-aos-duration="980">
+              <article class="contact-presence-card">
+                <p class="home-section-kicker">Professional presence</p>
+                <h2>Built for technical conversations that need depth.</h2>
+                <p>
+                  My portfolio covers software engineering, process engineering,
+                  simulation, and scientific visualization. If the role or
+                  project needs clear systems thinking and disciplined
+                  implementation, that is the context for reaching out.
+                </p>
+              </article>
+            </div>
+            <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1120">
+              <div class="row g-3 contact-roster-grid">
+                <div class="col-12 col-md-6">
+                  <article class="contact-roster-card">
+                    <span>Profile</span>
+                    <h3>{{ contact_profile.name }}</h3>
+                    <p>{{ contact_profile.email }}</p>
+                    <p>{{ contact_profile.phone_number }}</p>
+                  </article>
+                </div>
+                <div class="col-12 col-md-6">
+                  <article class="contact-roster-card">
+                    <span>Links</span>
+                    <h3>Professional presence</h3>
+                    <p>{{ contact_profile.linkedin }}</p>
+                    <p>{{ contact_profile.github }}</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="container site-footer">
+        <div class="site-footer-grid">
+          <p>Mavin Engineering Portfolio</p>
+          <p><a href="#">Back to top</a></p>
+        </div>
+      </footer>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="{% static 'assets/js/motion.js' %}"></script>
+  </body>
 </html>

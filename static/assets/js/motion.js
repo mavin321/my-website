@@ -5,10 +5,13 @@
 
   var wordRevealSelectors = [
     "#myCarousel .carousel-caption h1",
+    ".page-hero-title",
     ".home-proof-intro h2",
     ".home-command-header h2",
+    ".page-section-heading h2",
     ".home-section-heading h2",
     ".home-capability-panel h2",
+    ".contact-presence-card h2",
     ".marketing h2.fw-normal",
     ".featurette-heading",
     ".simulation-hero h1",
@@ -19,10 +22,14 @@
 
   var sectionSelectors = [
     "#myCarousel",
+    ".page-hero",
     ".home-proof-section",
     ".home-command-section",
     ".marketing",
     ".featurette",
+    ".builds-shell",
+    ".contact-shell",
+    ".contact-presence",
     ".simulation-hero",
     ".simulation-catalog",
     ".simulation-workbench",
@@ -33,11 +40,16 @@
 
   var motionGroupSelectors = [
     "#myCarousel .carousel-caption",
+    ".page-hero-grid > [class*='col-']",
     ".home-proof-grid",
     ".home-command-header",
     ".home-command-grid",
     ".home-capability-panel",
     ".featurette > [class*='col-']",
+    ".builds-grid > [class*='col-']",
+    ".contact-method-grid > [class*='col-']",
+    ".contact-presence-grid > [class*='col-']",
+    ".contact-roster-grid > [class*='col-']",
     ".simulation-hero .row > [class*='col-']",
     ".simulation-catalog .row > [class*='col-']",
     ".simulation-workbench .simulation-panel",
@@ -52,6 +64,7 @@
 
   var mediaSelectors = [
     "#myCarousel .carousel-item img",
+    ".page-hero-media-card",
     ".featurette-image",
     ".science-stage-canvas-wrap",
     ".science-main-canvas-theater",

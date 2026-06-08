@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_http_methods
 
 from .models import Project
-from .models import Contact
 from .fermentation_bridge import (
     get_preset_details,
     list_microbes,
@@ -29,12 +28,36 @@ def index(request):
 
 def index2(request):
     projects = Project.objects.all()
-    return render(request, 'index2.html', {'projects': projects})
+    project_cards = [
+        _build_project_card(project, index) for index, project in enumerate(projects, start=1)
+    ]
+    return render(
+        request,
+        'index2.html',
+        {
+            'projects': projects,
+            'project_cards': project_cards,
+        },
+    )
 
 
 def index3(request):
-    contacts = Contact.objects.all()
-    return render(request, 'index3.html', {'contacts': contacts})
+    contact_profile = {
+        "name": "Mavin Peter Omondi",
+        "email": "mavinpeteromondi@gmail.com",
+        "phone_number": "0714128700",
+        "linkedin": "https://linkedin.com/in/mavin-peter-65422725b",
+        "github": "https://github.com/mavin321?tab=repositories",
+    }
+    contact_methods = _build_contact_methods(contact_profile)
+    return render(
+        request,
+        'index3.html',
+        {
+            'contact_profile': contact_profile,
+            'contact_methods': contact_methods,
+        },
+    )
 
 
 def simulation(request):
@@ -205,3 +228,88 @@ def _clean_json(obj):
     if isinstance(obj, list):
         return [_clean_json(item) for item in obj]
     return obj
+
+
+def _build_project_card(project, index):
+    text = f"{project.name} {project.description}".lower()
+
+    focus_rules = [
+        (("simulation", "reactor", "separation", "orbital", "cfd", "fusion"), "Engineering model"),
+        (("design", "optimization", "pareto"), "Design analysis"),
+        (("visual", "gallery", "render", "plot"), "Scientific visualization"),
+        (("api", "backend", "django", "web", "full-stack"), "Software delivery"),
+        (("data", "analysis", "model"), "Technical decision support"),
+    ]
+    tag_rules = [
+        (("python",), "Python"),
+        (("django",), "Django"),
+        (("javascript", "frontend", "ui"), "JavaScript"),
+        (("c++", "cpp"), "C++"),
+        (("c ", " c,", " c.", "embedded"), "C"),
+        (("simulation",), "Simulation"),
+        (("reactor", "process", "chemical", "separation"), "Process Engineering"),
+        (("visual", "render", "gallery"), "Visualization"),
+        (("api",), "API"),
+        (("data", "analysis"), "Data"),
+        (("design", "optimization"), "Design"),
+    ]
+
+    focus = "Software and engineering build"
+    for keywords, label in focus_rules:
+        if any(keyword in text for keyword in keywords):
+            focus = label
+            break
+
+    tags = []
+    for keywords, label in tag_rules:
+        if any(keyword in text for keyword in keywords) and label not in tags:
+            tags.append(label)
+        if len(tags) == 4:
+            break
+
+    if not tags:
+        tags = ["Engineering", "Software", "Portfolio"]
+
+    return {
+        "index": f"{index:02d}",
+        "name": project.name,
+        "description": project.description,
+        "github_link": project.github_link,
+        "focus": focus,
+        "track": "Case Study",
+        "tags": tags,
+        "aos_duration": 920 + (index * 90),
+    }
+
+
+def _build_contact_methods(contact):
+    return [
+        {
+            "label": "Email",
+            "value": contact["email"],
+            "detail": "Best for roles, projects, and direct technical discussion.",
+            "href": f"mailto:{contact['email']}",
+            "action": "Send email",
+        },
+        {
+            "label": "Phone",
+            "value": contact["phone_number"],
+            "detail": "Useful for urgent contact or quick coordination.",
+            "href": f"tel:{contact['phone_number']}",
+            "action": "Call",
+        },
+        {
+            "label": "LinkedIn",
+            "value": "Professional profile and career history.",
+            "detail": "A concise view of experience, education, and role alignment.",
+            "href": contact["linkedin"],
+            "action": "View profile",
+        },
+        {
+            "label": "GitHub",
+            "value": "Public repositories, code experiments, and technical builds.",
+            "detail": "Browse implementation quality, scope, and engineering range.",
+            "href": contact["github"],
+            "action": "Open GitHub",
+        },
+    ]
