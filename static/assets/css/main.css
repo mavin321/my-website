@@ -4473,22 +4473,22 @@ main,
 @keyframes hero-kicker-blur-slide {
   from {
     opacity: 0;
-    filter: blur(8px);
-    transform: translate3d(-28px, 0, 0);
+    filter: blur(12px);
+    transform: translate3d(-34px, 0, 0) scale(0.985);
   }
 
   to {
     opacity: 1;
     filter: blur(0);
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
 @keyframes hero-word-rise {
   from {
     opacity: 0;
-    filter: blur(6px);
-    transform: translate3d(0, 0.92em, 0) scale(0.94);
+    filter: blur(10px);
+    transform: translate3d(0, 1.05em, 0) scale(0.925);
   }
 
   to {
@@ -4501,8 +4501,8 @@ main,
 @keyframes hero-body-slide {
   from {
     opacity: 0;
-    filter: blur(5px);
-    transform: translate3d(-36px, 0, 0);
+    filter: blur(8px);
+    transform: translate3d(-28px, 12px, 0);
   }
 
   to {
@@ -4515,8 +4515,8 @@ main,
 @keyframes hero-action-scale {
   from {
     opacity: 0;
-    filter: blur(4px);
-    transform: translate3d(0, 10px, 0) scale(0.92);
+    filter: blur(6px);
+    transform: translate3d(0, 14px, 0) scale(0.9);
   }
 
   to {
@@ -4526,25 +4526,37 @@ main,
   }
 }
 
+@keyframes text-soft-fade {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
 .carousel-caption.hero-animate-in .home-hero-kicker {
-  animation: hero-kicker-blur-slide 880ms var(--motion-luxury) 60ms both;
+  animation: hero-kicker-blur-slide 1040ms var(--motion-luxury) 70ms both;
 }
 
 .carousel-caption.hero-animate-in h1 .text-word {
-  animation: hero-word-rise 820ms var(--motion-luxury) both;
-  animation-delay: calc(140ms + var(--word-index) * 52ms);
+  animation: hero-word-rise 980ms var(--motion-luxury) both;
+  animation-delay: calc(130ms + var(--word-index) * 44ms);
 }
 
 .carousel-caption.hero-animate-in > p {
-  animation: hero-body-slide 980ms var(--motion-drift) 520ms both;
+  animation: hero-body-slide 1120ms var(--motion-drift) 420ms both;
 }
 
 .carousel-caption.hero-animate-in .home-hero-btn {
-  animation: hero-action-scale 760ms var(--motion-luxury) 700ms both;
+  animation: hero-action-scale 860ms var(--motion-luxury) 620ms both;
 }
 
 .carousel-caption.hero-animate-in .home-hero-link {
-  animation: hero-action-scale 760ms var(--motion-luxury) 780ms both;
+  animation: hero-action-scale 860ms var(--motion-luxury) 700ms both;
 }
 
 /* Scroll sections: layered text reveals inside AOS blocks */
@@ -4552,20 +4564,8 @@ main,
 @keyframes text-soft-fade-up {
   from {
     opacity: 0;
-    transform: translate3d(0, 18px, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes text-blur-rise {
-  from {
-    opacity: 0;
-    filter: blur(6px);
-    transform: translate3d(0, 22px, 0);
+    filter: blur(4px);
+    transform: translate3d(0, 20px, 0);
   }
 
   to {
@@ -4575,11 +4575,25 @@ main,
   }
 }
 
+@keyframes text-blur-rise {
+  from {
+    opacity: 0;
+    filter: blur(9px);
+    transform: translate3d(0, 24px, 0) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 @keyframes text-slide-right {
   from {
     opacity: 0;
-    filter: blur(4px);
-    transform: translate3d(-32px, 0, 0);
+    filter: blur(7px);
+    transform: translate3d(-30px, 0, 0);
   }
 
   to {
@@ -4592,22 +4606,54 @@ main,
 @keyframes text-scale-in {
   from {
     opacity: 0;
-    filter: blur(3px);
-    transform: scale(0.94);
+    filter: blur(5px);
+    transform: translate3d(0, 10px, 0) scale(0.92);
   }
 
   to {
     opacity: 1;
     filter: blur(0);
-    transform: scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes text-veil-left {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    clip-path: inset(0 100% 0 0);
+    transform: translate3d(-16px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes text-veil-up {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    clip-path: inset(100% 0 0 0);
+    transform: translate3d(0, 16px, 0);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes text-word-stagger {
   from {
     opacity: 0;
-    filter: blur(5px);
-    transform: translate3d(0, 0.75em, 0) scale(0.96);
+    filter: blur(7px);
+    transform: translate3d(0, 0.84em, 0) scale(0.95);
   }
 
   to {
@@ -4626,16 +4672,16 @@ main,
 }
 
 .home-proof-intro.aos-animate .home-section-kicker {
-  animation: text-slide-right 820ms var(--motion-luxury) 100ms both;
+  animation: text-veil-left 940ms var(--motion-luxury) 100ms both;
 }
 
 .home-proof-intro.aos-animate h2 .text-word {
-  animation: text-word-stagger 760ms var(--motion-luxury) both;
-  animation-delay: calc(220ms + var(--word-index) * 48ms);
+  animation: text-word-stagger 860ms var(--motion-luxury) both;
+  animation-delay: calc(190ms + var(--word-index) * 40ms);
 }
 
 .home-proof-intro.aos-animate > p {
-  animation: text-soft-fade-up 900ms var(--motion-drift) 580ms both;
+  animation: text-blur-rise 980ms var(--motion-drift) 440ms both;
 }
 
 .aos-init[data-aos] .home-proof-metric span,
@@ -4645,39 +4691,39 @@ main,
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(1) span {
-  animation: text-scale-in 700ms var(--motion-luxury) 120ms both;
+  animation: text-soft-fade 760ms var(--motion-luxury) 100ms both;
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(1) strong {
-  animation: text-blur-rise 760ms var(--motion-luxury) 200ms both;
+  animation: text-veil-up 900ms var(--motion-luxury) 180ms both;
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(1) p {
-  animation: text-soft-fade-up 820ms var(--motion-drift) 280ms both;
+  animation: text-soft-fade-up 920ms var(--motion-drift) 300ms both;
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(2) span {
-  animation: text-scale-in 700ms var(--motion-luxury) 220ms both;
+  animation: text-scale-in 760ms var(--motion-luxury) 180ms both;
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(2) strong {
-  animation: text-blur-rise 760ms var(--motion-luxury) 300ms both;
+  animation: text-blur-rise 840ms var(--motion-luxury) 260ms both;
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(2) p {
-  animation: text-soft-fade-up 820ms var(--motion-drift) 380ms both;
+  animation: text-soft-fade-up 900ms var(--motion-drift) 360ms both;
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(3) span {
-  animation: text-scale-in 700ms var(--motion-luxury) 320ms both;
+  animation: text-soft-fade 760ms var(--motion-luxury) 260ms both;
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(3) strong {
-  animation: text-blur-rise 760ms var(--motion-luxury) 400ms both;
+  animation: text-slide-right 840ms var(--motion-luxury) 340ms both;
 }
 
 .home-proof-metrics.aos-animate .home-proof-metric:nth-child(3) p {
-  animation: text-soft-fade-up 820ms var(--motion-drift) 480ms both;
+  animation: text-soft-fade-up 900ms var(--motion-drift) 450ms both;
 }
 
 /* Command section */
@@ -4689,15 +4735,15 @@ main,
 }
 
 .home-command-header.aos-animate .home-section-kicker {
-  animation: text-soft-fade-up 760ms var(--motion-luxury) 80ms both;
+  animation: text-soft-fade 820ms var(--motion-luxury) 80ms both;
 }
 
 .home-command-header.aos-animate h2 {
-  animation: text-scale-in 900ms var(--motion-luxury) 180ms both;
+  animation: text-veil-up 1000ms var(--motion-luxury) 170ms both;
 }
 
 .home-command-header.aos-animate > p {
-  animation: text-blur-rise 880ms var(--motion-drift) 340ms both;
+  animation: text-slide-right 980ms var(--motion-drift) 320ms both;
 }
 
 .aos-init[data-aos] .home-command-card span,
@@ -4707,15 +4753,15 @@ main,
 }
 
 .home-command-card.aos-animate span {
-  animation: text-slide-right 680ms var(--motion-luxury) 90ms both;
+  animation: text-soft-fade 700ms var(--motion-luxury) 70ms both;
 }
 
 .home-command-card.aos-animate strong {
-  animation: text-blur-rise 760ms var(--motion-luxury) 170ms both;
+  animation: text-scale-in 840ms var(--motion-luxury) 150ms both;
 }
 
 .home-command-card.aos-animate p {
-  animation: text-soft-fade-up 800ms var(--motion-drift) 250ms both;
+  animation: text-blur-rise 940ms var(--motion-drift) 260ms both;
 }
 
 /* Marketing section heading */
@@ -4726,12 +4772,12 @@ main,
 }
 
 .home-section-heading.aos-animate .home-section-kicker {
-  animation: text-blur-rise 780ms var(--motion-luxury) 100ms both;
+  animation: text-soft-fade 760ms var(--motion-luxury) 100ms both;
 }
 
 .home-section-heading.aos-animate h2 .text-word {
-  animation: text-word-stagger 760ms var(--motion-luxury) both;
-  animation-delay: calc(240ms + var(--word-index) * 44ms);
+  animation: text-word-stagger 840ms var(--motion-luxury) both;
+  animation-delay: calc(210ms + var(--word-index) * 38ms);
 }
 
 /* Discipline cards */
@@ -4743,12 +4789,12 @@ main,
 }
 
 .marketing .col-lg-4.aos-animate h2.fw-normal .text-word {
-  animation: text-blur-rise 740ms var(--motion-luxury) both;
-  animation-delay: calc(180ms + var(--word-index) * 60ms);
+  animation: text-word-stagger 820ms var(--motion-luxury) both;
+  animation-delay: calc(140ms + var(--word-index) * 34ms);
 }
 
 .marketing .col-lg-4.aos-animate > p {
-  animation: text-slide-right 860ms var(--motion-drift) 360ms both;
+  animation: text-soft-fade-up 980ms var(--motion-drift) 320ms both;
 }
 
 .marketing .row > .col-lg-4:nth-child(1).aos-animate > p {
@@ -4756,14 +4802,13 @@ main,
 }
 
 .marketing .row > .col-lg-4:nth-child(2).aos-animate > p {
-  animation-name: text-soft-fade-up;
-  animation-delay: 400ms;
+  animation-name: text-blur-rise;
+  animation-delay: 360ms;
 }
 
 .marketing .row > .col-lg-4:nth-child(3).aos-animate > p {
-  animation-name: text-slide-right;
-  transform-origin: right center;
-  animation-delay: 440ms;
+  animation-name: text-scale-in;
+  animation-delay: 420ms;
 }
 
 /* Capability panel */
@@ -4775,24 +4820,24 @@ main,
 }
 
 .home-capability-panel.aos-animate .home-section-kicker {
-  animation: text-slide-right 760ms var(--motion-luxury) 100ms both;
+  animation: text-veil-left 860ms var(--motion-luxury) 90ms both;
 }
 
 .home-capability-panel.aos-animate h2 .text-word {
-  animation: text-word-stagger 760ms var(--motion-luxury) both;
-  animation-delay: calc(200ms + var(--word-index) * 46ms);
+  animation: text-word-stagger 860ms var(--motion-luxury) both;
+  animation-delay: calc(180ms + var(--word-index) * 38ms);
 }
 
 .home-capability-panel.aos-animate .home-capability-list p:nth-child(1) {
-  animation: text-slide-right 820ms var(--motion-drift) 480ms both;
+  animation: text-slide-right 920ms var(--motion-drift) 380ms both;
 }
 
 .home-capability-panel.aos-animate .home-capability-list p:nth-child(2) {
-  animation: text-soft-fade-up 820ms var(--motion-drift) 580ms both;
+  animation: text-soft-fade-up 920ms var(--motion-drift) 500ms both;
 }
 
 .home-capability-panel.aos-animate .home-capability-list p:nth-child(3) {
-  animation: text-slide-right 820ms var(--motion-drift) 680ms both;
+  animation: text-scale-in 900ms var(--motion-drift) 620ms both;
 }
 
 /* Featurettes */
@@ -4814,12 +4859,12 @@ main,
 }
 
 .aos-init[data-aos].aos-animate .featurette-heading .text-word {
-  animation: text-word-stagger 760ms var(--motion-luxury) both;
-  animation-delay: calc(160ms + var(--word-index) * 42ms);
+  animation: text-word-stagger 840ms var(--motion-luxury) both;
+  animation-delay: calc(140ms + var(--word-index) * 36ms);
 }
 
 .aos-init[data-aos].aos-animate .lead {
-  animation: text-blur-rise 920ms var(--motion-drift) 520ms both;
+  animation: text-veil-left 1020ms var(--motion-drift) 420ms both;
 }
 
 /* Reduced motion: show all text immediately */
